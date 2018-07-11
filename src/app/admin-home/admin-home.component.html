@@ -1,0 +1,86 @@
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate" class="sider-left">
+    <div class="logo">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item routerLink="./default">
+        <span>
+          <i class="anticon anticon-home"></i>
+          <span class="nav-text">概览</span>
+        </span>
+      </li>
+      <li nz-submenu>
+        <span title>
+          <i class="anticon anticon-setting"></i>
+          <span class="nav-text">帐号管理</span>
+        </span>
+        <ul>
+          <li nz-menu-item routerLink="./userlist">
+            <i class="anticon anticon-user"></i>
+            <span class="nav-text">用户</span>
+          </li>
+          <li nz-menu-item routerLink="./usergroup">
+            <i class="anticon anticon-team"></i>
+            <span class="nav-text">用户分组</span>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title>
+          <i class="anticon anticon-switcher"></i>
+          <span class="nav-text">模特管理</span>
+        </span>
+        <ul>
+          <li nz-menu-item routerLink="./modellist">
+            <i class="anticon anticon-solution"></i>
+            <span class="nav-text">模特管理</span>
+          </li>
+          <li nz-menu-item routerLink="./modelgroup">
+            <i class="anticon anticon-team"></i>
+            <span class="nav-text">模特分组</span>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title>
+          <i class="anticon anticon-file"></i>
+          <span class="nav-text">文件上传</span>
+        </span>
+        <ul>
+          <li nz-menu-item routerLink="./uploadimglist">
+            <i class="anticon anticon-picture"></i>
+            <span class="nav-text">上传图片</span>
+          </li>
+          <li nz-menu-item routerLink="./upvideolist">
+            <i class="anticon anticon-video-camera"></i>
+            <span class="nav-text">上传视频</span>
+          </li>
+        </ul>
+      </li>
+      <li class="loginoutbtn" nz-menu-item routerLink="/member/login">
+        <span>
+          <i class="anticon anticon-logout"></i>
+          <span class="nav-text">退出登录</span>
+        </span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="infobox-right">
+    <nz-header style="background: #fff; padding:0;">
+      <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed" (click)="isCollapsed=!isCollapsed"></i>
+    </nz-header>
+    <nz-content style="margin:0 16px;">
+      <nz-breadcrumb style="margin:16px 0;">
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div style="padding:24px; background: #fff; min-height: 360px;">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">Made by Momokara</nz-footer>
+  </nz-layout>
+</nz-layout>
+<ng-template #trigger>
+  <i class="anticon anticon-up"></i>
+</ng-template>
