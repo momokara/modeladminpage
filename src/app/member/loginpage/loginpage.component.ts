@@ -40,7 +40,7 @@ export class LoginpageComponent implements OnInit {
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe(res => {
         if (res && res.code === 200) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home'], { queryParams: { id: 1 } });
         }
       });
   }

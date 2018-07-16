@@ -14,6 +14,14 @@
   height: 32px;
   background: rgba(255, 255, 255, .2);
   margin: 16px;
+  .logo-text {
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    color: #FFF;
+    font-weight: 600;
+  }
+
 }
 
 .infobox-right {
@@ -22,8 +30,9 @@
 
 .sider-left {
   position: relative;
-  .loginoutbtn{
+  .loginoutbtn {
     position: absolute;
     bottom: 0;
   }
 }
+

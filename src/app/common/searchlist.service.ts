@@ -13,12 +13,16 @@ export class SearchlistService {
    * @param key 需要检索的字段 支持3级
    * @param array 需要检索的数组
    */
-  searchInArray(keyword: string, key: string[], array) {
+  searchInArray(keyword: string, key: string[], array): any {
+    // res保存结果
     const res = new ResArray();
+    // 原始数组
     res.sourceArray = array;
     const resArray = res.sourceArray.filter((element, index, self) => {
+      // 创建正则匹配
       const reg = keyword ? new RegExp(keyword) : '';
       const e = element;
+      // 数组中需要对比的内容
       let filterbase;
       switch (key.length) {
         case 1:
@@ -33,9 +37,8 @@ export class SearchlistService {
         default:
           break;
       }
-
+      //  处理数字的对比 和 string 的比对
       if (typeof (filterbase) === 'number') {
-
         if (filterbase.toString() === keyword) {
           return true;
         } else {
@@ -50,9 +53,11 @@ export class SearchlistService {
       }
 
     });
+    // 结果写入result
     res.result = resArray;
     return res;
   }
+
 }
 
 class ResArray {

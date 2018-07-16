@@ -1,16 +1,19 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate" class="sider-left">
     <div class="logo">
+      <div class="logo-text">
+        模酷
+      </div>
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item routerLink="./default">
+      <li nz-menu-item routerLink="./default/666">
         <span>
           <i class="anticon anticon-home"></i>
           <span class="nav-text">概览</span>
         </span>
       </li>
       <li nz-submenu>
-        <span title>
+        <span title routerLink="./userdefault">
           <i class="anticon anticon-setting"></i>
           <span class="nav-text">帐号管理</span>
         </span>
@@ -26,7 +29,7 @@
         </ul>
       </li>
       <li nz-submenu>
-        <span title>
+        <span title routerLink="./modeldefault">
           <i class="anticon anticon-switcher"></i>
           <span class="nav-text">模特管理</span>
         </span>
@@ -42,7 +45,7 @@
         </ul>
       </li>
       <li nz-submenu>
-        <span title>
+        <span title routerLink="./uploaddefault">
           <i class="anticon anticon-file"></i>
           <span class="nav-text">文件上传</span>
         </span>
@@ -71,8 +74,11 @@
     </nz-header>
     <nz-content style="margin:0 16px;">
       <nz-breadcrumb style="margin:16px 0;">
-        <nz-breadcrumb-item>User</nz-breadcrumb-item>
-        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+        <ng-container *ngFor="let rowdata of actBcNav">
+          <nz-breadcrumb-item>
+            <a routerLink="{{rowdata.url}}">{{rowdata.name}}</a>
+          </nz-breadcrumb-item>
+        </ng-container>
       </nz-breadcrumb>
       <div style="padding:24px; background: #fff; min-height: 360px;">
         <router-outlet></router-outlet>

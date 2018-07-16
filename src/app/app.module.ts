@@ -10,6 +10,7 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { MsgService } from './common/msg.service';
 import { AjaxService } from './common/ajax.service';
+import { IsloginService } from './common/islogin.service';
 
 registerLocaleData(zh);
 
@@ -26,7 +27,8 @@ registerLocaleData(zh);
   ],
   providers: [
     { provide: 'AjaxServer', useClass: AjaxService },
-    { provide: 'MsgSer', useClass: MsgService }
+    { provide: 'MsgSer', useClass: MsgService },
+    IsloginService
   ],
   bootstrap: [AppComponent]
 })
