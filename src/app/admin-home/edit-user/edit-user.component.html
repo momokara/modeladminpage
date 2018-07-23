@@ -7,10 +7,15 @@
   [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="searchData()" (nzPageSizeChange)="searchData(true)">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
-      <th nzShowSort nzSortKey="name">Name</th>
-      <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th>
+      <th nzShowSort nzSortKey="id">ID</th>
+      <th nzShowSort nzSortKey="name">姓名</th>
+      <th nzShowSort nzSortKey="phone">手机</th>
+      <!-- <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th> -->
       <th nzShowSort nzSortKey="email">
         <span>Email</span>
+      </th>
+      <th>
+        操作
       </th>
     </tr>
   </thead>
@@ -18,7 +23,9 @@
     <tr *ngFor="let data of ajaxTable.data">
       <td>{{data.name.first}} {{data.name.last}}</td>
       <td>{{data.gender}}</td>
+      <td>{{data.phone}}</td>
       <td>{{data.email}}</td>
+      <td>edit</td>
     </tr>
   </tbody>
 </nz-table>

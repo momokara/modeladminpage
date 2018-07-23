@@ -4,6 +4,8 @@ export class Api {
   // 登陆
   private readonly loginUp: string = 'api/member/login';
 
+  private readonly test: string = '/';
+
   constructor(webroot: BasicUrl) {
     // 必须初始化
     this.basicUrl = webroot.baseherf;

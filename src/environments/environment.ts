@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  istest: true,
-  baseurl: { baseherf: '../assets/' }
+  istest: false,
+  baseurl: { baseherf: 'https://api.randomuser.me/' }
 };
 
 /*

@@ -6,10 +6,7 @@
 <nz-table #filterTable [nzData]="displayData">
   <thead>
     <tr>
-      <th nzShowSort nzShowFilter [(nzSort)]="sortMap.name" 
-      (nzSortChange)="sort('name',$event)" 
-      [nzFilters]="filterNameList" 
-      (nzFilterChange)="search($event,searchAddressList)">组名</th>
+      <th nzShowSort nzShowFilter [(nzSort)]="sortMap.name">组名</th>
       <th nzShowSort [(nzSort)]="sortMap.age" (nzSortChange)="sort('age',$event)">Age</th>
       <th nzShowSort nzShowFilter [(nzSort)]="sortMap.address" (nzSortChange)="sort('address',$event)" [nzFilters]="filterAddressList"
         (nzFilterChange)="search(searchNameList,$event)">Address</th>

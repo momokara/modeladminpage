@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Api } from './../../environments/api.class';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,13 @@ export class AjaxService {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       'user-id': '',
       'user-token': '',
-    })
+    }),
+    params: new HttpParams()
   };
 
   constructor(
     private http: HttpClient
-  ) {
-  }
+  ) { }
 
   /**
    * 获得信息方式 this.isTest 控制是否测试 测试用GET 正式用POST
@@ -55,8 +55,22 @@ export class AjaxService {
       this.httpOptionsdef.headers = this.httpOptionsdef.headers.set('user-token', sessionStorage.getItem('user-token'));
     }
     // 处理get参数
-    const url = urldata ?
-      this.api.getUrl(apiurl, this.isTest) + '?' + this.transformRequestJson(urldata) : this.api.getUrl(apiurl, this.isTest);
+    const url = this.api.getUrl(apiurl, this.isTest);
+    // const url = urldata ?
+    //   this.api.getUrl(apiurl, this.isTest) + '?' + this.transformRequestJson(urldata) : this.api.getUrl(apiurl, this.isTest);
+    let urlparams = new HttpParams();
+    if (urldata) {
+      for (const k in urldata) {
+        if (k) {
+          urlparams = urlparams.append(k, `${urldata[k]}`);
+          console.log(urlparams, k, urldata[k]);
+        }
+      }
+    }
+    this.httpOptionsdef.params = urlparams;
+
+
+
     // post 请求
     if (postdata) {
       return this.http.post(url, postdata, this.httpOptionsdef)

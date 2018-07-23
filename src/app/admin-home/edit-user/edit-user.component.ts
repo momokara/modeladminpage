@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -12,6 +12,8 @@ export class RandomUserService {
       .append('results', `${pageSize}`)
       .append('sortField', sortField)
       .append('sortOrder', sortOrder);
+    console.log(params);
+
     genders.forEach(gender => {
       params = params.append('gender', gender);
     });
@@ -52,26 +54,42 @@ export class EditUserComponent implements OnInit {
   searchGenderList: string[] = [];
 
   sort(sort: { key: string, value: string }): void {
+    console.log(sort);
     this.sortKey = sort.key;
     this.sortValue = sort.value;
     this.searchData();
   }
 
-  constructor(private randomUserService: RandomUserService) {
+  constructor(
+    private randomUserService: RandomUserService,
+    @Inject('AjaxServer') private AjaxServer) {
   }
-
+  /**
+   * 搜索信息
+   * @param reset 是否重置
+   */
   searchData(reset: boolean = false): void {
     if (reset) {
       this.pageIndex = 1;
     }
     this.loading = true;
 
-    this.randomUserService
-      .getUsers(this.pageIndex, this.pageSize, this.sortKey, this.sortValue, this.searchGenderList)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.total = 200;
-        this.dataSet = data.results;
+    // this.randomUserService
+    //   .getUsers(this.pageIndex, this.pageSize, this.sortKey, this.sortValue, this.searchGenderList)
+    //   .subscribe((data: any) => {
+    //     this.loading = false;
+    //     this.total = 200;
+    //     this.dataSet = data.results;
+    //   });
+    this.AjaxServer.ajax('test', {
+      'page': this.pageIndex,
+      'results': this.pageSize,
+      'sortKey': this.sortKey,
+      'sortValue': this.sortValue
+    })
+      .subscribe(res => {
+        console.log(res);
+
       });
   }
 
