@@ -56,7 +56,7 @@ export class RegpageComponent implements OnInit {
     this.AjaxServer.ajax('userReg', null, this.validateForm.value)
       .subscribe(res => {
         if (res && res.code === 200) {
-          this.router.navigate(['/home'], { queryParams: { id: 1 } });
+          this.router.navigate(['/home']);
           if (res.data) {
             sessionStorage.setItem('user-id', res.data.uid);
             sessionStorage.setItem('user-token', res.data.token);
