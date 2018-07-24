@@ -15,7 +15,11 @@ import { Router } from '@angular/router';
 })
 export class RegpageComponent implements OnInit {
   validateForm: FormGroup;
-  usernamehased = false;
+  checkHas = {
+    username: false,
+    nickname: false
+  };
+
   sendCode = {
     issend: false,
     btntext: '获取验证码'
@@ -31,7 +35,7 @@ export class RegpageComponent implements OnInit {
       username: [null, [Validators.required, this.hasUsername]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
+      nickname: [null, [Validators.required, this.hasNickname]],
       phoneNumberPrefix: ['+86'],
       phoneNumber: [null, [Validators.required, this.isPhone]],
       captcha: [null, [Validators.required]]
@@ -62,14 +66,29 @@ export class RegpageComponent implements OnInit {
         }
       });
   }
-  // 检测用户名
-  checkUsername(): void {
-    const urlparmas = { username: this.validateForm.controls.username.value };
-    console.log(urlparmas);
-    this.AjaxServer.ajax('checkUsername', urlparmas)
+
+  /**
+   * 检测重复
+   * @param type 1 用户名 2 昵称
+   */
+  checkhased(type: number): void {
+    let urlparmas;
+    let apiname = '';
+    if (type === 1) {
+      apiname = 'checkUsername';
+      urlparmas = { username: this.validateForm.controls.username.value };
+    } else {
+      apiname = 'checkNickname';
+      urlparmas = { nickname: this.validateForm.controls.nickname.value };
+    }
+    this.AjaxServer.ajax(apiname, urlparmas)
       .subscribe(res => {
         if (res.code === 200) {
-          this.usernamehased = res.hasuser ? true : false;
+          if (type === 1) {
+            this.checkHas.username = res.hasuser ? true : false;
+          } else {
+            this.checkHas.nickname = res.hasuser ? true : false;
+          }
         }
       });
   }
@@ -77,10 +96,20 @@ export class RegpageComponent implements OnInit {
   hasUsername = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (this.usernamehased) {
-      return { hasUser: true, error: true };
+    } else if (this.checkHas.username) {
+      return { hased: true, error: true };
     }
   }
+  // 验证用户名是否已经注册
+  hasNickname = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true };
+    } else if (this.checkHas.nickname) {
+      console.log(this.checkHas.nickname);
+      return { hased: true, error: true };
+    }
+  }
+
 
 
   // 验证密码一致 实时
