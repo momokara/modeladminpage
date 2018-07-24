@@ -5,6 +5,8 @@ export class Api {
   private readonly userReg: string = 'index/index/index';
   // 登录
   private readonly loginUp: string = 'index/index/index';
+  // 发送验证码
+  private readonly sendCode: string = 'index/index/send_sms';
 
   private readonly test: string = '/';
 
