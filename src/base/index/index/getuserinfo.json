@@ -1,0 +1,13 @@
+{
+  "code": 200,
+  "msg": "ok!",
+  "data": {
+    "id": 1,
+    "username": "testuser1",
+    "nickname": "小李",
+    "phone": 13888888888,
+    "email": "email@testemail.com",
+    "u_perm_group": 1,
+    "u_group": 1
+  }
+}

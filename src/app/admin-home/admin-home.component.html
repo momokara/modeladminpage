@@ -6,7 +6,7 @@
       </div>
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item routerLink="./default/666">
+      <li nz-menu-item routerLink="./default">
         <span>
           <i class="anticon anticon-home"></i>
           <span class="nav-text">概览</span>
@@ -74,9 +74,10 @@
     </nz-header>
     <nz-content style="margin:0 16px;">
       <nz-breadcrumb style="margin:16px 0;">
-        <ng-container *ngFor="let rowdata of actBcNav">
+        <ng-container *ngFor="let rowdata of actBcNav;let i = index">
           <nz-breadcrumb-item>
-            <a routerLink="{{rowdata.url}}">{{rowdata.name}}</a>
+            <a *ngIf="i<actBcNav.length-1" routerLink="{{rowdata.url}}">{{rowdata.name}}</a>
+            <span *ngIf="i==actBcNav.length-1">{{rowdata.name}}</span>
           </nz-breadcrumb-item>
         </ng-container>
       </nz-breadcrumb>

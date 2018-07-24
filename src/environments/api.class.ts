@@ -9,7 +9,12 @@ export class Api {
   private readonly userList: string = 'index/index/userlist';
   // 发送验证码
   private readonly sendCode: string = 'index/index/send_sms';
-
+  // 获取用户信息
+  private readonly getUserInfo: string = 'index/index/getuserinfo';
+  // 验证用户重复
+  private readonly checkUsername: string = 'index/index/checkusername';
+  // 验证昵称重复
+  private readonly checkNickname: string = 'index/index/checknickname';
 
   private readonly test: string = '/';
 

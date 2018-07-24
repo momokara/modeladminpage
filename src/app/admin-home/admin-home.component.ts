@@ -49,7 +49,11 @@ export class AdminHomeComponent implements OnInit {
   getBcNav(url: string): BcNav[] {
     let res: BcNav[] = [];
     const urlArray = this.geturl(url);
-    res = this.Bcnav.getnavArray(urlArray[urlArray.length - 1]);
+    if (urlArray.length >= 2) {
+      res = this.Bcnav.getnavArray(urlArray[1]);
+    } else {
+      res = this.Bcnav.getnavArray(urlArray[0]);
+    }
     return res;
   }
   /**

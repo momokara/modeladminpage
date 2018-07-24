@@ -18,10 +18,13 @@ import { EditSingleUserInfoComponent } from './edit-single-user-info/edit-single
 import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
 import { EditModelListComponent } from './edit-model-list/edit-model-list.component';
 import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AdminHomeRoutingModule,
     NgZorroAntdModule,
     NgxEchartsModule

@@ -17,7 +17,7 @@ import { EditModelListComponent } from './edit-model-list/edit-model-list.compon
 const routes: Routes = [
   {
     path: '', component: AdminHomeComponent, children: [
-      { path: '', redirectTo: 'default/1234', pathMatch: 'full' },
+      { path: '', redirectTo: 'default', pathMatch: 'full' },
       // 默认页面
       { path: 'default', component: DefaultpageComponent },
       // 用户默认页面

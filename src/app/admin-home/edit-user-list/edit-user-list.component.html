@@ -24,7 +24,9 @@
       <td>{{data.nickname}}</td>
       <td>{{data.phone}}</td>
       <td>{{data.email}}</td>
-      <td>edit</td>
+      <td>
+        <a routerLink="../edituser/{{data.id}}" nz-button nzType="primary">编辑</a>
+      </td>
     </tr>
   </tbody>
 </nz-table>

@@ -2,8 +2,12 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">帐号</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="username" id="username" placeholder="请输入登录帐号/手机号">
-      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">请输入正确的帐号</nz-form-explain>
+      <input nz-input formControlName="username" id="username" (ngModelChange)="checkhased(1)" laceholder="请输入登录帐号/手机号">
+      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">
+        <!-- <ng-container *ngIf="validateForm.get('username').errors">请输入正确的帐号</ng-container> -->
+        <ng-container *ngIf="validateForm.get('username').hasError('required')">请输入帐号</ng-container>
+        <ng-container *ngIf="validateForm.get('username').hasError('hased')">用户名已存在</ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -37,8 +41,12 @@
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input id="nickname" formControlName="nickname">
-      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">请输入昵称!</nz-form-explain>
+      <input nz-input id="nickname" formControlName="nickname" (ngModelChange)="checkhased(2)">
+      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('nickname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">请输入昵称</ng-container>
+        <ng-container *ngIf="validateForm.get('nickname').hasError('hased')">昵称已存在</ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
