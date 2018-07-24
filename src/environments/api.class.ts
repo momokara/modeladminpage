@@ -2,7 +2,7 @@ export class Api {
   // 基础路径
   private readonly basicUrl: string;
   // 注册
-  private readonly userReg: string = 'index/index/index';
+  private readonly userReg: string = 'index/index/register';
   // 登录
   private readonly loginUp: string = 'index/index/login';
   // 用户列表
