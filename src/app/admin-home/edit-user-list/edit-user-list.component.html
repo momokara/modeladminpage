@@ -3,14 +3,13 @@
   <button nz-button (click)="resetFilters()">Clear filters</button>
   <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>
 </div> -->
-<nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="false" [nzData]="dataSet" [nzLoading]="loading" [nzTotal]="total"
-  [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="searchData()" (nzPageSizeChange)="searchData(true)">
+<nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="true" [nzData]="dataSet" [nzLoading]="loading" [nzTotal]="total"
+  [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()" (nzPageSizeChange)="PageSizeChange(true)">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="id">ID</th>
       <th nzShowSort nzSortKey="name">姓名</th>
       <th nzShowSort nzSortKey="phone">手机</th>
-      <!-- <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th> -->
       <th nzShowSort nzSortKey="email">
         <span>Email</span>
       </th>
@@ -21,8 +20,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of ajaxTable.data">
-      <td>{{data.name.first}} {{data.name.last}}</td>
-      <td>{{data.gender}}</td>
+      <td>{{data.id}}</td>
+      <td>{{data.nickname}}</td>
       <td>{{data.phone}}</td>
       <td>{{data.email}}</td>
       <td>edit</td>

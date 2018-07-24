@@ -63,7 +63,6 @@ export class AjaxService {
       for (const k in urldata) {
         if (k) {
           urlparams = urlparams.append(k, `${urldata[k]}`);
-          console.log(urlparams, k, urldata[k]);
         }
       }
       this.httpOptionsdef.params = urlparams;

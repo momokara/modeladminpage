@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-editmodelpage',
-  templateUrl: './editmodelpage.component.html',
-  styleUrls: ['./editmodelpage.component.scss']
+  selector: 'app-edit-model-list',
+  templateUrl: './edit-model-list.component.html',
+  styleUrls: ['./edit-model-list.component.scss']
 })
-export class EditmodelpageComponent implements OnInit {
+export class EditModelListComponent implements OnInit {
   searchNameList = [];
   searchAddressList = [];
   filterNameList = [
