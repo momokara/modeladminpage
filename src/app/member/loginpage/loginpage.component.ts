@@ -39,14 +39,10 @@ export class LoginpageComponent implements OnInit {
     }
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe(res => {
-        if (res && res.code === 200) {
-          this.router.navigate(['/home'], { queryParams: { id: 1 } });
-          if (res.data) {
-            sessionStorage.setItem('user-id', res.data.uid);
-            sessionStorage.setItem('user-token', res.data.token);
-          }
-        } else {
-          alert(res.msg);
+        this.router.navigate(['/home']);
+        if (res.data) {
+          sessionStorage.setItem('user-id', res.data.uid);
+          sessionStorage.setItem('user-token', res.data.token);
         }
       });
   }

@@ -55,14 +55,10 @@ export class RegpageComponent implements OnInit {
     console.log(this.validateForm.value, this.validateForm.valid);
     this.AjaxServer.ajax('userReg', null, this.validateForm.value)
       .subscribe(res => {
-        if (res && res.code === 200) {
-          this.router.navigate(['/home']);
-          if (res.data) {
-            sessionStorage.setItem('user-id', res.data.uid);
-            sessionStorage.setItem('user-token', res.data.token);
-          }
-        } else {
-          alert(res.msg);
+        this.router.navigate(['/home']);
+        if (res.data) {
+          sessionStorage.setItem('user-id', res.data.uid);
+          sessionStorage.setItem('user-token', res.data.token);
         }
       });
   }
