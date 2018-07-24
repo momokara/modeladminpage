@@ -12,9 +12,9 @@ export class Api {
   // 获取用户信息
   private readonly getUserInfo: string = 'index/index/getuserinfo';
   // 验证用户重复
-  private readonly checkUsername: string = 'index/index/checkusername';
+  private readonly checkUsername: string = 'index/index/checkuser';
   // 验证昵称重复
-  private readonly checkNickname: string = 'index/index/checknickname';
+  private readonly checkNickname: string = 'index/index/checkuser';
 
   private readonly test: string = '/';
 
