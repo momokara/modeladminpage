@@ -7,6 +7,8 @@ export class Api {
   private readonly loginUp: string = 'index/index/login';
   // 用户列表
   private readonly userList: string = 'index/index/userlist';
+  // 发送验证码
+  private readonly sendCode: string = 'index/index/send_sms';
 
 
   private readonly test: string = '/';

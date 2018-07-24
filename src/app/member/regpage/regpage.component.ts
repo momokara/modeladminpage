@@ -15,19 +15,24 @@ import { Router } from '@angular/router';
 export class RegpageComponent implements OnInit {
 
   validateForm: FormGroup;
+  sendCode = {
+    issend: false,
+    btntext: '获取验证码'
+  };
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     @Inject('AjaxServer') private AjaxServer
   ) {
+    // 创建表单
     this.validateForm = this.fb.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       nickname: [null, [Validators.required]],
       phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required, this.isPhone]],
       captcha: [null, [Validators.required]]
     });
   }
@@ -42,7 +47,7 @@ export class RegpageComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    console.log(this.validateForm.value);
+    console.log(this.validateForm.value, this.validateForm.valid);
     this.AjaxServer.ajax('userReg', null, this.validateForm.value)
       .subscribe(res => {
         if (res && res.code === 200) {
@@ -69,10 +74,60 @@ export class RegpageComponent implements OnInit {
       return { confirm: true, error: true };
     }
   }
+
+  // 验证手机号有效
+  isPhone = (control: FormControl): { [s: string]: boolean } => {
+    const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!control.value) {
+      return { required: true };
+    } else if (!myreg.test(control.value)) {
+      return { isphone: true, error: true };
+    }
+  }
   // 获取验证码
   getCaptcha(e: MouseEvent): void {
     e.preventDefault();
-    console.log(this.validateForm.value.phoneNumber);
+    const urlParmas = {
+      phone: this.validateForm.value.phoneNumber
+    };
 
+    if (this.validateForm.get('phoneNumber').valid) {
+
+      this.AjaxServer.ajax('sendCode', urlParmas)
+        .subscribe(res => {
+          if (res.code === 200) {
+            this.sendCode.issend = true;
+            this.sendCode.btntext = '已发送';
+            this.autocount(60, 1000);
+            setTimeout(() => {
+              console.log('倒计时结速');
+              this.sendCode.issend = false;
+            }, 1);
+          } else {
+            alert(res.msg);
+            this.sendCode.issend = false;
+            this.sendCode.btntext = '重新发送';
+          }
+        });
+    } else {
+      alert('请输入正确的手机号');
+    }
   }
+  // 自动计数
+  // *dom 显示内容的dom
+  // *time 开始倒计时的时间
+  // *delay 间隔延迟
+  autocount(time, delay) {
+    let i = time;
+    console.log('btntext:', this.sendCode.btntext);
+    const setwork = setInterval(function () {
+      if (i > 0) {
+        i--;
+        console.log(i);
+      } else {
+        clearInterval(setwork);
+      }
+    }, delay);
+  }
+
 }
