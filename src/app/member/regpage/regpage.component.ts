@@ -3,18 +3,19 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators
+  Validators,
+  ValidatorFn,
+  AbstractControl
 } from '@angular/forms';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-regpage',
   templateUrl: './regpage.component.html',
   styleUrls: ['./regpage.component.scss']
 })
 export class RegpageComponent implements OnInit {
-
   validateForm: FormGroup;
+  usernamehased = false;
   sendCode = {
     issend: false,
     btntext: '获取验证码'
@@ -27,7 +28,7 @@ export class RegpageComponent implements OnInit {
   ) {
     // 创建表单
     this.validateForm = this.fb.group({
-      username: [null, [Validators.required]],
+      username: [null, [Validators.required, this.hasUsername]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       nickname: [null, [Validators.required]],
@@ -61,6 +62,27 @@ export class RegpageComponent implements OnInit {
         }
       });
   }
+  // 检测用户名
+  checkUsername(): void {
+    const urlparmas = { username: this.validateForm.controls.username.value };
+    console.log(urlparmas);
+    this.AjaxServer.ajax('checkUsername', urlparmas)
+      .subscribe(res => {
+        if (res.code === 200) {
+          this.usernamehased = res.hasuser ? true : false;
+        }
+      });
+  }
+  // 验证用户名是否已经注册
+  hasUsername = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true };
+    } else if (this.usernamehased) {
+      return { hasUser: true, error: true };
+    }
+  }
+
+
   // 验证密码一致 实时
   updateConfirmValidator(): void {
     /** wait for refresh value */

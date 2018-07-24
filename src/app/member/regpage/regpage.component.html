@@ -2,8 +2,11 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">帐号</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="username" id="username" placeholder="请输入登录帐号/手机号">
-      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">请输入正确的帐号</nz-form-explain>
+      <input nz-input formControlName="username" id="username" (ngModelChange)="checkUsername()" laceholder="请输入登录帐号/手机号">
+      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">
+        <ng-container *ngIf="validateForm.get('username').errors">请输入正确的帐号</ng-container>
+        <ng-container *ngIf="validateForm.get('username').hasError('hasUser')">用户名已存在</ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
