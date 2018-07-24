@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,7 +17,10 @@ export class RegpageComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject('AjaxServer') private AjaxServer
+  ) {
     this.validateForm = this.fb.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -40,7 +43,10 @@ export class RegpageComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value);
+    this.AjaxServer.ajax('userReg', null, this.validateForm.value)
+      .subscribe(res => {
 
+      });
   }
   // 验证密码一致 实时
   updateConfirmValidator(): void {

@@ -1,8 +1,10 @@
 export class Api {
   // 基础路径
   private readonly basicUrl: string;
-  // 登陆
-  private readonly loginUp: string = 'api/member/login';
+  // 注册
+  private readonly userReg: string = 'index/index/index';
+  // 登录
+  private readonly loginUp: string = 'index/index/index';
 
   private readonly test: string = '/';
 

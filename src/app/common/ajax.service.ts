@@ -66,8 +66,8 @@ export class AjaxService {
           console.log(urlparams, k, urldata[k]);
         }
       }
+      this.httpOptionsdef.params = urlparams;
     }
-    this.httpOptionsdef.params = urlparams;
 
 
 

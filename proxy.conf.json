@@ -1,0 +1,11 @@
+{
+  "/base": {
+    "target": "http://192.168.1.111/",
+    "logLevel": "debug",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/base": ""
+    }
+  }
+}

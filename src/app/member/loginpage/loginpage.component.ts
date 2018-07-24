@@ -31,16 +31,21 @@ export class LoginpageComponent implements OnInit {
 
   }
   submitForm(): void {
+    this.logininfo.userName = this.validateForm.value.userName;
+    this.logininfo.password = this.validateForm.value.password;
+    this.logininfo.remember = this.validateForm.value.remember;
     if (this.validateForm.value.remember) {
-      this.logininfo.userName = this.validateForm.value.userName;
-      this.logininfo.password = this.validateForm.value.password;
-      this.logininfo.remember = this.validateForm.value.remember;
       localStorage.setItem('userinfo', JSON.stringify(this.logininfo));
     }
+
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe(res => {
         if (res && res.code === 200) {
           this.router.navigate(['/home'], { queryParams: { id: 1 } });
+          if (res.data) {
+            sessionStorage.setItem('user-id', res.data.uid);
+            sessionStorage.setItem('user-token', res.data.token);
+          }
         }
       });
   }

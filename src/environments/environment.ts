@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   istest: false,
-  baseurl: { baseherf: 'https://api.randomuser.me/' }
+  baseurl: { baseherf: 'base/' }
 };
 
 /*
