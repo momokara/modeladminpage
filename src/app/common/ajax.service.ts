@@ -13,7 +13,7 @@ export class AjaxService {
   private readonly isTest: boolean = environment.istest;
   // 定义基准API地址
   public api = new Api(environment.baseurl);
-  // 定义请求头
+  // 定义请求配置
   private httpOptionsdef = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -40,6 +40,7 @@ export class AjaxService {
       console.log('postdata', postdata);
       postdata = null;
     } else {
+      // 处理post是使用formdata 还是 json
       if (ispostjson) {
         this.httpOptionsdef.headers = this.httpOptionsdef.headers.set('Content-Type', 'application/json; charset=UTF-8');
       } else if (!ispostjson) {
@@ -54,12 +55,11 @@ export class AjaxService {
     if (sessionStorage.getItem('user-token')) {
       this.httpOptionsdef.headers = this.httpOptionsdef.headers.set('user-token', sessionStorage.getItem('user-token'));
     }
-    // 处理get参数
+    // 获取请求地址
     const url = this.api.getUrl(apiurl, this.isTest);
-    // const url = urldata ?
-    //   this.api.getUrl(apiurl, this.isTest) + '?' + this.transformRequestJson(urldata) : this.api.getUrl(apiurl, this.isTest);
-    let urlparams = new HttpParams();
+    // 处理get参数
     if (urldata) {
+      let urlparams = new HttpParams();
       for (const k in urldata) {
         if (k) {
           urlparams = urlparams.append(k, `${urldata[k]}`);
@@ -68,9 +68,6 @@ export class AjaxService {
       }
       this.httpOptionsdef.params = urlparams;
     }
-
-
-
     // post 请求
     if (postdata) {
       return this.http.post(url, postdata, this.httpOptionsdef)
@@ -104,7 +101,15 @@ export class AjaxService {
     const data = new Date();
     console.error('error:', data, message);
   }
-
+  // 处理错误
+  private handleError<T>(operation = 'operation', result?: T): any {
+    return (error: any): Observable<T> => {
+      // console.error(error); // log to console instead
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
   // 转换Json 未key-value 对
   // @param *data:json 需要被转换的json数据
   // @return string encodeURIComponent编码之后的key=value数据
@@ -116,14 +121,5 @@ export class AjaxService {
       }
     }
     return str.join('&');
-  }
-  // 处理错误
-  private handleError<T>(operation = 'operation', result?: T): any {
-    return (error: any): Observable<T> => {
-      // console.error(error); // log to console instead
-      this.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 }

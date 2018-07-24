@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regpage',
@@ -15,10 +16,9 @@ export class RegpageComponent implements OnInit {
 
   validateForm: FormGroup;
 
-
-
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     @Inject('AjaxServer') private AjaxServer
   ) {
     this.validateForm = this.fb.group({
@@ -45,7 +45,15 @@ export class RegpageComponent implements OnInit {
     console.log(this.validateForm.value);
     this.AjaxServer.ajax('userReg', null, this.validateForm.value)
       .subscribe(res => {
-
+        if (res && res.code === 200) {
+          this.router.navigate(['/home'], { queryParams: { id: 1 } });
+          if (res.data) {
+            sessionStorage.setItem('user-id', res.data.uid);
+            sessionStorage.setItem('user-token', res.data.token);
+          }
+        } else {
+          alert(res.msg);
+        }
       });
   }
   // 验证密码一致 实时

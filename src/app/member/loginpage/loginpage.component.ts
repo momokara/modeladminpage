@@ -24,20 +24,19 @@ export class LoginpageComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      userName: [this.logininfo.userName ? this.logininfo.userName : null, [Validators.required]],
+      userName: [this.logininfo.username ? this.logininfo.username : null, [Validators.required]],
       password: [this.logininfo.password ? this.logininfo.password : null, [Validators.required]],
       remember: [this.logininfo ? this.logininfo.remember : false]
     });
 
   }
   submitForm(): void {
-    this.logininfo.userName = this.validateForm.value.userName;
+    this.logininfo.username = this.validateForm.value.userName;
     this.logininfo.password = this.validateForm.value.password;
     this.logininfo.remember = this.validateForm.value.remember;
     if (this.validateForm.value.remember) {
       localStorage.setItem('userinfo', JSON.stringify(this.logininfo));
     }
-
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe(res => {
         if (res && res.code === 200) {
@@ -46,13 +45,15 @@ export class LoginpageComponent implements OnInit {
             sessionStorage.setItem('user-id', res.data.uid);
             sessionStorage.setItem('user-token', res.data.token);
           }
+        } else {
+          alert(res.msg);
         }
       });
   }
 }
 
 class LoginInfo {
-  userName: string;
+  username: string;
   password: string;
   remember: boolean;
 }
