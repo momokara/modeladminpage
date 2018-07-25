@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-edit-user-list',
@@ -28,6 +29,7 @@ export class EditUserListComponent implements OnInit {
   }
 
   constructor(
+    private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer) {
   }
   /**
@@ -53,6 +55,25 @@ export class EditUserListComponent implements OnInit {
           this.dataSet = res.data;
         } else {
           alert(res.msg);
+        }
+      });
+  }
+  /**
+   * 停用用户
+   * @param id 用户id
+   * @param i  在数组中的序号
+   * @param isforbid 是否停用
+   */
+  forbiddenuser(id: string, i, isforbid: boolean) {
+    const postdata = {
+      uid: id
+    };
+    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
+    this.AjaxServer.ajax(APIurl, null, postdata)
+      .subscribe(res => {
+        if (res.code = 200) {
+          this.dataSet[i].station = !this.dataSet[i].station;
+          this.message.info('操作成功');
         }
       });
   }

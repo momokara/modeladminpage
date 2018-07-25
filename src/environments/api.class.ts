@@ -9,8 +9,20 @@ export class Api {
   private readonly userList: string = 'index/index/userlist';
   // 发送验证码
   private readonly sendCode: string = 'index/index/send_sms';
+  // 获取权限组
+  private readonly getPermGroup: string = 'index/index/getpermgroup';
+  // 获取用户分组
+  private readonly getUserGroup: string = 'index/index/getusergroup';
+  // 添加用户
+  private readonly addUser: string = 'index/index/adduser';
+  // 停用用户
+  private readonly forbiddenUser: string = 'index/index/forbiddenuser';
+  // 启用用户
+  private readonly openUser: string = 'index/index/openuser';
   // 获取用户信息
   private readonly getUserInfo: string = 'index/index/getuserinfo';
+  // 编辑用户信息
+  private readonly editUserInfo: string = 'index/index/edituserinfo';
   // 验证用户重复
   private readonly checkUsername: string = 'index/index/checkuser';
   // 验证昵称重复

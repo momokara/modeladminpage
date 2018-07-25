@@ -14,11 +14,11 @@ import { EditUserDefaultComponent } from './edit-user-default/edit-user-default.
 import { EditModelDefaultComponent } from './edit-model-default/edit-model-default.component';
 import { EditFileDefaultComponent } from './edit-file-default/edit-file-default.component';
 import { NgxEchartsModule  } from 'ngx-echarts';
-import { EditSingleUserInfoComponent } from './edit-single-user-info/edit-single-user-info.component';
 import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
 import { EditModelListComponent } from './edit-model-list/edit-model-list.component';
 import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
 
 @NgModule({
   imports: [
@@ -41,10 +41,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditUserDefaultComponent,
     EditModelDefaultComponent,
     EditFileDefaultComponent,
-    EditSingleUserInfoComponent,
     EditUserSingleInfoComponent,
     EditModelListComponent,
-    EditUserListComponent
+    EditUserListComponent,
+    EditUserAdduserComponent
   ]
 })
 export class AdminHomeModule { }

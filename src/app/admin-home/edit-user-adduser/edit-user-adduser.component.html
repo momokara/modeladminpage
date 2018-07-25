@@ -1,12 +1,14 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- 帐号 -->
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">ID</nz-form-label>
-    <nz-form-control [nzSm]="4" [nzXs]="24">
-      {{pagedata.id}}
-    </nz-form-control>
-    <nz-form-label [nzSm]="4" [nzXs]="24">帐号</nz-form-label>
-    <nz-form-control [nzSm]="4" [nzXs]="24">
-      {{pagedata.username}}
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">帐号</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input formControlName="username" id="username" (ngModelChange)="checkhased(1)" laceholder="请输入登录帐号/手机号">
+      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">
+        <!-- <ng-container *ngIf="validateForm.get('username').errors">请输入正确的帐号</ng-container> -->
+        <ng-container *ngIf="validateForm.get('username').hasError('required')">请输入帐号</ng-container>
+        <ng-container *ngIf="validateForm.get('username').hasError('hased')">用户名已存在</ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <!-- 昵称 -->
@@ -19,23 +21,27 @@
         </nz-tooltip>
       </span>
     </nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input id="nickname" formControlName="nickname">
-      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">请输入昵称!</nz-form-explain>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input id="nickname" formControlName="nickname" (ngModelChange)="checkhased(2)">
+      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('nickname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">请输入昵称</ng-container>
+        <ng-container *ngIf="validateForm.get('nickname').hasError('hased')">昵称已存在</ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <!-- 修改密码 -->
-  <ng-container *ngIf="iseditPwd">
+  <ng-container>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-form-control [nzSm]="10" [nzXs]="24">
         <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()">
         <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-form-control [nzSm]="10" [nzXs]="24">
         <input nz-input type="password" formControlName="checkPassword" id="checkPassword">
         <nz-form-explain *ngIf="validateForm.get('checkPassword').dirty && validateForm.get('checkPassword').errors">
           <ng-container *ngIf="validateForm.get('checkPassword').hasError('required')">
@@ -48,11 +54,11 @@
       </nz-form-control>
     </nz-form-item>
   </ng-container>
-  <!-- 修改手机号 -->
-  <ng-container *ngIf="iseditPhone">
+  <!-- 手机号 -->
+  <ng-container>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+      <nz-form-control [nzSm]="10" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
         <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
           <ng-template #addOnBeforeTemplate>
             <nz-select formControlName="phoneNumberPrefix" style="width: 70px;">
@@ -72,7 +78,7 @@
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <!-- <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>验证码</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <div nz-row [nzGutter]="8">
@@ -86,11 +92,28 @@
         <nz-form-explain *ngIf="validateForm.get('captcha').dirty && validateForm.get('captcha').errors">请输入验证码!</nz-form-explain>
         <nz-form-extra>We must make sure that your are a human.</nz-form-extra>
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
   </ng-container>
-  <nz-form-item nz-row style="margin-bottom:8px;">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary">保存修改</button>
+  <!-- 用户权限分组 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">用户权限组</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="permgroup">
+        <ng-container *ngFor="let item of userPermGroup">
+          <nz-option nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+        </ng-container>
+      </nz-select>
     </nz-form-control>
   </nz-form-item>
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="5" [nzOffset]="6">
+      <button nz-button nzType="primary" class="btn-sub">新建用户修改</button>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="5">
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="../userlist">取消</a>
+    </nz-form-control>
+
+  </nz-form-item>
+
 </form>

@@ -53,16 +53,19 @@ export class RegpageComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
-    this.AjaxServer.ajax('userReg', null, this.validateForm.value)
-      .subscribe(res => {
-        if (res.code === 200) {
-          this.router.navigate(['/home']);
-          if (res.data) {
-            sessionStorage.setItem('user-id', res.data.uid);
-            sessionStorage.setItem('user-token', res.data.token);
+    if (this.validateForm.valid) {
+      this.AjaxServer.ajax('userReg', null, this.validateForm.value)
+        .subscribe(res => {
+          if (res.code === 200) {
+            this.router.navigate(['/home']);
+            if (res.data) {
+              sessionStorage.setItem('user-id', res.data.uid);
+              sessionStorage.setItem('user-token', res.data.token);
+            }
           }
-        }
-      });
+        });
+    }
+
   }
 
   /**

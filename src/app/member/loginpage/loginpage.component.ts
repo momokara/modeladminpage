@@ -18,7 +18,6 @@ export class LoginpageComponent implements OnInit {
   ) {
     if (localStorage.getItem('userinfo')) {
       this.logininfo = JSON.parse(localStorage.getItem('userinfo'));
-
     }
   }
 
@@ -40,7 +39,7 @@ export class LoginpageComponent implements OnInit {
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe(res => {
         if (res && res.code === 200) {
-          this.router.navigate(['/home'], { queryParams: { id: 1 } });
+          this.router.navigate(['/home']);
           if (res.data) {
             sessionStorage.setItem('user-id', res.data.uid);
             sessionStorage.setItem('user-token', res.data.token);

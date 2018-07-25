@@ -29,6 +29,13 @@ export class Navigate {
     'parent': 'userdefault',
     'children': ['edituser']
   };
+  // 帐号管理-添加用户
+  public readonly adduser: BcNav = {
+    'name': '添加用户',
+    'url': '/home/edituser',
+    'parent': 'userlist',
+    'children': []
+  };
   // 帐号管理-用户详情
   public readonly edituser: BcNav = {
     'name': '用户详情',

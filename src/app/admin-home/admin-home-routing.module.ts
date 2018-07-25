@@ -1,4 +1,5 @@
-import { EditSingleUserInfoComponent } from './edit-single-user-info/edit-single-user-info.component';
+import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
+import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
 import { EditModelDefaultComponent } from './edit-model-default/edit-model-default.component';
 import { EditUserDefaultComponent } from './edit-user-default/edit-user-default.component';
 import { EditfieldComponent } from './editfield/editfield.component';
@@ -24,8 +25,10 @@ const routes: Routes = [
       { path: 'userdefault', component: EditUserDefaultComponent },
       // 用户列表
       { path: 'userlist', component: EditUserListComponent },
+      // 添加单个用户
+      { path: 'adduser', component: EditUserAdduserComponent },
       // 编辑单个用户
-      { path: 'edituser/:id', component: EditSingleUserInfoComponent },
+      { path: 'edituser/:id', component: EditUserSingleInfoComponent },
       // 用户分组
       { path: 'usergroup', component: EditUserGroupComponent },
       // 模特默认页面
