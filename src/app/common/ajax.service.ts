@@ -4,6 +4,7 @@ import { Api } from './../../environments/api.class';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class AjaxService {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private message: NzMessageService
   ) { }
 
   /**
@@ -75,7 +77,8 @@ export class AjaxService {
         .pipe(
           map((res: any, e) => {
             if (res.code !== 200) {
-              alert(res.msg);
+              // alert(res.msg);
+              this.message.create('error', `${res.msg}`);
             }
             return res;
           }),
@@ -87,7 +90,8 @@ export class AjaxService {
         .pipe(
           map((res: any, e) => {
             if (res.code !== 200) {
-              alert(res.msg);
+              // alert(res.msg);
+              this.message.create('error', `${res.msg}`);
             }
             return res;
           }),

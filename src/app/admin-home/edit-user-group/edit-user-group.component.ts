@@ -47,7 +47,7 @@ export class EditUserGroupComponent implements OnInit {
       'sortKey': this.sortKey,
       'sortValue': this.sortValue
     };
-    this.AjaxServer.ajax('userList', urlParama)
+    this.AjaxServer.ajax('getPermGroup', urlParama)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
@@ -59,19 +59,19 @@ export class EditUserGroupComponent implements OnInit {
       });
   }
   /**
-   * 停用用户
-   * @param id 用户id
+   * 停用用户分组
+   * @param id 分组id
    * @param i  在数组中的序号
    * @param isforbid 是否停用
    */
-  forbiddenuser(id: string, i, isforbid: boolean) {
+  forbiddengroup(id: string, i, isforbid: boolean) {
     const postdata = {
-      uid: id
+      pid: id
     };
-    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
+    const APIurl = isforbid ? 'forbiddenPermG' : 'openPermG';
     this.AjaxServer.ajax(APIurl, null, postdata)
       .subscribe(res => {
-        if (res.code = 200) {
+        if (res.code === 200) {
           this.dataSet[i].station = !this.dataSet[i].station;
           this.message.info('操作成功');
         }

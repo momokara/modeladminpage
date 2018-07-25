@@ -16,14 +16,6 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class EditUserAdduserComponent implements OnInit {
   validateForm: FormGroup;
 
-  editpage = {
-    isShowPwd: false,
-    iseditNickname: false,
-    iseditPwd: false,
-    iseditPhone: false,
-    iseditPermGroup: false,
-  };
-
   checkHas = {
     username: false,
     nickname: false
@@ -100,7 +92,10 @@ export class EditUserAdduserComponent implements OnInit {
 
   // 获取权限分组
   getPermGroup() {
-    this.AjaxServer.ajax('getPermGroup')
+    const urlParmas = {
+      isgetact: true
+    };
+    this.AjaxServer.ajax('getPermGroup', urlParmas)
       .subscribe(res => {
         if (res.code === 200) {
           this.userPermGroup = res.data;

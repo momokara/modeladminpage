@@ -15,39 +15,53 @@ export class Navigate {
     'parent': null,
     'children': []
   };
-  // 帐号管理
+  // 管理员管理
   public readonly userdefault: BcNav = {
-    'name': '帐号管理',
+    'name': '管理员管理',
     'url': '/home/userdefault',
     'parent': 'home',
     'children': ['userlist', 'usergroup']
   };
-  // 帐号管理-用户列表
+  // 管理员管理-所有管理员
   public readonly userlist: BcNav = {
-    'name': '用户列表',
+    'name': '所有管理员',
     'url': '/home/userlist',
     'parent': 'userdefault',
     'children': ['edituser']
   };
-  // 帐号管理-添加用户
+  // 管理员管理-添加管理员
   public readonly adduser: BcNav = {
-    'name': '添加用户',
-    'url': '/home/edituser',
+    'name': '添加管理员',
+    'url': '/home/adduser',
     'parent': 'userlist',
     'children': []
   };
-  // 帐号管理-用户详情
+  // 管理员管理-管理员详情
   public readonly edituser: BcNav = {
-    'name': '用户详情',
+    'name': '管理员详情',
     'url': '/home/edituser',
     'parent': 'userlist',
     'children': []
   };
-  // 帐号管理-用户分组
-  public readonly usergroup: BcNav = {
-    'name': '用户分组',
-    'url': '/home/usergroup',
+  // 管理员管理-管理员权限组
+  public readonly userpermgroup: BcNav = {
+    'name': '管理员权限组',
+    'url': '/home/userpermgroup',
     'parent': 'userdefault',
+    'children': ['addpermgroup', 'editpermgroup']
+  };
+  // 管理员管理-添加管理员权限组
+  public readonly addpermgroup: BcNav = {
+    'name': '添加权限组',
+    'url': '/home/addpermgroup',
+    'parent': 'userpermgroup',
+    'children': []
+  };
+  // 管理员管理-编辑管理员权限组
+  public readonly editpermgroup: BcNav = {
+    'name': '编辑权限组',
+    'url': '/home/addpermgroup',
+    'parent': 'userpermgroup',
     'children': []
   };
   // 模特管理

@@ -220,7 +220,10 @@ export class EditUserSingleInfoComponent implements OnInit {
           this.pagedata = res.data;
         }
       });
-    this.AjaxServer.ajax('getPermGroup')
+    const urlParmas2 = {
+      isgetact: true
+    };
+    this.AjaxServer.ajax('getPermGroup', urlParmas2)
       .subscribe(res => {
         if (res.code === 200) {
           this.userPermGroup = res.data;
@@ -230,7 +233,7 @@ export class EditUserSingleInfoComponent implements OnInit {
 }
 
 class UserInfo {
-  id: number;
+  uid: number;
   nickname: string;
   phone: number;
   email: string;

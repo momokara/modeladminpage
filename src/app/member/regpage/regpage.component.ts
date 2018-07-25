@@ -61,8 +61,6 @@ export class RegpageComponent implements OnInit {
           sessionStorage.setItem('user-token', res.token);
         }
       });
-
-
   }
 
   /**

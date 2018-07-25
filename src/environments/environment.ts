@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  istest: false,
+  istest: true,
   baseurl: { baseherf: 'base/' }
 };
 

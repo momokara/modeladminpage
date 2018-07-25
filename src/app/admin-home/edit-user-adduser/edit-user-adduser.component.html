@@ -78,21 +78,6 @@
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
-    <!-- <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>验证码</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24">
-        <div nz-row [nzGutter]="8">
-          <div nz-col [nzSpan]="12">
-            <input nz-input formControlName="captcha" id="captcha">
-          </div>
-          <div nz-col [nzSpan]="12">
-            <button nz-button (click)="getCaptcha($event)" [disabled]="sendCode.issend||!this.validateForm.get('phoneNumber').valid">{{sendCode.btntext}}</button>
-          </div>
-        </div>
-        <nz-form-explain *ngIf="validateForm.get('captcha').dirty && validateForm.get('captcha').errors">请输入验证码!</nz-form-explain>
-        <nz-form-extra>We must make sure that your are a human.</nz-form-extra>
-      </nz-form-control>
-    </nz-form-item> -->
   </ng-container>
   <!-- 用户权限分组 -->
   <nz-form-item>
@@ -100,7 +85,7 @@
     <nz-form-control [nzSm]="10" [nzXs]="24">
       <nz-select formControlName="permgroup">
         <ng-container *ngFor="let item of userPermGroup">
-          <nz-option nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+          <nz-option nzValue="{{item.pid}}" nzLabel="{{item.group_name}}"></nz-option>
         </ng-container>
       </nz-select>
     </nz-form-control>

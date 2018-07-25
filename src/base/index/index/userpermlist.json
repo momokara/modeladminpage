@@ -1,0 +1,66 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "total": 20,
+  "data": [{
+      "pid": 1,
+      "group_name": "分组1",
+      "station": 1
+    },
+    {
+      "pid": 2,
+      "group_name": "分组2",
+      "station": 0
+    },
+    {
+      "pid": 3,
+      "group_name": "分组3",
+      "station": 1
+    },
+    {
+      "pid": 4,
+      "group_name": "分组4",
+      "station": 1
+    },
+    {
+      "pid": 5,
+      "group_name": "分组5",
+      "station": 1
+    },
+    {
+      "pid": 6,
+      "group_name": "分组6",
+      "station": 1
+    },
+    {
+      "pid": 7,
+      "group_name": "分组7",
+      "station": 1
+    },
+    {
+      "pid": 8,
+      "group_name": "分组8",
+      "station": 1
+    },
+    {
+      "pid": 9,
+      "group_name": "分组9",
+      "station": 1
+    },
+    {
+      "pid": 10,
+      "group_name": "分组10",
+      "station": 1
+    },
+    {
+      "pid": 11,
+      "group_name": "分组11",
+      "station": 1
+    },
+    {
+      "pid": 12,
+      "group_name": "分组12",
+      "station": 1
+    }
+  ]
+}

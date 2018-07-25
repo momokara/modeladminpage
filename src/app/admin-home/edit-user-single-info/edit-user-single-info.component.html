@@ -2,7 +2,7 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">ID</nz-form-label>
     <nz-form-control [nzSm]="4" [nzXs]="24">
-      {{pagedata.id}}
+      {{pagedata.uid}}
     </nz-form-control>
     <nz-form-label [nzSm]="4" [nzXs]="24">帐号</nz-form-label>
     <nz-form-control [nzSm]="4" [nzXs]="24">
@@ -150,7 +150,7 @@
     <nz-form-control [nzSm]="7" [nzXs]="24">
       <nz-select formControlName="permgroup" [ngModel]="''+pagedata.u_perm_group">
         <ng-container *ngFor="let item of userPermGroup">
-          <nz-option nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+          <nz-option nzValue="{{item.pid}}" nzLabel="{{item.group_name}}"></nz-option>
         </ng-container>
       </nz-select>
     </nz-form-control>

@@ -19,6 +19,8 @@ import { EditModelListComponent } from './edit-model-list/edit-model-list.compon
 import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
+import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
+import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.
     EditUserSingleInfoComponent,
     EditModelListComponent,
     EditUserListComponent,
-    EditUserAdduserComponent
+    EditUserAdduserComponent,
+    EditUserGroupAddComponent,
+    EditUserGroupEditComponent
   ]
 })
 export class AdminHomeModule { }

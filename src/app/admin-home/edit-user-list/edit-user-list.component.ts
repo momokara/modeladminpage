@@ -72,7 +72,7 @@ export class EditUserListComponent implements OnInit {
     const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
     this.AjaxServer.ajax(APIurl, null, postdata)
       .subscribe(res => {
-        if (res.code = 200) {
+        if (res.code === 200) {
           this.dataSet[i].station = !this.dataSet[i].station;
           this.message.info('操作成功');
         }

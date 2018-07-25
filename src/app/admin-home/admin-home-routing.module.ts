@@ -1,3 +1,5 @@
+import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
+import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
 import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
 import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
 import { EditModelDefaultComponent } from './edit-model-default/edit-model-default.component';
@@ -29,8 +31,12 @@ const routes: Routes = [
       { path: 'adduser', component: EditUserAdduserComponent },
       // 编辑单个用户
       { path: 'edituser/:id', component: EditUserSingleInfoComponent },
-      // 用户分组
-      { path: 'usergroup', component: EditUserGroupComponent },
+      // 用户权限分组
+      { path: 'userpermgroup', component: EditUserGroupComponent },
+      // 添加权限分组
+      { path: 'addpermgroup', component: EditUserGroupAddComponent },
+      // 编辑权限分组
+      { path: 'editpermgroup/:id', component: EditUserGroupEditComponent },
       // 模特默认页面
       { path: 'modeldefault', component: EditModelDefaultComponent },
       // 模特列表

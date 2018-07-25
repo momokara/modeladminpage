@@ -11,6 +11,7 @@ import zh from '@angular/common/locales/zh';
 import { MsgService } from './common/msg.service';
 import { AjaxService } from './common/ajax.service';
 import { IsloginService } from './common/islogin.service';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 registerLocaleData(zh);
 
@@ -23,6 +24,7 @@ registerLocaleData(zh);
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgZorroAntdModule,
     HttpClientModule,
   ],
   providers: [
