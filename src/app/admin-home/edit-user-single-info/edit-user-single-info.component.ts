@@ -105,13 +105,16 @@ export class EditUserSingleInfoComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
-    this.AjaxServer.ajax('editUserInfo', null, this.validateForm.value)
-      .subscribe(res => {
-        if (res.code === 200) {
-          this.message.info(res.msg);
-          this.router.navigate(['/home/userlist']);
-        }
-      });
+    if (this.validateForm.valid) {
+      this.AjaxServer.ajax('editUserInfo', null, this.validateForm.value)
+        .subscribe(res => {
+          if (res.code === 200) {
+            this.message.info(res.msg);
+            this.router.navigate(['/home/userlist']);
+          }
+        });
+    }
+
   }
 
   /**
