@@ -1,106 +1,93 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-edit-user-group',
   templateUrl: './edit-user-group.component.html',
   styleUrls: ['./edit-user-group.component.scss']
 })
 export class EditUserGroupComponent implements OnInit {
-  searchNameList = [];
-  searchAddressList = [];
-  filterNameList = [
-    { text: 'Joe', value: 'Joe' },
-    { text: 'Jim', value: 'Jim' }
-  ];
-  filterAddressList = [
-    { text: 'London', value: 'London' },
-    { text: 'Sidney', value: 'Sidney' }
-  ];
-  sortMap = {
-    name: null,
-    age: null,
-    address: null
-  };
-  sortName = null;
+  // 页码
+  pageIndex = 1;
+  // 每页大小
+  pageSize = 10;
+  // 总数
+  total = 1;
+  // 显示的列表数据
+  dataSet = [];
+  // 加载过度
+  loading = true;
+  // 排序值
   sortValue = null;
+  // 排序key
+  sortKey = null;
 
-  data = [
-    {
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      name: 'Jim Red',
-      age: 32,
-      address: 'London No. 2 Lake Park'
-    }
-  ];
-  displayData = [...this.data];
-
-  sort(sortName: string, value: string): void {
-    this.sortName = sortName;
-    this.sortValue = value;
-    // tslint:disable-next-line:forin
-    for (const key in this.sortMap) {
-      this.sortMap[key] = (key === sortName ? value : null);
-    }
-    this.search(this.searchNameList, this.searchAddressList);
+  sort(sort: { key: string, value: string }): void {
+    console.log(sort);
+    this.sortKey = sort.key;
+    this.sortValue = sort.value;
+    this.getListData();
   }
 
-  search(searchNameList: string[], searchAddressList: string[]): void {
-    this.searchNameList = searchNameList;
-    this.searchAddressList = searchAddressList;
-    const filterFunc = item => (this.searchAddressList.length ?
-      this.searchAddressList.some(address => item.address.indexOf(address) !== -1) : true) && (this.searchNameList.length ?
-        this.searchNameList.some(name => item.name.indexOf(name) !== -1) : true);
-    const data = this.data.filter(item => filterFunc(item));
-    if (this.sortName) {
-      this.displayData = data.sort((a, b) => (this.sortValue === 'ascend') ?
-        (a[this.sortName] > b[this.sortName] ? 1 : -1) : (b[this.sortName] > a[this.sortName] ? 1 : -1));
-    } else {
-      this.displayData = data;
+  constructor(
+    private message: NzMessageService,
+    @Inject('AjaxServer') private AjaxServer) {
+  }
+  /**
+   * 搜索信息
+   * @param reset 是否重置
+   */
+  getListData(reset: boolean = false): void {
+    if (reset) {
+      this.pageIndex = 1;
     }
-  }
-
-  resetFilters(): void {
-    this.filterNameList = [
-      { text: 'Joe', value: 'Joe' },
-      { text: 'Jim', value: 'Jim' }
-    ];
-    this.filterAddressList = [
-      { text: 'London', value: 'London' },
-      { text: 'Sidney', value: 'Sidney' }
-    ];
-    this.searchNameList = [];
-    this.searchAddressList = [];
-    this.search(this.searchNameList, this.searchAddressList);
-  }
-
-  resetSortAndFilters(): void {
-    this.sortName = null;
-    this.sortValue = null;
-    this.sortMap = {
-      name: null,
-      age: null,
-      address: null
+    this.loading = true;
+    const urlParama = {
+      'page': this.pageIndex,
+      'pagesize': this.pageSize,
+      'sortKey': this.sortKey,
+      'sortValue': this.sortValue
     };
-    this.resetFilters();
-    this.search(this.searchNameList, this.searchAddressList);
+    this.AjaxServer.ajax('userList', urlParama)
+      .subscribe(res => {
+        if (res.code === 200) {
+          this.loading = false;
+          this.total = res.total;
+          this.dataSet = res.data;
+        } else {
+          alert(res.msg);
+        }
+      });
   }
-  constructor() { }
+  /**
+   * 停用用户
+   * @param id 用户id
+   * @param i  在数组中的序号
+   * @param isforbid 是否停用
+   */
+  forbiddenuser(id: string, i, isforbid: boolean) {
+    const postdata = {
+      uid: id
+    };
+    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
+    this.AjaxServer.ajax(APIurl, null, postdata)
+      .subscribe(res => {
+        if (res.code = 200) {
+          this.dataSet[i].station = !this.dataSet[i].station;
+          this.message.info('操作成功');
+        }
+      });
+  }
+  //  页面变更方法
+  pageChange() {
+    console.log('pageChange');
+  }
+  // 单页条数变更方法
+  PageSizeChange() {
+    console.log('PageSizeChange');
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getListData();
   }
 
 }

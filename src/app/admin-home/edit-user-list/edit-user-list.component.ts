@@ -15,6 +15,7 @@ export class EditUserListComponent implements OnInit {
   total = 1;
   // 显示的列表数据
   dataSet = [];
+  // 加载过度
   loading = true;
   // 排序值
   sortValue = null;
