@@ -59,8 +59,9 @@ export class RegpageComponent implements OnInit {
           this.router.navigate(['/home']);
           sessionStorage.setItem('user-id', res.uid);
           sessionStorage.setItem('user-token', res.token);
-        });
-    }
+        }
+      });
+
 
   }
 
