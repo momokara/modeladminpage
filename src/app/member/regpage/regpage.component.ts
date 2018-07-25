@@ -57,10 +57,8 @@ export class RegpageComponent implements OnInit {
       .subscribe(res => {
         if (res.code === 200) {
           this.router.navigate(['/home']);
-          if (res.data) {
-            sessionStorage.setItem('user-id', res.data.uid);
-            sessionStorage.setItem('user-token', res.data.token);
-          }
+          sessionStorage.setItem('user-id', res.uid);
+          sessionStorage.setItem('user-token', res.token);
         }
       });
   }

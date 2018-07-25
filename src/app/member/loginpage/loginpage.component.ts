@@ -41,10 +41,8 @@ export class LoginpageComponent implements OnInit {
       .subscribe(res => {
         if (res && res.code === 200) {
           this.router.navigate(['/home'], { queryParams: { id: 1 } });
-          if (res.data) {
-            sessionStorage.setItem('user-id', res.data.uid);
-            sessionStorage.setItem('user-token', res.data.token);
-          }
+          sessionStorage.setItem('user-id', res.uid);
+          sessionStorage.setItem('user-token', res.token);
         }
       });
   }
