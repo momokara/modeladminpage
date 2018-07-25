@@ -9,10 +9,12 @@ export class Api {
   private readonly userList: string = 'index/index/userlist';
   // 发送验证码
   private readonly sendCode: string = 'index/index/send_sms';
-  // 获取权限组 isgetact=true 时反回当前激活的权限组
+  // 获取权限组列表 isgetact=true 时反回当前激活的权限组
   private readonly getPermGroup: string = 'index/index/userpermlist';
   // 添加权限组
   private readonly addPermGroup: string = 'index/index/addpermlist';
+  // 获取权限组信息（单个）
+  private readonly getdPermGroup: string = 'index/index/getperminfo';
   // 停用权限组 post 方式传送PID (权限组id)
   private readonly forbiddenPermG: string = 'index/index/forbiddenpermg';
   // 启用权限组

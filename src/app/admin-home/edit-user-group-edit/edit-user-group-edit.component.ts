@@ -2,8 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  FormControl
+  Validators
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
@@ -16,8 +15,11 @@ import { extend } from 'webdriver-js-extender';
   styleUrls: ['./edit-user-group-edit.component.scss']
 })
 export class EditUserGroupEditComponent implements OnInit {
+  // 提交系信息
   validateForm: FormGroup;
+  // 权限复选
   Checkedbox: FormGroup;
+  // 选中的权限
   checkedPerm = [];
   constructor(
     private fb: FormBuilder,
@@ -28,7 +30,7 @@ export class EditUserGroupEditComponent implements OnInit {
     // 创建表单
     this.validateForm = this.fb.group({
       group_name: [null, [Validators.required]],
-      group_perm: [null, [Validators.required]],
+      group_perm: [null],
     });
     this.Checkedbox = this.fb.group({
       perm1: [],
@@ -40,7 +42,7 @@ export class EditUserGroupEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Checkedbox.setControl('perm1', this.fb.control(true));
+    this.getperminfo();
   }
 
   // 提交表单
@@ -51,36 +53,45 @@ export class EditUserGroupEditComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
-    // tslint:disable-next-line:no-eval
-    // const concatjson = '(' + (JSON.stringify(this.validateForm.value) + JSON.stringify(this.Checkedbox.value)).replace(/}{/, ',') + ')';
-    // eval
-    // console.log(jsonstr);
-
-    // const postdata = JSON.parse(jsonstr);
-
     if (this.validateForm.valid) {
       this.AjaxServer.ajax('addPermGroup', null, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
-            this.message.info('权限组创建成功');
-            this.router.navigate(['/home/userlist']);
-          } else {
-            this.message.info(res.msg);
+            this.message.info('权限组修改成功');
+            this.router.navigate(['/home/userpermgroup']);
           }
         });
     }
 
   }
-
+  /**
+   * 获取权限组信息
+   */
+  getperminfo() {
+    this.AjaxServer.ajax('getdPermGroup')
+      .subscribe(res => {
+        this.validateForm.setControl('group_name', this.fb.control(res.data.group_name));
+        this.validateForm.setControl('group_perm', this.fb.control(res.data.group_perm));
+        this.selectchecked(res.data.group_perm);
+      });
+  }
+  /**
+   * 标记选中的checkbox
+   * @param checkedlist 选中权限的列表
+   */
+  private selectchecked(checkedlist: string[]) {
+    checkedlist.forEach((e, i, arr) => {
+      this.Checkedbox.setControl(e, this.fb.control(true));
+    });
+  }
+  /**
+   * 改变之后选中的值
+   */
   log(value: string[]): void {
     this.checkedPerm = value;
     console.log(value, this.Checkedbox.value);
-
   }
 
-  haschecked(tagname: string) {
 
-    return true;
-  }
 
 }

@@ -1,0 +1,9 @@
+{
+  "code": 200,
+  "msg": "msg",
+  "data": {
+    "pid": 1,
+    "group_name": "分组1",
+    "group_perm": ["perm1", "perm3"]
+  }
+}

@@ -25,7 +25,7 @@ export class EditUserGroupAddComponent implements OnInit {
     // 创建表单
     this.validateForm = this.fb.group({
       group_name: [null, [Validators.required]],
-      group_perm: [null, [Validators.required]],
+      group_perm: [null],
 
     });
     this.Checkedbox = this.fb.group({
@@ -53,7 +53,7 @@ export class EditUserGroupAddComponent implements OnInit {
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info('权限组创建成功');
-            this.router.navigate(['/home/userlist']);
+            this.router.navigate(['/home/userpermgroup']);
           } else {
             this.message.info(res.msg);
           }
