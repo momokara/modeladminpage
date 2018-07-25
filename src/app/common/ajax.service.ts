@@ -66,6 +66,8 @@ export class AjaxService {
         }
       }
       this.httpOptionsdef.params = urlparams;
+    } else {
+      this.httpOptionsdef.params = null;
     }
     // post 请求
     if (postdata) {

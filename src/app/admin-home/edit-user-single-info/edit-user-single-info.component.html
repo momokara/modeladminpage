@@ -1,3 +1,168 @@
-<p>
-  edit-user-single-info works!
-</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">ID</nz-form-label>
+    <nz-form-control [nzSm]="4" [nzXs]="24">
+      {{pagedata.id}}
+    </nz-form-control>
+    <nz-form-label [nzSm]="4" [nzXs]="24">帐号</nz-form-label>
+    <nz-form-control [nzSm]="4" [nzXs]="24">
+      {{pagedata.username}}
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 昵称 -->
+  <nz-form-item *ngIf="!editpage.iseditNickname">
+    <nz-form-label [nzSm]="6" [nzXs]="24">昵称</nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      {{pagedata.nickname}}
+    </nz-form-control>
+    <nz-form-control [nzSm]="6" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editNickname()" class="edit-btn">修改昵称</button>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="editpage.iseditNickname">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
+      <span>
+        昵称
+        <nz-tooltip nzTitle="What do you want other to call you">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      <input nz-input id="nickname" formControlName="nickname" (ngModelChange)="checkhased(2)">
+      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('nickname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">请输入昵称</ng-container>
+        <ng-container *ngIf="validateForm.get('nickname').hasError('hased')">昵称已存在</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+    <nz-form-control [nzSm]="4" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editNickname(false)" class="edit-btn">取消修改</button>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 修改密码 -->
+  <nz-form-item *ngIf="!editpage.iseditPwd">
+    <nz-form-label [nzSm]="6" [nzXs]="24">密码</nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      <ng-container *ngIf="!editpage.isShowPwd">
+        *****
+        <button nz-button nzType="primary" (click)="editpage.isShowPwd=true">显示</button>
+      </ng-container>
+      <ng-container *ngIf="editpage.isShowPwd">
+        {{pagedata.password}}
+        <button nz-button nzType="primary" (click)="editpage.isShowPwd=false">隐藏</button>
+      </ng-container>
+    </nz-form-control>
+    <nz-form-control [nzSm]="6" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editPwd()" class="edit-btn">修改密码</button>
+    </nz-form-control>
+  </nz-form-item>
+  <ng-container *ngIf="editpage.iseditPwd">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
+      <nz-form-control [nzSm]="7" [nzXs]="24">
+        <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()">
+        <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
+      </nz-form-control>
+      <nz-form-control [nzSm]="4" [nzXs]="24">
+        <button nz-button nzType="primary" (click)="editPwd(false)" class="edit-btn">取消修改</button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
+      <nz-form-control [nzSm]="7" [nzXs]="24">
+        <input nz-input type="password" formControlName="checkPassword" id="checkPassword">
+        <nz-form-explain *ngIf="validateForm.get('checkPassword').dirty && validateForm.get('checkPassword').errors">
+          <ng-container *ngIf="validateForm.get('checkPassword').hasError('required')">
+            请确认输入的密码
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('checkPassword').hasError('confirm')">
+            两次输入的密码不同！
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <!-- 修改手机号 -->
+  <nz-form-item *ngIf="!editpage.iseditPhone">
+    <nz-form-label [nzSm]="6" [nzXs]="24">手机号</nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      {{pagedata.phone}}
+    </nz-form-control>
+    <nz-form-control [nzSm]="6" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editPhone()" class="edit-btn">修改手机</button>
+    </nz-form-control>
+  </nz-form-item>
+  <ng-container *ngIf="editpage.iseditPhone">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
+      <nz-form-control [nzSm]="7" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+          <ng-template #addOnBeforeTemplate>
+            <nz-select formControlName="phoneNumberPrefix" style="width: 70px;">
+              <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+              <!-- <nz-option nzLabel="+87" nzValue="+87"></nz-option> -->
+            </nz-select>
+          </ng-template>
+          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">
+          <ng-container *ngIf="validateForm.get('phoneNumber').hasError('required')">
+            请输入手机号
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('phoneNumber').hasError('isphone')">
+            请输入有效的手机号！
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+      <nz-form-control [nzSm]="4" [nzXs]="24">
+        <button nz-button nzType="primary" (click)="editPhone(false)" class="edit-btn">取消修改</button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>验证码</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <div nz-row [nzGutter]="8">
+          <div nz-col [nzSpan]="12">
+            <input nz-input formControlName="captcha" id="captcha">
+          </div>
+          <div nz-col [nzSpan]="12">
+            <button nz-button (click)="getCaptcha($event)" [disabled]="sendCode.issend||!this.validateForm.get('phoneNumber').valid">{{sendCode.btntext}}</button>
+          </div>
+        </div>
+        <nz-form-explain *ngIf="validateForm.get('captcha').dirty && validateForm.get('captcha').errors">请输入验证码!</nz-form-explain>
+        <nz-form-extra>We must make sure that your are a human.</nz-form-extra>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <!-- 用户权限分组 -->
+  <nz-form-item *ngIf="!editpage.iseditPermGroup">
+    <nz-form-label [nzSm]="6" [nzXs]="24">用户权限组</nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      {{pagedata.u_perm_group_name}}
+    </nz-form-control>
+    <nz-form-control [nzSm]="6" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editPermGroup()" class="edit-btn">修改权限</button>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="editpage.iseditPermGroup">
+    <nz-form-label [nzSm]="6" [nzXs]="24">用户权限组</nz-form-label>
+    <nz-form-control [nzSm]="7" [nzXs]="24">
+      <nz-select formControlName="permgroup" [ngModel]="''+pagedata.u_perm_group">
+        <ng-container *ngFor="let item of userPermGroup">
+          <nz-option nzValue="{{item.id}}" nzLabel="{{item.name}}"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+    <nz-form-control [nzSm]="6" [nzXs]="24">
+      <button nz-button nzType="primary" (click)="editPermGroup(false)" class="edit-btn">取消修改</button>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;" *ngIf="editpage.iseditNickname||editpage.iseditPwd||editpage.iseditPhone||editpage.iseditPermGroup">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary">保存修改</button>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>

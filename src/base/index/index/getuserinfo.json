@@ -5,9 +5,11 @@
     "id": 1,
     "username": "testuser1",
     "nickname": "小李",
+    "password": "123456",
     "phone": 13888888888,
     "email": "email@testemail.com",
     "u_perm_group": 1,
+    "u_perm_group_name": "分组1",
     "u_group": 1
   }
 }
