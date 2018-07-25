@@ -130,6 +130,7 @@ export class EditUserSingleInfoComponent implements OnInit {
         if (res.code === 200) {
           this.checkHasnickname = res.hasuser ? true : false;
         }
+        this.validateForm.controls.nickname.updateValueAndValidity();
       });
   }
 

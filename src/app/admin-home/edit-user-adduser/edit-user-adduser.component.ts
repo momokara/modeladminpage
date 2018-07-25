@@ -121,10 +121,14 @@ export class EditUserAdduserComponent implements OnInit {
       .subscribe(res => {
         if (res.code === 200) {
           if (type === 1) {
+            console.log(res);
             this.checkHas.username = res.hasuser ? true : false;
           } else {
             this.checkHas.nickname = res.hasuser ? true : false;
           }
+          // 加载完成之后重新验证
+          this.validateForm.controls.username.updateValueAndValidity();
+          this.validateForm.controls.nickname.updateValueAndValidity();
         }
       });
   }

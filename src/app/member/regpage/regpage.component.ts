@@ -85,6 +85,8 @@ export class RegpageComponent implements OnInit {
           } else {
             this.checkHas.nickname = res.hasuser ? true : false;
           }
+          this.validateForm.controls.username.updateValueAndValidity();
+          this.validateForm.controls.nickname.updateValueAndValidity();
         }
       });
   }
