@@ -11,7 +11,29 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-
+    <input nz-input type="hidden" formControlName="group_perm" id="group_perm" [ngModel]="checkedPerm">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>选择权限</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
+        <div nz-row [formGroup]="Checkedbox">
+          <div nz-col nzSpan="8">
+            <label formControlName="perm1" nz-checkbox nzValue="perm1">权限1</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm2" nz-checkbox nzValue="perm2">权限2</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm3" nz-checkbox nzValue="perm3">权限3</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm4" nz-checkbox nzValue="perm4">权限4</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm5" nz-checkbox nzValue="perm5">权限5</label>
+          </div>
+        </div>
+      </nz-checkbox-wrapper>
+    </nz-form-control>
   </nz-form-item>
 
 
@@ -25,10 +47,3 @@
     </nz-form-control>
   </nz-form-item>
 </form>
-<div style="border-bottom: 1px solid rgb(233, 233, 233);">
-  <label nz-checkbox [(ngModel)]="allChecked" (ngModelChange)="updateAllChecked()" [nzIndeterminate]="indeterminate">
-    Check all
-  </label>
-</div>
-<br>
-<nz-checkbox-group [(ngModel)]="checkOptionsOne" (ngModelChange)="updateSingleChecked()"></nz-checkbox-group>

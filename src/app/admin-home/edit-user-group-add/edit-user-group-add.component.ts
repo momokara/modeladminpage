@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -15,13 +14,8 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class EditUserGroupAddComponent implements OnInit {
   validateForm: FormGroup;
-  allChecked = false;
-  indeterminate = true;
-  checkOptionsOne = [
-    { label: 'Apple', value: 'Apple', checked: true },
-    { label: 'Pear', value: 'Pear', checked: false },
-    { label: 'Orange', value: 'Orange', checked: false }
-  ];
+  Checkedbox: FormGroup;
+  checkedPerm = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -31,7 +25,15 @@ export class EditUserGroupAddComponent implements OnInit {
     // 创建表单
     this.validateForm = this.fb.group({
       group_name: [null, [Validators.required]],
+      group_perm: [null, [Validators.required]],
 
+    });
+    this.Checkedbox = this.fb.group({
+      perm1: [],
+      perm2: [],
+      perm3: [],
+      perm4: [],
+      perm5: []
     });
   }
 
@@ -60,26 +62,10 @@ export class EditUserGroupAddComponent implements OnInit {
 
   }
 
+  log(value: string[]): void {
+    this.checkedPerm = value;
+    console.log(value, this.Checkedbox.value);
 
-  updateAllChecked(): void {
-    this.indeterminate = false;
-    if (this.allChecked) {
-      this.checkOptionsOne.forEach(item => item.checked = true);
-    } else {
-      this.checkOptionsOne.forEach(item => item.checked = false);
-    }
-  }
-
-  updateSingleChecked(): void {
-    if (this.checkOptionsOne.every(item => item.checked === false)) {
-      this.allChecked = false;
-      this.indeterminate = false;
-    } else if (this.checkOptionsOne.every(item => item.checked === true)) {
-      this.allChecked = true;
-      this.indeterminate = false;
-    } else {
-      this.indeterminate = true;
-    }
   }
 
 }

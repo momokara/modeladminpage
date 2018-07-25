@@ -1,3 +1,49 @@
-<p>
-  edit-user-group-edit works!
-</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- 帐号 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_name">权限组名称</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input formControlName="group_name" id="group_name" laceholder="请输入权限组名称">
+      <nz-form-explain *ngIf="validateForm.get('group_name').dirty && validateForm.get('group_name').errors">
+        <!-- <ng-container *ngIf="validateForm.get('group_name').errors">请输入正确的帐号</ng-container> -->
+        <ng-container *ngIf="validateForm.get('group_name').hasError('required')">请输入权限组名称</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <input nz-input type="hidden" formControlName="group_perm" id="group_perm" [ngModel]="checkedPerm">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>选择权限</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
+        <div nz-row [formGroup]="Checkedbox">
+          <div nz-col nzSpan="8">
+            <label formControlName="perm1" nz-checkbox nzValue="perm1" >权限1</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm2" nz-checkbox nzValue="perm2" >权限2</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm3" nz-checkbox nzValue="perm3" >权限3</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm4" nz-checkbox nzValue="perm4" >权限4</label>
+          </div>
+          <div nz-col nzSpan="8">
+            <label formControlName="perm5" nz-checkbox nzValue="perm5" >权限5</label>
+          </div>
+        </div>
+      </nz-checkbox-wrapper>
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="5" [nzOffset]="6">
+      <button nz-button nzType="primary" class="btn-sub">新建权限组</button>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="5">
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="../userpermgroup">取消</a>
+    </nz-form-control>
+  </nz-form-item>
+</form>
