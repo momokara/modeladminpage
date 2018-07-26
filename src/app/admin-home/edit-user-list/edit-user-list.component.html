@@ -15,10 +15,9 @@
       <i class="anticon anticon-search"></i>
     </button>
   </nz-input-group>
-
 </div>
 
-<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="dataRes.length>0?dataRes:dataSet" [nzLoading]="loading"
+<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="pagedata.datares.length>0?pagedata.datares:pagedata.dataset" [nzLoading]="loading"
   [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()" (nzPageSizeChange)="PageSizeChange(true)">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>

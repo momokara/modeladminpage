@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
+import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
 
 @Component({
   selector: 'app-edit-user-list',
@@ -7,28 +8,23 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./edit-user-list.component.scss']
 })
 export class EditUserListComponent implements OnInit {
+  pagedata = new ListData(false, 1, 10);
+  SortInfo = new SortInfo();
   // 页码
   pageIndex = 1;
   // 每页大小
   pageSize = 10;
   // 总数
   total = 1;
-  // 显示的列表数据
-  dataSet = [];
-  dataRes = [];
   // 加载过度
   loading = true;
-  // 排序值
-  sortValue = null;
-  // 排序key
-  sortKey = null;
+
   // 搜索 nickname/phone/email
   searchinfo = new SearchInfo('nickname');
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
-    this.sortKey = sort.key;
-    this.sortValue = sort.value;
+    this.SortInfo = sort;
     this.getListData();
   }
 
@@ -54,15 +50,15 @@ export class EditUserListComponent implements OnInit {
     const urlParama = {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
-      'sortKey': this.sortKey,
-      'sortValue': this.sortValue
+      'sortKey': this.SortInfo.key,
+      'sortValue': this.SortInfo.value,
     };
     this.AjaxServer.ajax('userList', urlParama)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
           this.total = res.total;
-          this.dataSet = res.data;
+          this.pagedata.dataset = res.data;
         } else {
           alert(res.msg);
         }
@@ -72,12 +68,18 @@ export class EditUserListComponent implements OnInit {
   // 过滤列表信息
   filterlistdata(searchinfo: SearchInfo, isreset = false): void {
     if (!isreset) {
-      const res = this.filterArray.searchInArray(searchinfo.value, [searchinfo.key], this.dataSet);
-      this.dataRes = res.result;
+      const res = this.filterArray.searchInArray(searchinfo.value, [searchinfo.key], this.pagedata.dataset);
+      if (res.result.length > 0) {
+        this.pagedata.datares = res.result;
+        this.message.info('搜索完成');
+      } else {
+        this.message.info('没有数据');
+      }
     } else {
-      this.dataRes = [];
+      this.pagedata.datares = [];
+      this.searchinfo.value = null;
+      this.message.info('搜索重置完成');
     }
-
   }
 
   /**
@@ -94,7 +96,7 @@ export class EditUserListComponent implements OnInit {
     this.AjaxServer.ajax(APIurl, null, postdata)
       .subscribe(res => {
         if (res.code === 200) {
-          this.dataSet[i].station = !this.dataSet[i].station;
+          this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;
           this.message.info('操作成功');
         }
       });
@@ -108,12 +110,4 @@ export class EditUserListComponent implements OnInit {
     console.log('PageSizeChange');
   }
 
-}
-
-class SearchInfo {
-  key: string;
-  value: string;
-  constructor(defaultkey: string) {
-    this.key = defaultkey;
-  }
 }
