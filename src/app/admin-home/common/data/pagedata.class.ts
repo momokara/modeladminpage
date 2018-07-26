@@ -27,7 +27,9 @@ export class ListData {
 class Rowdata {
     id: number;
     uid: number;
+    pid: number;
     nickname: string;
+    group_name: string;
     name: string;
     phone: number;
     email: string;

@@ -8,8 +8,12 @@ import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
   styleUrls: ['./edit-user-list.component.scss']
 })
 export class EditUserListComponent implements OnInit {
+  // 页面信息
   pagedata = new ListData(false, 1, 10);
+  // 排序信息
   SortInfo = new SortInfo();
+  // 搜索 nickname/phone/email
+  searchinfo = new SearchInfo('nickname');
   // 页码
   pageIndex = 1;
   // 每页大小
@@ -19,8 +23,6 @@ export class EditUserListComponent implements OnInit {
   // 加载过度
   loading = true;
 
-  // 搜索 nickname/phone/email
-  searchinfo = new SearchInfo('nickname');
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
@@ -97,6 +99,9 @@ export class EditUserListComponent implements OnInit {
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;
+          if (this.pagedata.datares.length > 0) {
+            this.pagedata.datares[i].station = this.pagedata.datares[i].station === 1 ? 0 : 1;
+          }
           this.message.info('操作成功');
         }
       });
