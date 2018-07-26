@@ -1,3 +1,7 @@
+import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-group-edit.component';
+import { EditModelGroupAddComponent } from './edit-model-group-add/edit-model-group-add.component';
+import { EditModelEditsinglemodelComponent } from './edit-model-editsinglemodel/edit-model-editsinglemodel.component';
+import { EditModelAddmodelComponent } from './edit-model-addmodel/edit-model-addmodel.component';
 import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
 import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
 import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
@@ -41,8 +45,16 @@ const routes: Routes = [
       { path: 'modeldefault', component: EditModelDefaultComponent },
       // 模特列表
       { path: 'modellist', component: EditModelListComponent },
-      // 模特分组
+      // 添加模特
+      { path: 'addmodel', component: EditModelAddmodelComponent },
+      // 编辑模特信息
+      { path: 'editmodel/:id', component: EditModelEditsinglemodelComponent },
+      // 模特分组列表
       { path: 'modelgroup', component: EditModelGroupComponent },
+      // 添加模特分组
+      { path: 'addmodelgroup', component: EditModelGroupAddComponent },
+      // 编辑模特分组
+      { path: 'editmodelgroup/:id', component: EditModelGroupEditComponent },
       // 摄影师
       { path: 'photographer', component: EditPhotographerComponent },
       { path: 'uploaddefault', component: EditfieldComponent },

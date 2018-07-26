@@ -23,7 +23,6 @@ export class EditUserListComponent implements OnInit {
   // 加载过度
   loading = true;
 
-
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
     this.SortInfo = sort;

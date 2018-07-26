@@ -22,6 +22,10 @@ import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.
 import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
 import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
 import { SearchlistService } from '../common/searchlist.service';
+import { EditModelAddmodelComponent } from './edit-model-addmodel/edit-model-addmodel.component';
+import { EditModelEditsinglemodelComponent } from './edit-model-editsinglemodel/edit-model-editsinglemodel.component';
+import { EditModelGroupAddComponent } from './edit-model-group-add/edit-model-group-add.component';
+import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-group-edit.component';
 
 @NgModule({
   imports: [
@@ -49,7 +53,11 @@ import { SearchlistService } from '../common/searchlist.service';
     EditUserListComponent,
     EditUserAdduserComponent,
     EditUserGroupAddComponent,
-    EditUserGroupEditComponent
+    EditUserGroupEditComponent,
+    EditModelAddmodelComponent,
+    EditModelEditsinglemodelComponent,
+    EditModelGroupAddComponent,
+    EditModelGroupEditComponent
   ],
   providers: [
     { provide: 'filterArray', useClass: SearchlistService },

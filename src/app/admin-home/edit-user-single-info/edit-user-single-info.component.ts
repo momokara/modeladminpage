@@ -170,7 +170,8 @@ export class EditUserSingleInfoComponent implements OnInit {
   getCaptcha(e: MouseEvent): void {
     e.preventDefault();
     const urlParmas = {
-      phone: this.validateForm.value.phoneNumber
+      phone: this.validateForm.value.phoneNumber,
+      isedit: true
     };
     if (this.validateForm.get('phoneNumber').valid) {
       this.AjaxServer.ajax('sendCode', urlParmas)

@@ -1,5 +1,6 @@
 import { filter } from 'rxjs/operators';
-// 面包屑导航
+// 面包屑导航显示
+// 根据名称 自动适配中文名字以及父级页面
 export class Navigate {
   // 根页面
   public readonly home: BcNav = {
@@ -76,6 +77,20 @@ export class Navigate {
     'name': '模特列表',
     'url': '/home/modellist',
     'parent': 'modeldefault',
+    'children': ['addmodel', 'editmodel']
+  };
+  // 模特管理-模特分组-添加模特
+  public readonly addmodel: BcNav = {
+    'name': '编辑模特信息',
+    'url': '/home/addmodel',
+    'parent': 'modellist',
+    'children': []
+  };
+  // 模特管理-模特分组-编辑模特信息
+  public readonly editmodel: BcNav = {
+    'name': '编辑模特信息',
+    'url': '/home/editmodel',
+    'parent': 'modellist',
     'children': []
   };
   // 模特管理-模特分组
@@ -83,6 +98,20 @@ export class Navigate {
     'name': '模特分组',
     'url': '/home/modelgroup',
     'parent': 'modeldefault',
+    'children': ['addmodelgroup', 'editmodelgroup']
+  };
+  // 模特管理-模特分组-添加分组
+  public readonly addmodelgroup: BcNav = {
+    'name': '添加分组',
+    'url': '/home/addmodelgroup',
+    'parent': 'modelgroup',
+    'children': []
+  };
+  // 模特管理-模特分组-编辑分组
+  public readonly editmodelgroup: BcNav = {
+    'name': '编辑分组',
+    'url': '/home/editmodelgroup',
+    'parent': 'modelgroup',
     'children': []
   };
   // 文件管理

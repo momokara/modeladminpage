@@ -1,22 +1,51 @@
-<!-- <div class="table-operations">
-  <button nz-button (click)="sort('age','descend')">Sort age</button>
-  <button nz-button (click)="resetFilters()">Clear filters</button>
-  <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>
-</div> -->
-<nz-table #filterTable [nzData]="displayData">
-  <thead>
+<!-- 搜索框 -->
+<div class="searchBox">
+  <nz-input-group nzCompact>
+    <nz-select class="searchKey" [(ngModel)]="searchinfo.key">
+      <nz-option [nzLabel]="'姓名'" [nzValue]="'nickname'"></nz-option>
+      <nz-option [nzLabel]="'手机'" [nzValue]="'phone'"></nz-option>
+      <nz-option [nzLabel]="'E-mail'" [nzValue]="'email'"></nz-option>
+      <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
+    </nz-select>
+    <input type="text" nz-input [(ngModel)]="searchinfo.value" style="width:50%;">
+    <button (click)="filterlistdata(searchinfo,true)" nz-button nzType="danger" nzSearch>
+      <i class="anticon anticon-close-circle-o"></i>
+    </button>
+    <button (click)="filterlistdata(searchinfo)" nz-button nzType="primary" nzSearch>
+      <i class="anticon anticon-search"></i>
+    </button>
+  </nz-input-group>
+</div>
+
+<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="pagedata.datares.length>0?pagedata.datares:pagedata.dataset"
+  [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()"
+  (nzPageSizeChange)="PageSizeChange(true)">
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
-      <th nzShowSort nzShowFilter [(nzSort)]="sortMap.name" (nzSortChange)="sort('name',$event)" [nzFilters]="filterNameList" (nzFilterChange)="search($event,searchAddressList)">姓名</th>
-      <th nzShowSort [(nzSort)]="sortMap.age" (nzSortChange)="sort('age',$event)">Age</th>
-      <th nzShowSort nzShowFilter [(nzSort)]="sortMap.address" (nzSortChange)="sort('address',$event)" [nzFilters]="filterAddressList"
-        (nzFilterChange)="search(searchNameList,$event)">Address</th>
+      <th nzShowSort nzSortKey="id">ID</th>
+      <th nzShowSort nzSortKey="name">姓名</th>
+      <th nzShowSort nzSortKey="phone">手机</th>
+      <th nzShowSort nzSortKey="email">
+        <span>Email</span>
+      </th>
+      <th>
+        操作&nbsp;
+        <a routerLink="../addmodel/">新建用户</a>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of filterTable.data">
-      <td>{{data.name}}</td>
-      <td>{{data.age}}</td>
-      <td>{{data.address}}</td>
+    <tr *ngFor="let data of Table.data;let i = index">
+      <td>{{data.id}}</td>
+      <td>{{data.nickname}}</td>
+      <td>{{data.phone}}</td>
+      <td>{{data.email}}</td>
+      <td>
+        <a routerLink="../editmodel/{{data.id}}">编辑</a>
+        &nbsp;
+        <a *ngIf="data.station" (click)="forbiddenuser(data.id,i,true)">停用</a>
+        <a *ngIf="!data.station" (click)="forbiddenuser(data.id,i,false)">启用</a>
+      </td>
     </tr>
   </tbody>
 </nz-table>
