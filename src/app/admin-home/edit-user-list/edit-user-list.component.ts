@@ -15,12 +15,15 @@ export class EditUserListComponent implements OnInit {
   total = 1;
   // 显示的列表数据
   dataSet = [];
+  dataRes = [];
   // 加载过度
   loading = true;
   // 排序值
   sortValue = null;
   // 排序key
   sortKey = null;
+  // 搜索 nickname/phone/email
+  searchinfo = new SearchInfo('nickname');
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
@@ -31,10 +34,16 @@ export class EditUserListComponent implements OnInit {
 
   constructor(
     private message: NzMessageService,
-    @Inject('AjaxServer') private AjaxServer) {
+    @Inject('AjaxServer') private AjaxServer,
+    @Inject('filterArray') private filterArray, ) {
   }
+
+  ngOnInit(): void {
+    this.getListData();
+  }
+
   /**
-   * 搜索信息
+   * 获取列表信息
    * @param reset 是否重置
    */
   getListData(reset: boolean = false): void {
@@ -59,13 +68,20 @@ export class EditUserListComponent implements OnInit {
         }
       });
   }
+
+  // 过滤列表信息
+  filterlistdata(searchinfo: SearchInfo): void {
+    const res = this.filterArray.searchInArray(searchinfo.value, [searchinfo.key], this.dataSet);
+    this.dataRes = res.result;
+  }
+
   /**
    * 停用用户
    * @param id 用户id
    * @param i  在数组中的序号
    * @param isforbid 是否停用
    */
-  forbiddenuser(id: string, i, isforbid: boolean) {
+  forbiddenuser(id: string, i, isforbid: boolean): void {
     const postdata = {
       uid: id
     };
@@ -87,8 +103,12 @@ export class EditUserListComponent implements OnInit {
     console.log('PageSizeChange');
   }
 
-  ngOnInit(): void {
-    this.getListData();
-  }
+}
 
+class SearchInfo {
+  key: string;
+  value: string;
+  constructor(defaultkey: string) {
+    this.key = defaultkey;
+  }
 }

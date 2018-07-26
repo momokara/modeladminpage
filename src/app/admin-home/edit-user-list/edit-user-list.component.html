@@ -1,10 +1,21 @@
-<!-- <div class="table-operations">
-  <button nz-button (click)="sort('age','descend')">Sort age</button>
-  <button nz-button (click)="resetFilters()">Clear filters</button>
-  <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>
-</div> -->
-<nz-table #ajaxTable nzShowSizeChanger [nzFrontPagination]="true" [nzData]="dataSet" [nzLoading]="loading" [nzTotal]="total"
-  [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()" (nzPageSizeChange)="PageSizeChange(true)">
+<!-- 搜索框 -->
+<div class="searchBox">
+  <nz-input-group nzCompact>
+    <nz-select class="searchKey" [(ngModel)]="searchinfo.key">
+      <nz-option [nzLabel]="'姓名'" [nzValue]="'nickname'"></nz-option>
+      <nz-option [nzLabel]="'手机'" [nzValue]="'phone'"></nz-option>
+      <nz-option [nzLabel]="'E-mail'" [nzValue]="'email'"></nz-option>
+      <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
+    </nz-select>
+    <input type="text" nz-input [(ngModel)]="searchinfo.value" style="width:50%;">
+    <button (click)="filterlistdata(searchinfo)" nz-button nzType="primary" nzSearch>
+      <i class="anticon anticon-search"></i>
+    </button>
+  </nz-input-group>
+</div>
+
+<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="dataRes.length>0?dataRes:dataSet" [nzLoading]="loading"
+  [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()" (nzPageSizeChange)="PageSizeChange(true)">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="id">ID</th>
@@ -20,7 +31,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of ajaxTable.data;let i = index">
+    <tr *ngFor="let data of Table.data;let i = index">
       <td>{{data.id}}</td>
       <td>{{data.nickname}}</td>
       <td>{{data.phone}}</td>

@@ -13,7 +13,7 @@ import { EditVideoListComponent } from './edit-video-list/edit-video-list.compon
 import { EditUserDefaultComponent } from './edit-user-default/edit-user-default.component';
 import { EditModelDefaultComponent } from './edit-model-default/edit-model-default.component';
 import { EditFileDefaultComponent } from './edit-file-default/edit-file-default.component';
-import { NgxEchartsModule  } from 'ngx-echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
 import { EditModelListComponent } from './edit-model-list/edit-model-list.component';
 import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
 import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
 import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
+import { SearchlistService } from '../common/searchlist.service';
 
 @NgModule({
   imports: [
@@ -49,6 +50,9 @@ import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-gro
     EditUserAdduserComponent,
     EditUserGroupAddComponent,
     EditUserGroupEditComponent
+  ],
+  providers: [
+    { provide: 'filterArray', useClass: SearchlistService },
   ]
 })
 export class AdminHomeModule { }
