@@ -27,6 +27,12 @@ export class Api {
   private readonly forbiddenUser: string = 'index/index/forbiddenuser';
   // 启用用户 usertype = model(模特)/worker(工作人员)
   private readonly openUser: string = 'index/index/openuser';
+  // 添加分类/分组
+  private readonly addGroup: string = 'index/index/addgroup';
+  // 启用模特分组
+  private readonly openGroup: string = 'index/index/opengroup';
+  // 停用模特分组
+  private readonly forbiddenGroup: string = 'index/index/forbiddengroup';
   // 获取用户信息
   private readonly getUserInfo: string = 'index/index/getuserinfo';
   // 编辑用户信息 usertype = model(模特)/worker(工作人员)
@@ -35,6 +41,9 @@ export class Api {
   private readonly checkUsername: string = 'index/index/checkuser';
   // 验证昵称重复
   private readonly checkNickname: string = 'index/index/checkuser';
+  // 获取模特分组
+  private readonly getModelGroup: string = 'index/index/getmodelgroup';
+
 
   private readonly test: string = '/';
 

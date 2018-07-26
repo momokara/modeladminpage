@@ -28,6 +28,12 @@ export class EditModelGroupComponent implements OnInit {
   // 排序key
   sortKey = null;
 
+  stylelist = [
+    { text: '风格', value: 'style' },
+    { text: '标签', value: 'tag' },
+    { text: '分组', value: 'group' }
+  ];
+
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
     this.SortInfo = sort;
@@ -60,12 +66,12 @@ export class EditModelGroupComponent implements OnInit {
       'sortKey': this.SortInfo.key,
       'sortValue': this.SortInfo.value
     };
-    this.AjaxServer.ajax('getPermGroup', urlParmas, postdata)
+    this.AjaxServer.ajax('getModelGroup', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
           this.total = res.total;
-          this.pagedata.dataset = res.data;
+          this.pagedata.dataset = res.data.alldata;
         } else {
           alert(res.msg);
         }
@@ -88,6 +94,12 @@ export class EditModelGroupComponent implements OnInit {
       this.message.info('搜索重置完成');
     }
   }
+  // 筛选类型
+  filter(listOfSearchName: string[], searchAddress: string): void {
+    const res =
+      this.filterArray.searchKeywordsInArray(searchAddress, [listOfSearchName], this.pagedata.dataset);
+    this.pagedata.datares = res.result;
+  }
 
   /**
    * 停用用户分组
@@ -97,9 +109,9 @@ export class EditModelGroupComponent implements OnInit {
    */
   forbiddengroup(id: string, i, isforbid: boolean) {
     const postdata = {
-      pid: id
+      gid: id
     };
-    const APIurl = isforbid ? 'forbiddenPermG' : 'openPermG';
+    const APIurl = isforbid ? 'forbiddenGroup' : 'openGroup';
     this.AjaxServer.ajax(APIurl, null, postdata)
       .subscribe(res => {
         if (res.code === 200) {

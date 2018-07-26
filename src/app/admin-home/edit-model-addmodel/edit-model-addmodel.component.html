@@ -3,23 +3,146 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="modelname" nzRequired>
       <span>
-        模特称呼
+        艺名
         <nz-tooltip nzTitle="模特在页面上显示的名字">
           <i nz-tooltip class="anticon anticon-question-circle-o"></i>
         </nz-tooltip>
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="10" [nzXs]="24">
-      <input nz-input id="modelname" formControlName="modelname" (ngModelChange)="checkhased(2)">
+      <input nz-input id="modelname" formControlName="modelname">
       <nz-form-explain *ngIf="validateForm.get('modelname').dirty && validateForm.get('modelname').errors">
         <!-- <ng-container *ngIf="validateForm.get('modelname').errors">请输入正确的昵称</ng-container> -->
-        <ng-container *ngIf="validateForm.get('modelname').hasError('required')">请输入模特姓名</ng-container>
+        <ng-container *ngIf="validateForm.get('modelname').hasError('required')">请输入模特称呼</ng-container>
       </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 身高 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="height">
+      <span>
+        身高
+        <nz-tooltip nzTitle="模特的身高-单位(cm)">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="3" [nzXs]="24">
+      <input nz-input id="height" formControlName="height">
+    </nz-form-control>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="weight">
+      <span>
+        体重
+        <nz-tooltip nzTitle="模特的体重-单位kg">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="3" [nzXs]="24">
+      <input nz-input id="weight" formControlName="weight">
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 三围 -->
+  <nz-form-item>
+    <!-- 胸围 -->
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bust">
+      <span>
+        胸围
+        <nz-tooltip nzTitle="模特的胸围-单位(cm)">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="2" [nzXs]="24">
+      <input nz-input id="bust" formControlName="bust">
+    </nz-form-control>
+    <!-- 腰围 -->
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzFor="waist">
+      <span>
+        腰围
+        <nz-tooltip nzTitle="模特的腰围-单位(cm)">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="2" [nzXs]="24">
+      <input nz-input id="waist" formControlName="waist">
+    </nz-form-control>
+    <!-- 臀围 -->
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzFor="hips">
+      <span>
+        臀围
+        <nz-tooltip nzTitle="模特的臀围-单位(cm)">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="2" [nzXs]="24">
+      <input nz-input id="hips" formControlName="hips">
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 衣服码数 -->
+  <nz-form-item>
+    <!-- 衣服码数 -->
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="clothsize">
+      <span>
+        衣服码数
+        <nz-tooltip nzTitle="模特的衣服码数">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="3" [nzXs]="24">
+      <input nz-input id="clothsize" formControlName="clothsize">
+    </nz-form-control>
+    <!-- 鞋码 -->
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="shoessize">
+      <span>
+        鞋码
+        <nz-tooltip nzTitle="模特的鞋码">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="3" [nzXs]="24">
+      <input nz-input id="shoessize" formControlName="shoessize">
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 模特风格 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">
+      <span>
+        模特风格
+        <nz-tooltip nzTitle="模特风格,多选,最多3个">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="modelstyle" [nzMaxMultipleCount]="3" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+        <nz-option *ngFor="let item of userStyle" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 模特标签 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">
+      <span>
+        模特标签
+        <nz-tooltip nzTitle="模特TAG,多选,最多5个">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="tags" [nzMaxMultipleCount]="5" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+        <nz-option *ngFor="let item of userTag" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
+      </nz-select>
     </nz-form-control>
   </nz-form-item>
   <!-- 真实姓名 -->
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="realname" nzRequired>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="realname">
       <span>
         真实姓名
         <nz-tooltip nzTitle="模特的真实姓名">
@@ -28,7 +151,7 @@
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="10" [nzXs]="24">
-      <input nz-input id="realname" formControlName="realname" (ngModelChange)="checkhased(2)">
+      <input nz-input id="realname" formControlName="realname">
       <nz-form-explain *ngIf="validateForm.get('realname').dirty && validateForm.get('realname').errors">
         <!-- <ng-container *ngIf="validateForm.get('realname').errors">请输入正确的昵称</ng-container> -->
         <ng-container *ngIf="validateForm.get('realname').hasError('required')">请输入模特姓名</ng-container>
@@ -60,13 +183,20 @@
       </nz-form-control>
     </nz-form-item>
   </ng-container>
-  <!-- 用户权限分组 -->
+  <!-- 分组 -->
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">所属分组</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24">
+      <span>
+        模特分组
+        <nz-tooltip nzTitle="模特分组">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
     <nz-form-control [nzSm]="10" [nzXs]="24">
-      <nz-select formControlName="permgroup">
-        <ng-container *ngFor="let item of userPermGroup">
-          <nz-option nzValue="{{item.pid}}" nzLabel="{{item.group_name}}"></nz-option>
+      <nz-select formControlName="group">
+        <ng-container *ngFor="let item of userGroup">
+          <nz-option nzValue="{{item.gid}}" nzLabel="{{item.group_name}}"></nz-option>
         </ng-container>
       </nz-select>
     </nz-form-control>

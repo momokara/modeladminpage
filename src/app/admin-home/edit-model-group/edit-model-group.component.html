@@ -21,22 +21,22 @@
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="pid">ID</th>
-      <th nzShowSort nzSortKey="group_name">组名</th>
+      <th nzShowSort nzSortKey="group_name" nzShowFilter [nzFilters]="stylelist" (nzFilterChange)="filter('g_type',$event)">组名</th>
       <th>
         操作&nbsp;
-        <a routerLink="../addmodelgroup">新建分组</a>
+        <a routerLink="../addmodelgroup">添加(风格/标签/分组)</a>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of ajaxTable.data;let i = index">
-      <td>{{data.pid}}</td>
+      <td>{{data.gid}}</td>
       <td>{{data.group_name}}</td>
       <td>
-        <a routerLink="../editmodelgroup/{{data.pid}}">编辑</a>
+        <a routerLink="../editmodelgroup/{{data.gid}}">编辑</a>
         &nbsp;
-        <a *ngIf="data.station" (click)="forbiddengroup(data.pid,i,true)">停用</a>
-        <a *ngIf="!data.station" (click)="forbiddengroup(data.pid,i,false)">启用</a>
+        <a *ngIf="data.station" (click)="forbiddengroup(data.gid,i,true)">停用</a>
+        <a *ngIf="!data.station" (click)="forbiddengroup(data.gid,i,false)">启用</a>
       </td>
     </tr>
   </tbody>

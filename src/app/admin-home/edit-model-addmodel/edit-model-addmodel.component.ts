@@ -21,7 +21,9 @@ export class EditModelAddmodelComponent implements OnInit {
     nickname: false
   };
 
-  userPermGroup = [];
+  userGroup = [];
+  userStyle = [];
+  userTag = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -32,15 +34,24 @@ export class EditModelAddmodelComponent implements OnInit {
     this.validateForm = this.fb.group({
       modelname: [null, [Validators.required]],
       realname: [null],
+      height: [null],
+      weight: [null],
+      bust: [null],
+      waist: [null],
+      hips: [null],
+      clothsize: [null],
+      shoessize: [null],
       phoneNumber: [null, Validators.required],
       // captcha: [null, Validators.required],
       phoneNumberPrefix: ['+86'],
-      permgroup: [null],
+      group: [null],
+      modelstyle: [null],
+      tags: [null]
     });
   }
 
   ngOnInit(): void {
-    this.getPermGroup();
+    this.getModelGroup();
   }
 
   // 提交表单
@@ -59,7 +70,7 @@ export class EditModelAddmodelComponent implements OnInit {
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info('用户创建成功');
-            this.router.navigate(['/home/userlist']);
+            this.router.navigate(['/home/modellist']);
           } else {
             this.message.info(res.msg);
           }
@@ -92,64 +103,20 @@ export class EditModelAddmodelComponent implements OnInit {
   }
 
   // 获取权限分组
-  getPermGroup() {
+  getModelGroup() {
     const urlParmas = {
       isgetact: true
     };
-    this.AjaxServer.ajax('getPermGroup', urlParmas)
+    this.AjaxServer.ajax('getModelGroup', urlParmas)
       .subscribe(res => {
         if (res.code === 200) {
-          this.userPermGroup = res.data;
+          this.userGroup = res.data.userGroup;
+          this.userStyle = res.data.userStyle;
+          this.userTag = res.data.userTag;
         }
       });
   }
 
-  /**
-  * 检测重复
-  * @param type 1 用户名 2 昵称
-  */
-  checkhased(type: number): void {
-    let urlparmas;
-    let apiname = '';
-    if (type === 1) {
-      apiname = 'checkUsername';
-      urlparmas = { username: this.validateForm.controls.username.value };
-    } else {
-      apiname = 'checkNickname';
-      urlparmas = { nickname: this.validateForm.controls.nickname.value };
-    }
-    this.AjaxServer.ajax(apiname, urlparmas)
-      .subscribe(res => {
-        if (res.code === 200) {
-          if (type === 1) {
-            console.log(res);
-            this.checkHas.username = res.hasuser ? true : false;
-          } else {
-            this.checkHas.nickname = res.hasuser ? true : false;
-          }
-          // 加载完成之后重新验证
-          this.validateForm.controls.username.updateValueAndValidity();
-          this.validateForm.controls.nickname.updateValueAndValidity();
-        }
-      });
-  }
-  // 验证用户名是否已经注册
-  hasUsername = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (this.checkHas.username) {
-      return { hased: true, error: true };
-    }
-  }
-  // 验证昵称是否已经注册
-  hasNickname = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (this.checkHas.nickname) {
-      console.log(this.checkHas.nickname);
-      return { hased: true, error: true };
-    }
-  }
 
 }
 

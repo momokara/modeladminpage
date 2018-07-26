@@ -1,0 +1,278 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "total": 20,
+  "data": {
+    "alldata": [{
+        "gid": 1,
+        "group_name": "模特分组1",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 2,
+        "group_name": "模特风格1",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 0
+      },
+      {
+        "gid": 3,
+        "group_name": "模特标签1",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 4,
+        "group_name": "模特风格2",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 5,
+        "group_name": "模特分组5",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 6,
+        "group_name": "模特分组6",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 7,
+        "group_name": "模特分组7",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 8,
+        "group_name": "模特分组8",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 9,
+        "group_name": "模特分组9",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 10,
+        "group_name": "模特分组10",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 11,
+        "group_name": "模特分组11",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 12,
+        "group_name": "模特分组12",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      }
+    ],
+    "userGroup": [{
+        "gid": 1,
+        "group_name": "模特分组1",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 2,
+        "group_name": "模特分组2",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 0
+      },
+      {
+        "gid": 3,
+        "group_name": "模特分组3",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 4,
+        "group_name": "模特分组4",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 5,
+        "group_name": "模特分组5",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 6,
+        "group_name": "模特分组6",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 7,
+        "group_name": "模特分组7",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 8,
+        "group_name": "模特分组8",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 9,
+        "group_name": "模特分组9",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 10,
+        "group_name": "模特分组10",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 11,
+        "group_name": "模特分组11",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 12,
+        "group_name": "模特分组12",
+        "g_type": "group",
+        "group_info": "描述信息",
+        "station": 1
+      }
+    ],
+    "userStyle": [{
+        "gid": 1,
+        "group_name": "模特风格1",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 2,
+        "group_name": "模特风格2",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 0
+      },
+      {
+        "gid": 3,
+        "group_name": "模特风格3",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 4,
+        "group_name": "模特风格4",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 5,
+        "group_name": "模特风格5",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 6,
+        "group_name": "模特风格6",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 7,
+        "group_name": "模特风格7",
+        "g_type": "style",
+        "group_info": "描述信息",
+        "station": 1
+      }
+    ],
+    "userTag": [{
+        "gid": 1,
+        "group_name": "模特标签1",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 2,
+        "group_name": "模特标签2",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 0
+      },
+      {
+        "gid": 3,
+        "group_name": "模特标签3",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 4,
+        "group_name": "模特标签4",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 5,
+        "group_name": "模特标签5",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 6,
+        "group_name": "模特标签6",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      },
+      {
+        "gid": 7,
+        "group_name": "模特标签7",
+        "g_type": "tag",
+        "group_info": "描述信息",
+        "station": 1
+      }
+    ]
+  }
+
+}
