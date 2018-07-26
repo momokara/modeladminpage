@@ -1,3 +1,85 @@
-<p>
-  edit-model-addmodel works!
-</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- 昵称 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="modelname" nzRequired>
+      <span>
+        模特称呼
+        <nz-tooltip nzTitle="模特在页面上显示的名字">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input id="modelname" formControlName="modelname" (ngModelChange)="checkhased(2)">
+      <nz-form-explain *ngIf="validateForm.get('modelname').dirty && validateForm.get('modelname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('modelname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('modelname').hasError('required')">请输入模特姓名</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 真实姓名 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="realname" nzRequired>
+      <span>
+        真实姓名
+        <nz-tooltip nzTitle="模特的真实姓名">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input id="realname" formControlName="realname" (ngModelChange)="checkhased(2)">
+      <nz-form-explain *ngIf="validateForm.get('realname').dirty && validateForm.get('realname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('realname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('realname').hasError('required')">请输入模特姓名</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 手机号 -->
+  <ng-container>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
+      <nz-form-control [nzSm]="10" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+          <ng-template #addOnBeforeTemplate>
+            <nz-select formControlName="phoneNumberPrefix" style="width: 70px;">
+              <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+              <!-- <nz-option nzLabel="+87" nzValue="+87"></nz-option> -->
+            </nz-select>
+          </ng-template>
+          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">
+          <ng-container *ngIf="validateForm.get('phoneNumber').hasError('required')">
+            请输入手机号
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('phoneNumber').hasError('isphone')">
+            请输入有效的手机号！
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <!-- 用户权限分组 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">所属分组</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="permgroup">
+        <ng-container *ngFor="let item of userPermGroup">
+          <nz-option nzValue="{{item.pid}}" nzLabel="{{item.group_name}}"></nz-option>
+        </ng-container>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="5" [nzOffset]="6">
+      <button nz-button nzType="primary" class="btn-sub">新建模特</button>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="5">
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="../userlist">取消</a>
+    </nz-form-control>
+
+  </nz-form-item>
+
+</form>

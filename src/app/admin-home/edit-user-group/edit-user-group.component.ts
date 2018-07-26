@@ -39,6 +39,10 @@ export class EditUserGroupComponent implements OnInit {
     @Inject('AjaxServer') private AjaxServer,
     @Inject('filterArray') private filterArray) {
   }
+  ngOnInit(): void {
+    this.getListData();
+  }
+
   /**
    * 搜索信息
    * @param reset 是否重置
@@ -48,13 +52,16 @@ export class EditUserGroupComponent implements OnInit {
       this.pageIndex = 1;
     }
     this.loading = true;
-    const urlParama = {
+    const urlParmas = {
+      usertype: '1'
+    };
+    const postdata = {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
       'sortKey': this.SortInfo.key,
       'sortValue': this.SortInfo.value
     };
-    this.AjaxServer.ajax('getPermGroup', urlParama)
+    this.AjaxServer.ajax('getPermGroup', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
@@ -114,8 +121,5 @@ export class EditUserGroupComponent implements OnInit {
     console.log('PageSizeChange');
   }
 
-  ngOnInit(): void {
-    this.getListData();
-  }
 
 }

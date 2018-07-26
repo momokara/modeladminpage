@@ -21,15 +21,15 @@ export class Api {
   private readonly openPermG: string = 'index/index/openpermg';
   // 获取用户分组
   private readonly getUserGroup: string = 'index/index/getusergroup';
-  // 添加用户
+  // 添加用户 usertype = model(模特)/worker(工作人员)
   private readonly addUser: string = 'index/index/adduser';
-  // 停用用户
+  // 停用用户 usertype = model(模特)/worker(工作人员)
   private readonly forbiddenUser: string = 'index/index/forbiddenuser';
-  // 启用用户
+  // 启用用户 usertype = model(模特)/worker(工作人员)
   private readonly openUser: string = 'index/index/openuser';
   // 获取用户信息
   private readonly getUserInfo: string = 'index/index/getuserinfo';
-  // 编辑用户信息
+  // 编辑用户信息 usertype = model(模特)/worker(工作人员)
   private readonly editUserInfo: string = 'index/index/edituserinfo';
   // 验证用户重复
   private readonly checkUsername: string = 'index/index/checkuser';

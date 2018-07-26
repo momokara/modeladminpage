@@ -48,13 +48,17 @@ export class EditModelListComponent implements OnInit {
       this.pageIndex = 1;
     }
     this.loading = true;
-    const urlParama = {
+    const urlParmas = {
+      usertype: '2'
+    };
+    const postdata = {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
       'sortKey': this.SortInfo.key,
       'sortValue': this.SortInfo.value,
+
     };
-    this.AjaxServer.ajax('userList', urlParama)
+    this.AjaxServer.ajax('userList', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
@@ -94,7 +98,10 @@ export class EditModelListComponent implements OnInit {
       uid: id
     };
     const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
-    this.AjaxServer.ajax(APIurl, null, postdata)
+    const urlparmas = {
+      usertype: '2'
+    };
+    this.AjaxServer.ajax(APIurl, urlparmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;

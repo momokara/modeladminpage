@@ -104,9 +104,12 @@ export class EditUserSingleInfoComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+    const urlparmas = {
+      usertype: '1'
+    };
     console.log(this.validateForm.value, this.validateForm.valid);
     if (this.validateForm.valid) {
-      this.AjaxServer.ajax('editUserInfo', null, this.validateForm.value)
+      this.AjaxServer.ajax('editUserInfo', urlparmas, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info(res.msg);
