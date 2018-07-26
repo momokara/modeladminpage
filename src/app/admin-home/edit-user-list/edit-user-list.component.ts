@@ -70,9 +70,14 @@ export class EditUserListComponent implements OnInit {
   }
 
   // 过滤列表信息
-  filterlistdata(searchinfo: SearchInfo): void {
-    const res = this.filterArray.searchInArray(searchinfo.value, [searchinfo.key], this.dataSet);
-    this.dataRes = res.result;
+  filterlistdata(searchinfo: SearchInfo, isreset = false): void {
+    if (!isreset) {
+      const res = this.filterArray.searchInArray(searchinfo.value, [searchinfo.key], this.dataSet);
+      this.dataRes = res.result;
+    } else {
+      this.dataRes = [];
+    }
+
   }
 
   /**

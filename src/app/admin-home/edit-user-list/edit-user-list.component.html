@@ -8,10 +8,14 @@
       <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
     </nz-select>
     <input type="text" nz-input [(ngModel)]="searchinfo.value" style="width:50%;">
+    <button (click)="filterlistdata(searchinfo,true)" nz-button nzType="danger" nzSearch>
+      <i class="anticon anticon-close-circle-o"></i>
+    </button>
     <button (click)="filterlistdata(searchinfo)" nz-button nzType="primary" nzSearch>
       <i class="anticon anticon-search"></i>
     </button>
   </nz-input-group>
+
 </div>
 
 <nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="dataRes.length>0?dataRes:dataSet" [nzLoading]="loading"
