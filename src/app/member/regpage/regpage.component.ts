@@ -103,7 +103,7 @@ export class RegpageComponent implements OnInit {
     if (!control.value) {
       return { required: true };
     } else if (this.checkHas.nickname) {
-      console.log(this.checkHas.nickname);
+      // console.log(this.checkHas.nickname);
       return { hased: true, error: true };
     }
   }
@@ -141,7 +141,6 @@ export class RegpageComponent implements OnInit {
     };
 
     if (this.validateForm.get('phoneNumber').valid) {
-
       this.AjaxServer.ajax('sendCode', urlParmas)
         .subscribe(res => {
           if (res.code === 200) {
@@ -151,7 +150,7 @@ export class RegpageComponent implements OnInit {
             setTimeout(() => {
               console.log('倒计时结速');
               this.sendCode.issend = false;
-            }, 1);
+            }, 6000);
           } else {
             alert(res.msg);
             this.sendCode.issend = false;

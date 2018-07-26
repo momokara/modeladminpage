@@ -215,15 +215,18 @@ export class EditUserSingleInfoComponent implements OnInit {
     const urlParmas = {
       uid: id
     };
+    // 请求基本信息
     this.AjaxServer.ajax('getUserInfo', urlParmas)
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata = res.data;
+          this.validateForm.addControl('uid', new FormControl(this.pagedata.uid));
         }
       });
     const urlParmas2 = {
       isgetact: true
     };
+    // 获取权限列表
     this.AjaxServer.ajax('getPermGroup', urlParmas2)
       .subscribe(res => {
         if (res.code === 200) {
