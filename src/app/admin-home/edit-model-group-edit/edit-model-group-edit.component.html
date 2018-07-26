@@ -1,3 +1,45 @@
-<p>
-  edit-model-group-edit works!
-</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_name">分类类型</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-radio-group formControlName="g_type">
+        <label nz-radio nzValue="style">风格</label>
+        <label nz-radio nzValue="tag">标签</label>
+        <label nz-radio nzValue="group">分组</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 权限组名称 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_name">分类名称</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input formControlName="group_name" id="group_name" laceholder="请输入权限组名称">
+      <nz-form-explain *ngIf="validateForm.get('group_name').dirty && validateForm.get('group_name').errors">
+        <!-- <ng-container *ngIf="validateForm.get('group_name').errors">请输入正确的帐号</ng-container> -->
+        <ng-container *ngIf="validateForm.get('group_name').hasError('required')">请输入分类名称</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- 简介 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="group_name">权限组简介</nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <textarea row="4" formControlName="group_info" nz-input [(ngModel)]="inputValue"></textarea>
+      <nz-form-explain *ngIf="validateForm.get('group_name').dirty && validateForm.get('group_name').errors">
+        <!-- <ng-container *ngIf="validateForm.get('group_name').errors">请输入正确的帐号</ng-container> -->
+        <ng-container *ngIf="validateForm.get('group_name').hasError('required')">请输入权限组简介</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="5" [nzOffset]="6">
+      <button nz-button nzType="primary" class="btn-sub">保存修改</button>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="5">
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="../userpermgroup">取消</a>
+    </nz-form-control>
+  </nz-form-item>
+</form>
