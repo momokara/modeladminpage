@@ -150,6 +150,7 @@ export class RegpageComponent implements OnInit {
             setTimeout(() => {
               console.log('倒计时结速');
               this.sendCode.issend = false;
+              this.sendCode.btntext = '重新发送';
             }, 6000);
           } else {
             alert(res.msg);

@@ -183,7 +183,8 @@ export class EditUserSingleInfoComponent implements OnInit {
             setTimeout(() => {
               console.log('倒计时结速');
               this.sendCode.issend = false;
-            }, 1);
+              this.sendCode.btntext = '重新发送';
+            }, 6000);
           } else {
             alert(res.msg);
             this.sendCode.issend = false;
