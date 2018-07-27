@@ -26,6 +26,7 @@ import { EditModelAddmodelComponent } from './edit-model-addmodel/edit-model-add
 import { EditModelEditsinglemodelComponent } from './edit-model-editsinglemodel/edit-model-editsinglemodel.component';
 import { EditModelGroupAddComponent } from './edit-model-group-add/edit-model-group-add.component';
 import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-group-edit.component';
+import { GetpermnamePipe } from './common/getpermname.pipe';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-
     EditModelAddmodelComponent,
     EditModelEditsinglemodelComponent,
     EditModelGroupAddComponent,
-    EditModelGroupEditComponent
+    EditModelGroupEditComponent,
+    GetpermnamePipe
   ],
   providers: [
     { provide: 'filterArray', useClass: SearchlistService },
