@@ -40,6 +40,8 @@ export class EditModelGroupEditComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
+    const urlParams = {
+    };
     if (this.validateForm.valid) {
       this.AjaxServer.ajax('addGroup', null, this.validateForm.value)
         .subscribe(res => {

@@ -105,7 +105,9 @@ export class EditUserSingleInfoComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     const urlparmas = {
-      usertype: '1'
+      usertype: '1',
+      usertypename: 'worker',
+      isedit: true
     };
     console.log(this.validateForm.value, this.validateForm.valid);
     if (this.validateForm.valid) {

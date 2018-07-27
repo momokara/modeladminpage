@@ -9,43 +9,46 @@ export class Api {
   private readonly userList: string = 'index/index/userlist';
   // 发送验证码
   private readonly sendCode: string = 'index/index/send_sms';
+
   // 获取权限组列表 isgetact=true 时反回当前激活的权限组
   private readonly getPermGroup: string = 'index/index/userpermlist';
   // 添加权限组
-  private readonly addPermGroup: string = 'index/index/addpermlist';
+  private readonly addPermGroup: string = 'index/index/editpermlist';
+  // 编辑权限组
+  private readonly editPermGroup: string = 'index/index/editpermlist';
   // 获取权限组信息（单个）
   private readonly getdPermGroup: string = 'index/index/getperminfo';
   // 停用权限组 post 方式传送PID (权限组id)
   private readonly forbiddenPermG: string = 'index/index/forbiddenpermg';
   // 启用权限组
   private readonly openPermG: string = 'index/index/openpermg';
-  // 获取用户分组
-  private readonly getUserGroup: string = 'index/index/getusergroup';
+
   // 添加用户 usertype = model(模特)/worker(工作人员)
-  private readonly addUser: string = 'index/index/adduser';
+  private readonly addUser: string = 'index/index/edituserinfo';
+  // 编辑用户信息 usertype = model(模特)/worker(工作人员)
+  private readonly editUserInfo: string = 'index/index/edituserinfo';
+  // 获取用户信息
+  private readonly getUserInfo: string = 'index/index/getuserinfo';
+
   // 停用用户 usertype = model(模特)/worker(工作人员)
   private readonly forbiddenUser: string = 'index/index/forbiddenuser';
   // 启用用户 usertype = model(模特)/worker(工作人员)
   private readonly openUser: string = 'index/index/openuser';
-  // 添加分类/分组
-  private readonly addGroup: string = 'index/index/addgroup';
-  // 启用模特分组
-  private readonly openGroup: string = 'index/index/opengroup';
-  // 停用模特分组
-  private readonly forbiddenGroup: string = 'index/index/forbiddengroup';
-  // 获取用户信息
-  private readonly getUserInfo: string = 'index/index/getuserinfo';
-  // 编辑用户信息 usertype = model(模特)/worker(工作人员)
-  private readonly editUserInfo: string = 'index/index/edituserinfo';
   // 验证用户重复
   private readonly checkUsername: string = 'index/index/checkuser';
   // 验证昵称重复
   private readonly checkNickname: string = 'index/index/checkuser';
+  // 获取用户分组
+  private readonly getUserGroup: string = 'index/index/getusergroup';
+
+  // 添加分类/分组
+  private readonly addGroup: string = 'index/index/addgroup';
   // 获取模特分组
   private readonly getModelGroup: string = 'index/index/getmodelgroup';
-
-
-  private readonly test: string = '/';
+  // 停用模特分组
+  private readonly forbiddenGroup: string = 'index/index/forbiddengroup';
+  // 启用模特分组
+  private readonly openGroup: string = 'index/index/opengroup';
 
   constructor(webroot: BasicUrl) {
     // 必须初始化

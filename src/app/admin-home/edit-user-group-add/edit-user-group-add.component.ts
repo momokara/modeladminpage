@@ -48,8 +48,11 @@ export class EditUserGroupAddComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
+    const urlParamas = {
+      isedit: false
+    };
     if (this.validateForm.valid) {
-      this.AjaxServer.ajax('addPermGroup', null, this.validateForm.value)
+      this.AjaxServer.ajax('addPermGroup', urlParamas, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info('权限组创建成功');

@@ -6,8 +6,6 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
-import { extend } from 'webdriver-js-extender';
-
 
 @Component({
   selector: 'app-edit-user-group-edit',
@@ -21,14 +19,17 @@ export class EditUserGroupEditComponent implements OnInit {
   Checkedbox: FormGroup;
   // 选中的权限
   checkedPerm = [];
+  // 权限组id
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private actrouter: ActivatedRoute,
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer
   ) {
     // 创建表单
     this.validateForm = this.fb.group({
+      pid: [null, [Validators.required]],
       group_name: [null, [Validators.required]],
       group_perm: [null],
     });
@@ -39,10 +40,13 @@ export class EditUserGroupEditComponent implements OnInit {
       perm4: [],
       perm5: []
     });
+    // 获取路由中id
+    console.log(this.actrouter.snapshot.paramMap.get('id'));
+
   }
 
   ngOnInit() {
-    this.getperminfo();
+    this.getperminfo(this.actrouter.snapshot.paramMap.get('id'));
   }
 
   // 提交表单
@@ -53,8 +57,11 @@ export class EditUserGroupEditComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
+    const urlParamas = {
+      isedit: true
+    };
     if (this.validateForm.valid) {
-      this.AjaxServer.ajax('addPermGroup', null, this.validateForm.value)
+      this.AjaxServer.ajax('editPermGroup', urlParamas, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info('权限组修改成功');
@@ -67,9 +74,13 @@ export class EditUserGroupEditComponent implements OnInit {
   /**
    * 获取权限组信息
    */
-  getperminfo() {
-    this.AjaxServer.ajax('getdPermGroup')
+  getperminfo(id) {
+    const urlParamas = {
+      pid: id
+    };
+    this.AjaxServer.ajax('getdPermGroup', urlParamas)
       .subscribe(res => {
+        this.validateForm.setControl('pid', this.fb.control(res.data.pid));
         this.validateForm.setControl('group_name', this.fb.control(res.data.group_name));
         this.validateForm.setControl('group_perm', this.fb.control(res.data.group_perm));
         this.selectchecked(res.data.group_perm);
