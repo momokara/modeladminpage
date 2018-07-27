@@ -18,11 +18,13 @@ export class EditModelGroupEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private actrouter: ActivatedRoute,
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer
   ) {
     // 创建表单
     this.validateForm = this.fb.group({
+      gid: [null, [Validators.required]],
       g_type: ['group', [Validators.required]],
       group_name: [null, [Validators.required]],
       group_info: [null]
@@ -30,6 +32,26 @@ export class EditModelGroupEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getGroupInfo(this.actrouter.snapshot.paramMap.get('id'));
+  }
+
+  // 获取分类信息
+  getGroupInfo(id: string) {
+    const urlParmas = {
+      gid: id,
+      usertype: '2',
+    };
+    console.log(urlParmas);
+    this.AjaxServer.ajax('getModelGroupInfo', urlParmas)
+      .subscribe(res => {
+        if (res.code === 200) {
+          console.log(res.data);
+          this.validateForm.setControl('gid', this.fb.control(res.data.gid));
+          this.validateForm.setControl('g_type', this.fb.control(res.data.g_type));
+          this.validateForm.setControl('group_name', this.fb.control(res.data.group_name));
+          this.validateForm.setControl('group_info', this.fb.control(res.data.group_info));
+        }
+      });
   }
 
   // 提交表单
@@ -40,10 +62,13 @@ export class EditModelGroupEditComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
-    const urlParams = {
+    const urlParamas = {
+      usertype: '2',
+      usertypename: 'model',
+      isedit: true
     };
     if (this.validateForm.valid) {
-      this.AjaxServer.ajax('addGroup', null, this.validateForm.value)
+      this.AjaxServer.ajax('editGroup', urlParamas, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
             this.message.info('修改成功');

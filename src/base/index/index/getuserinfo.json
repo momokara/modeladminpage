@@ -5,11 +5,22 @@
     "uid": 1,
     "username": "testuser1",
     "nickname": "小李",
+    "realname": "真实姓名小小",
+    "headimg": "http://img.wpw66.com/files/2018/05/201805101354273468.jpg",
+    "height": "170",
+    "weight": "120",
+    "bust": "88",
+    "waist": "64",
+    "hips": "82",
+    "clothsize": "XL",
+    "shoessize": "32",
     "password": "123456",
     "phone": 13888888888,
     "email": "email@testemail.com",
     "u_perm_group": 1,
     "u_perm_group_name": "分组1",
-    "u_group": 1
+    "u_group": 1,
+    "modelstyle": [2, 4],
+    "tags": [1, 3]
   }
 }

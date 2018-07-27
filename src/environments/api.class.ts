@@ -40,11 +40,17 @@ export class Api {
   private readonly checkNickname: string = 'index/index/checkuser';
   // 获取用户分组
   private readonly getUserGroup: string = 'index/index/getusergroup';
+  // 上传图片
+  private readonly upLoadImg: string = 'index/index/uploadimg';
 
   // 添加分类/分组
   private readonly addGroup: string = 'index/index/addgroup';
+  // 编辑分类/分组
+  private readonly editGroup: string = 'index/index/addgroup';
   // 获取模特分组
   private readonly getModelGroup: string = 'index/index/getmodelgroup';
+  // 获取模特分组
+  private readonly getModelGroupInfo: string = 'index/index/getmodelgroupinfo';
   // 停用模特分组
   private readonly forbiddenGroup: string = 'index/index/forbiddengroup';
   // 启用模特分组

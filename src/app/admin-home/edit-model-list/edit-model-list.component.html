@@ -2,6 +2,7 @@
 <div class="searchBox">
   <nz-input-group nzCompact>
     <nz-select class="searchKey" [(ngModel)]="searchinfo.key">
+      <nz-option [nzLabel]="'艺名'" [nzValue]="'modelname'"></nz-option>
       <nz-option [nzLabel]="'姓名'" [nzValue]="'nickname'"></nz-option>
       <nz-option [nzLabel]="'手机'" [nzValue]="'phone'"></nz-option>
       <nz-option [nzLabel]="'E-mail'" [nzValue]="'email'"></nz-option>
@@ -23,7 +24,8 @@
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="id">ID</th>
-      <th nzShowSort nzSortKey="name">姓名</th>
+      <th nzShowSort nzSortKey="nickname">昵称</th>
+      <th nzShowSort nzSortKey="realname">实名</th>
       <th nzShowSort nzSortKey="phone">手机</th>
       <th nzShowSort nzSortKey="email">
         <span>Email</span>
@@ -38,6 +40,7 @@
     <tr *ngFor="let data of Table.data;let i = index">
       <td>{{data.id}}</td>
       <td>{{data.nickname}}</td>
+      <td>{{data.realname}}</td>
       <td>{{data.phone}}</td>
       <td>{{data.email}}</td>
       <td>

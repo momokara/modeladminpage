@@ -1,20 +1,42 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <!-- 昵称 -->
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="modelname" nzRequired>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
       <span>
-        艺名
+        昵称
         <nz-tooltip nzTitle="模特在页面上显示的名字">
           <i nz-tooltip class="anticon anticon-question-circle-o"></i>
         </nz-tooltip>
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="10" [nzXs]="24">
-      <input nz-input id="modelname" formControlName="modelname">
-      <nz-form-explain *ngIf="validateForm.get('modelname').dirty && validateForm.get('modelname').errors">
-        <!-- <ng-container *ngIf="validateForm.get('modelname').errors">请输入正确的昵称</ng-container> -->
-        <ng-container *ngIf="validateForm.get('modelname').hasError('required')">请输入模特称呼</ng-container>
+      <input nz-input id="nickname" formControlName="nickname">
+      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">
+        <!-- <ng-container *ngIf="validateForm.get('nickname').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">请输入模特称呼</ng-container>
       </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 头像 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
+      <span>
+        头像
+        <nz-tooltip nzTitle="模特在小程序中显示的头像">
+          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+        </nz-tooltip>
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24" class="userheadimg">
+      <input nz-input id="headimg" type="hidden" formControlName="headimg">
+      <nz-upload class="avatar-uploader" nzAction="{{imgUploadUrl}}" nzName="avatar" nzListType="picture-card" [nzShowUploadList]="false"
+        [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)">
+        <ng-container *ngIf="!validateForm.get('headimg').value">
+          <i class="anticon anticon-plus"></i>
+          <div class="ant-upload-text">Upload</div>
+        </ng-container>
+        <img *ngIf="validateForm.get('headimg').value" [src]="validateForm.get('headimg').value" class="avatar">
+      </nz-upload>
     </nz-form-control>
   </nz-form-item>
   <!-- 身高 -->

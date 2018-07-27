@@ -17,12 +17,13 @@
   </nz-input-group>
 </div>
 
-<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="pagedata.datares.length>0?pagedata.datares:pagedata.dataset" [nzLoading]="loading"
-  [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()" (nzPageSizeChange)="PageSizeChange(true)">
+<nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="pagedata.datares.length>0?pagedata.datares:pagedata.dataset"
+  [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()"
+  (nzPageSizeChange)="PageSizeChange(true)">
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="id">ID</th>
-      <th nzShowSort nzSortKey="name">姓名</th>
+      <th nzShowSort nzSortKey="nickname">昵称</th>
       <th nzShowSort nzSortKey="phone">手机</th>
       <th nzShowSort nzSortKey="email">
         <span>Email</span>

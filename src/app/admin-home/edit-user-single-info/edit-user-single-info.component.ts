@@ -220,7 +220,8 @@ export class EditUserSingleInfoComponent implements OnInit {
   // 获取用户信息
   getuserinfobyId(id: string) {
     const urlParmas = {
-      uid: id
+      uid: id,
+      usertype: '1'
     };
     // 请求基本信息
     this.AjaxServer.ajax('getUserInfo', urlParmas)

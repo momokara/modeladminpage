@@ -41,11 +41,16 @@ export class EditModelGroupAddComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     console.log(this.validateForm.value, this.validateForm.valid);
+    const urlParamas = {
+      usertype: '2',
+      usertypename: 'model',
+      isedit: false
+    };
     if (this.validateForm.valid) {
       this.AjaxServer.ajax('addGroup', null, this.validateForm.value)
         .subscribe(res => {
           if (res.code === 200) {
-            this.message.info('分类创建成功');
+            this.message.info('创建成功');
             this.router.navigate(['/home/modelgroup']);
           } else {
             this.message.info(res.msg);

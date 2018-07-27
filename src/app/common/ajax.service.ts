@@ -28,7 +28,16 @@ export class AjaxService {
     private http: HttpClient,
     private message: NzMessageService
   ) { }
-
+  /**
+   * 获取api 接口的地址
+   * @param apiname api 的名称
+   * @param istest 0 与环境变量一致，1强制请求测试地址，2不使用测试地址
+   */
+  getapirul(apiname: string, istest: number) {
+    const testtype = istest === 0 ? this.isTest :
+      istest === 1 ? true : false;
+    return this.api.getUrl(apiname, testtype);
+  }
   /**
    * 获得信息方式 this.isTest 控制是否测试 测试用GET 正式用POST
    * @param apiurl api地址
