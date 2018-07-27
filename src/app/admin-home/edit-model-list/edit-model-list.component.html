@@ -5,7 +5,7 @@
       <nz-option [nzLabel]="'艺名'" [nzValue]="'modelname'"></nz-option>
       <nz-option [nzLabel]="'姓名'" [nzValue]="'nickname'"></nz-option>
       <nz-option [nzLabel]="'手机'" [nzValue]="'phone'"></nz-option>
-      <nz-option [nzLabel]="'E-mail'" [nzValue]="'email'"></nz-option>
+      <!-- <nz-option [nzLabel]="'分组'" [nzValue]="'email'"></nz-option> -->
       <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
     </nz-select>
     <input type="text" nz-input [(ngModel)]="searchinfo.value" style="width:50%;">
@@ -17,7 +17,7 @@
     </button>
   </nz-input-group>
 </div>
-
+<!-- 列表信息 -->
 <nz-table #Table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="pagedata.datares.length>0?pagedata.datares:pagedata.dataset"
   [nzLoading]="loading" [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="pageChange()"
   (nzPageSizeChange)="PageSizeChange(true)">
@@ -27,9 +27,6 @@
       <th nzShowSort nzSortKey="nickname">昵称</th>
       <th nzShowSort nzSortKey="realname">实名</th>
       <th nzShowSort nzSortKey="phone">手机</th>
-      <th nzShowSort nzSortKey="email">
-        <span>Email</span>
-      </th>
       <th>
         操作&nbsp;
         <a routerLink="../addmodel/">新建模特</a>
@@ -42,7 +39,6 @@
       <td>{{data.nickname}}</td>
       <td>{{data.realname}}</td>
       <td>{{data.phone}}</td>
-      <td>{{data.email}}</td>
       <td>
         <a routerLink="../editmodel/{{data.id}}">编辑</a>
         &nbsp;

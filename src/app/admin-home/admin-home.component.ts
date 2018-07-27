@@ -29,7 +29,6 @@ export class AdminHomeComponent implements OnInit {
   ) {
     // 初始化的时候加载面包屑导航数据
     this.actBcNav = this.getBcNav(location.pathname);
-
   }
 
   ngOnInit() {

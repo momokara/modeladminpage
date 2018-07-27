@@ -4,7 +4,7 @@
     <nz-select class="searchKey" [(ngModel)]="searchinfo.key">
       <nz-option [nzLabel]="'姓名'" [nzValue]="'nickname'"></nz-option>
       <nz-option [nzLabel]="'手机'" [nzValue]="'phone'"></nz-option>
-      <nz-option [nzLabel]="'E-mail'" [nzValue]="'email'"></nz-option>
+      <nz-option [nzLabel]="'所属分组'" [nzValue]="'permgroupname'"></nz-option>
       <nz-option [nzLabel]="'ID'" [nzValue]="'id'"></nz-option>
     </nz-select>
     <input type="text" nz-input [(ngModel)]="searchinfo.value" style="width:50%;">
@@ -26,7 +26,7 @@
       <th nzShowSort nzSortKey="nickname">昵称</th>
       <th nzShowSort nzSortKey="phone">手机</th>
       <th nzShowSort nzSortKey="permgroupname">
-        <span>所属</span>
+        <span>所属分组</span>
       </th>
       <th>
         操作&nbsp;
