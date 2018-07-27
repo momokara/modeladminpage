@@ -56,6 +56,7 @@ export class AdminHomeComponent implements OnInit {
     }
     return res;
   }
+
   /**
    * geturl 把pathname转换成数组
    * @param url 输入的pathname
@@ -75,5 +76,12 @@ export class AdminHomeComponent implements OnInit {
     return res;
   }
 
+  /**
+   * 登出
+   */
+  loginout() {
+    sessionStorage.clear();
+    this.router.navigate(['/member/login']);
+  }
 }
 
