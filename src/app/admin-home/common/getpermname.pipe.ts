@@ -18,7 +18,6 @@ export class GetpermnamePipe implements PipeTransform, OnInit {
     const reslist = this.filterArray.searchInArray(value, ['pid'], this.permGroup);
     const permname = reslist.result[0].group_name;
     return permname;
-
   }
 
   private getPermlist(): void {

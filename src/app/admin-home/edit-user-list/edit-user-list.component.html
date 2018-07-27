@@ -25,7 +25,7 @@
       <th nzShowSort nzSortKey="id">ID</th>
       <th nzShowSort nzSortKey="nickname">昵称</th>
       <th nzShowSort nzSortKey="phone">手机</th>
-      <th nzShowSort nzSortKey="permgroup">
+      <th nzShowSort nzSortKey="permgroupname">
         <span>所属</span>
       </th>
       <th>
@@ -39,7 +39,8 @@
       <td>{{data.id}}</td>
       <td>{{data.nickname}}</td>
       <td>{{data.phone}}</td>
-      <td>{{data.permgroup|getpermname}}</td>
+      <!-- <td>{{data.permgroup|getpermname}}</td> -->
+      <td>{{data.permgroupname}}</td>
       <td>
         <a routerLink="../edituser/{{data.id}}">编辑</a>
         &nbsp;
