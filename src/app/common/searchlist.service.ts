@@ -37,9 +37,10 @@ export class SearchlistService {
         default:
           break;
       }
+
       //  处理数字的对比 和 string 的比对
       if (typeof (filterbase) === 'number') {
-        if (filterbase.toString() === value) {
+        if (filterbase.toString() === value.toString()) {
           return true;
         } else {
           return false;

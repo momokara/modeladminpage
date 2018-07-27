@@ -14,11 +14,10 @@ export class GetpermnamePipe implements PipeTransform, OnInit {
   ngOnInit(): void {
 
   }
-  transform(value: any, args?: any): any {
-    const res = value + 'filter';
-    console.log(value, this.permGroup);
-
-    return this.getPermlist();
+  transform(value: number, args?: any): any {
+    const reslist = this.filterArray.searchInArray(value, ['pid'], this.permGroup);
+    const permname = reslist.result[0].group_name;
+    return permname;
 
   }
 
