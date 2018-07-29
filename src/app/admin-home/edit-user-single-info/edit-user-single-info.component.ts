@@ -247,6 +247,7 @@ export class EditUserSingleInfoComponent implements OnInit {
 class UserInfo {
   uid: number;
   nickname: string;
+  username: string;
   phone: number;
   email: string;
   u_perm_group: string;

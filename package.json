@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4100 --proxy-config proxy.conf.json",
     "startl": "ng serve --host 0.0.0.0 --port 0",
-    "build": "ng build",
+    "build": "ng build  --prod --base-href /adminpage/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

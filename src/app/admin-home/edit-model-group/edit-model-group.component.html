@@ -21,7 +21,7 @@
   <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
       <th nzShowSort nzSortKey="pid">ID</th>
-      <th nzShowSort nzSortKey="group_name" nzShowFilter [nzFilters]="stylelist" (nzFilterChange)="filter('g_type',$event)">组名</th>
+      <th nzShowSort nzSortKey="group_name" nzShowFilter [nzFilters]="stylelist" (nzFilterChange)="filter(['g_type'],$event)">组名</th>
       <th>
         操作&nbsp;
         <a routerLink="../addmodelgroup">添加(风格/标签/分组)</a>

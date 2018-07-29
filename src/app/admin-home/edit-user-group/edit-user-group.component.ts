@@ -117,8 +117,8 @@ export class EditUserGroupComponent implements OnInit {
     console.log('pageChange');
   }
   // 单页条数变更方法
-  PageSizeChange() {
-    console.log('PageSizeChange');
+  PageSizeChange(isreset: boolean) {
+    console.log('PageSizeChange-isreset:', isreset);
   }
 
 
