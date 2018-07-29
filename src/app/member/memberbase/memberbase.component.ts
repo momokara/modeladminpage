@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-memberbase',
@@ -7,16 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberbaseComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleService: Title,
+  ) {
+    this.titleService.setTitle(`星网模特卡`);
+  }
 
   ngOnInit() {
 
-    indexedDB.open('testdb1', 1);
-    // let db = openDatabase("noteDB", "1.0", "noteDB", 1024 * 1024 * 10, function (result) {
-    //   console.log(result);
-    //   // 只有创建数据库成功 才会调用这个回调
-    //   db = result;
-    // });
   }
 
 }

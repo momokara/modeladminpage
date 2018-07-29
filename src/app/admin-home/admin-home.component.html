@@ -76,7 +76,8 @@
       <nz-breadcrumb style="margin:16px 0;">
         <ng-container *ngFor="let rowdata of actBcNav;let i = index">
           <nz-breadcrumb-item>
-            <a *ngIf="i<actBcNav.length-1" routerLink="{{rowdata.url}}">{{rowdata.name}}</a>
+            <a *ngIf="i<(actBcNav.length-1)&&rowdata.url!='/home/modelfile'" routerLink="{{rowdata.url}}">{{rowdata.name}}</a>
+            <a *ngIf="i<(actBcNav.length-1)&&rowdata.url==='/home/modelfile'" routerLink="{{rowdata.url}}/{{uid}}">{{rowdata.name}}</a>
             <span *ngIf="i==actBcNav.length-1">{{rowdata.name}}</span>
           </nz-breadcrumb-item>
         </ng-container>

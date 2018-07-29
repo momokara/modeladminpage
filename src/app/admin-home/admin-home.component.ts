@@ -1,7 +1,8 @@
 import { Navigate, BcNav } from './common/data/navigate.class';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Inject } from '@angular/core';
 import { ActivatedRoute, Params, UrlSegment, Router, NavigationEnd } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-home',
@@ -13,6 +14,7 @@ export class AdminHomeComponent implements OnInit {
   Bcnav = new Navigate();
   // 当前激活的面包屑导航
   actBcNav: BcNav[];
+  uid = null;
   // 当前激活的菜单
   actMenu: string;
   isCollapsed = false;
@@ -25,21 +27,31 @@ export class AdminHomeComponent implements OnInit {
   }
   constructor(
     private actrouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title,
+    @Inject('MsgSer') private MsgSer,
   ) {
     // 初始化的时候加载面包屑导航数据
-    this.actBcNav = this.getBcNav(location.pathname);
+    this.actBcNav = this.getBcNav(location.pathname.length > 2 ? location.pathname : location.hash);
+
   }
 
   ngOnInit() {
+    this.uid = this.MsgSer.getMessage('uid');
+
     // 路由切换事件
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
     ).subscribe((event) => {
-      this.actBcNav = this.getBcNav(location.pathname);
+      const urlinfo = location.pathname.length > 2 ? location.pathname : location.hash;
+      if (urlinfo) {
+        this.actBcNav = this.getBcNav(urlinfo);
+      }
       // console.log(this.actBcNav);
+      this.uid = this.MsgSer.getMessage('uid');
     });
+
   }
   /**
   * 获取面包屑导航
@@ -52,6 +64,9 @@ export class AdminHomeComponent implements OnInit {
       res = this.Bcnav.getnavArray(urlArray[1]);
     } else {
       res = this.Bcnav.getnavArray(urlArray[0]);
+    }
+    if (res.length > 0) {
+      this.titleService.setTitle(`星网模特卡-${res[res.length - 1].name}`);
     }
     return res;
   }
@@ -66,7 +81,7 @@ export class AdminHomeComponent implements OnInit {
     res = url.split('/');
     // 过滤掉空值
     res = res.filter((e, i, s) => {
-      if (e) {
+      if (e && e !== '#') {
         return true;
       } else {
         return false;

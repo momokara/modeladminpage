@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditModelFileVedioComponent } from './edit-model-file-vedio.component';
+import { EditModelFileVideoComponent } from './edit-model-file-video.component';
 
-describe('EditModelFileVedioComponent', () => {
-  let component: EditModelFileVedioComponent;
-  let fixture: ComponentFixture<EditModelFileVedioComponent>;
+describe('EditModelFileVideoComponent', () => {
+  let component: EditModelFileVideoComponent;
+  let fixture: ComponentFixture<EditModelFileVideoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditModelFileVedioComponent ]
+      declarations: [ EditModelFileVideoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditModelFileVedioComponent);
+    fixture = TestBed.createComponent(EditModelFileVideoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

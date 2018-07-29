@@ -29,7 +29,7 @@ import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-
 import { GetpermnamePipe } from './common/getpermname.pipe';
 import { EditModelFilehomeComponent } from './edit-model-filehome/edit-model-filehome.component';
 import { EditModelFileImggroupComponent } from './edit-model-file-imggroup/edit-model-file-imggroup.component';
-import { EditModelFileVedioComponent } from './edit-model-file-vedio/edit-model-file-vedio.component';
+import { EditModelFileVideoComponent } from './edit-model-file-video/edit-model-file-video.component';
 
 @NgModule({
   imports: [
@@ -65,7 +65,7 @@ import { EditModelFileVedioComponent } from './edit-model-file-vedio/edit-model-
     GetpermnamePipe,
     EditModelFilehomeComponent,
     EditModelFileImggroupComponent,
-    EditModelFileVedioComponent
+    EditModelFileVideoComponent
   ],
   providers: [
     { provide: 'filterArray', useClass: SearchlistService },

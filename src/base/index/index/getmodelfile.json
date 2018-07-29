@@ -1,0 +1,176 @@
+{
+  "code": 200,
+  "msg": "OK",
+  "data": {
+    "videos": [{
+        "cid": 1,
+        "cover": "http://e.hiphotos.baidu.com/image/pic/item/4a36acaf2edda3cc10f68df10de93901203f92d4.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      },
+      {
+        "cid": 2,
+        "cover": "http://f.hiphotos.baidu.com/image/pic/item/b7fd5266d0160924b65e22cbd80735fae7cd34e2.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      },
+      {
+        "cid": 3,
+        "cover": "http://f.hiphotos.baidu.com/image/pic/item/b7fd5266d0160924b65e22cbd80735fae7cd34e2.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      }
+    ],
+    "imggroup": [{
+        "cid": 4,
+        "cover": "http://e.hiphotos.baidu.com/image/pic/item/4a36acaf2edda3cc10f68df10de93901203f92d4.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      },
+      {
+        "cid": 5,
+        "cover": "http://f.hiphotos.baidu.com/image/pic/item/b7fd5266d0160924b65e22cbd80735fae7cd34e2.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      },
+      {
+        "cid": 6,
+        "cover": "http://f.hiphotos.baidu.com/image/pic/item/b7fd5266d0160924b65e22cbd80735fae7cd34e2.jpg",
+        "title": "这个是标题",
+        "desc": "这里是简介",
+        "tags": [{
+            "gid": 1,
+            "name": "标签1"
+          },
+          {
+            "gid": 2,
+            "name": "标签2"
+          },
+          {
+            "gid": 3,
+            "name": "标签3"
+          }
+        ],
+        "style": [{
+            "gid": 4,
+            "name": "风格4"
+          },
+          {
+            "gid": 5,
+            "name": "风格5"
+          }
+        ]
+      }
+    ]
+  }
+}

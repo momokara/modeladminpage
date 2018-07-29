@@ -203,11 +203,11 @@ export class EditModelEditsinglemodelComponent implements OnInit {
         this.validateForm.setControl('headimg', this.fb.control(info.file.response.data.imgurl));
       }
       // Get this url from response in real world.
-      this.getBase64(info.file.originFileObj, (img: string) => {
-        this.loading = false;
-        // this.avatarUrl = img;
-        this.validateForm.setControl('headimg', this.fb.control(img));
-      });
+      // this.getBase64(info.file.originFileObj, (img: string) => {
+      //   this.loading = false;
+      //   // this.avatarUrl = img;
+      //   this.validateForm.setControl('headimg', this.fb.control(img));
+      // });
     }
   }
 

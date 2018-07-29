@@ -39,11 +39,14 @@
       <td>{{data.nickname}}</td>
       <td>{{data.realname}}</td>
       <td>{{data.phone}}</td>
-      <td>
-        <a routerLink="../editmodel/{{data.id}}">编辑</a>
+      <td class="controlbox">
+        <a routerLink="../editmodel/{{data.id}}">编辑资料</a>
+        &nbsp;
+        <a routerLink="../modelfile/{{data.id}}">作品管理</a>
         &nbsp;
         <a *ngIf="data.station" (click)="forbiddenuser(data.id,i,true)">停用</a>
         <a *ngIf="!data.station" (click)="forbiddenuser(data.id,i,false)">启用</a>
+
       </td>
     </tr>
   </tbody>

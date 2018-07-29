@@ -29,6 +29,8 @@ export class Api {
   private readonly editUserInfo: string = 'index/index/edituserinfo';
   // 获取用户信息
   private readonly getUserInfo: string = 'index/index/getuserinfo';
+  // 获取模特作品
+  private readonly getModelFiles: string = 'index/index/getmodelfile';
 
   // 停用用户 usertype = model(模特)/worker(工作人员)
   private readonly forbiddenUser: string = 'index/index/forbiddenuser';
@@ -42,6 +44,8 @@ export class Api {
   private readonly getUserGroup: string = 'index/index/getusergroup';
   // 上传图片
   private readonly upLoadImg: string = 'index/index/uploadimg';
+  // 添加照片集/编辑
+  private readonly editImgGroup: string = 'index/index/editimggroup';
 
   // 添加分类/分组
   private readonly addGroup: string = 'index/index/addgroup';

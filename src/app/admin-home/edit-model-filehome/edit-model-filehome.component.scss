@@ -1,0 +1,35 @@
+.infobox {
+  width: 85%;
+  display: inline-block;
+}
+
+.control-box {
+  width: 10%;
+  float: right;
+}
+
+.cellbox {
+  width: 300px;
+  list-style: none;
+  display: inline-block;
+  margin: 0 15px 15px 0;
+  .coverimg {
+    max-width: 100%;
+    height: 222px;
+  }
+}
+
+h3 {
+  width: 100%;
+  background-color: #DDD;
+  line-height: 26px;
+  padding: 5px;
+  .add {
+    float: right;
+  }
+}
+
+.anticon.anticon-edit {
+  margin: 10px 0;
+  font-size: 25px;
+}

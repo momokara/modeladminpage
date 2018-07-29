@@ -1,3 +1,98 @@
-<p>
-  edit-model-file-imggroup works!
-</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- 昵称 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="c_name" nzRequired>
+      <span>
+        作品集名称
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input id="c_name" formControlName="c_name">
+      <nz-form-explain *ngIf="validateForm.get('c_name').dirty && validateForm.get('c_name').errors">
+        <!-- <ng-container *ngIf="validateForm.get('c_name').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('c_name').hasError('required')">请输入模特称呼</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 昵称 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="desc" nzRequired>
+      <span>
+        简介
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <input nz-input id="desc" formControlName="desc">
+      <nz-form-explain *ngIf="validateForm.get('desc').dirty && validateForm.get('desc').errors">
+        <!-- <ng-container *ngIf="validateForm.get('desc').errors">请输入正确的昵称</ng-container> -->
+        <ng-container *ngIf="validateForm.get('desc').hasError('required')">请输入模特称呼</ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 头像 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="imglist" nzRequired>
+      <span>
+        图片
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24" class="userheadimg">
+      <input nz-input id="imglist" type="hidden" formControlName="imglist">
+      <div class="uploadbox">
+        <div class="clearfix">
+          <nz-upload nzAction="{{imgUploadUrl}}" nzListType="picture-card" [(nzFileList)]="fileList" [nzShowButton]="fileList.length < 999"
+            [nzPreview]="handlePreview" [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)">
+            <i class="anticon anticon-plus"></i>
+            <div class="ant-upload-text">Upload</div>
+          </nz-upload>
+          <!-- 遮罩预览 -->
+          <nz-modal class="porpimgbox" [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false"
+            [nzWidth]="'800px'">
+            <ng-template #modalContent>
+              <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+            </ng-template>
+          </nz-modal>
+        </div>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- 风格 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">
+      <span>
+        风格
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="style" [nzMaxMultipleCount]="3" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+        <nz-option *ngFor="let item of userStyle" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- 标签 -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">
+      <span>
+        标签
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="10" [nzXs]="24">
+      <nz-select formControlName="tags" [nzMaxMultipleCount]="5" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+        <nz-option *ngFor="let item of userTag" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- 保存修改按钮 -->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="5" [nzOffset]="6">
+      <button nz-button nzType="primary" class="btn-sub">确定保存</button>
+    </nz-form-control>
+    <nz-form-control [nzSpan]="5">
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="../modelfile/{{uid}}">取消</a>
+    </nz-form-control>
+
+  </nz-form-item>
+
+</form>
