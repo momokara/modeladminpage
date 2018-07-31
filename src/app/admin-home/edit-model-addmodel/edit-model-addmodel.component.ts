@@ -158,17 +158,11 @@ export class EditModelAddmodelComponent implements OnInit {
       return;
     }
     if (info.file.status === 'done') {
-      console.log(info.file.response);
+      // console.log(info.file.response);
       if (info.file.response.code === 200) {
-        this.headimg.imgid = info.file.response.data.id;
-        this.validateForm.setControl('headimg', this.fb.control(info.file.response.data.imgurl));
+        // this.headimg.imgid = info.file.response.data.name;
+        this.validateForm.setControl('headimg', this.fb.control(info.file.response.data.url));
       }
-      // Get this url from response in real world.
-      // this.getBase64(info.file.originFileObj, (img: string) => {
-      //   this.loading = false;
-      //   // this.avatarUrl = img;
-      //   this.validateForm.setControl('headimg', this.fb.control(img));
-      // });
     }
   }
 

@@ -114,7 +114,7 @@ export class EditModelEditsinglemodelComponent implements OnInit {
     const urlparmas = {
       usertype: '2',
       usertypename: 'model',
-      isedit: false
+      isedit: true
     };
     console.log(this.validateForm.value, this.validateForm.valid);
     if (this.validateForm.valid) {

@@ -3,7 +3,7 @@
   <a routerLink="../../modelvideoadd/{{uid}}" class="add">+添加</a>
 </h3>
 <div class="imgBox">
-  <ng-container *ngIf="pagedata.videos">
+  <ng-container *ngIf="pagedata">
     <nz-card *ngFor="let item of pagedata.videos" class="cellbox">
       <img class="coverimg" alt="example" [src]="item.cover" />
       <nz-card-meta class="infobox" [nzTitle]="item.title" [nzDescription]="item.desc"></nz-card-meta>
@@ -18,7 +18,7 @@
   <a class="add" routerLink="../../modelimggroupadd/{{uid}}">+添加</a>
 </h3>
 <div class=" videobox ">
-  <ng-container *ngIf="pagedata.imggroup ">
+  <ng-container *ngIf="pagedata ">
     <nz-card *ngFor="let item of pagedata.imggroup " class="cellbox ">
       <img class="coverimg " alt="example " [src]="item.cover " />
       <nz-card-meta class="infobox " [nzTitle]="item.title " [nzDescription]="item.desc "></nz-card-meta>
