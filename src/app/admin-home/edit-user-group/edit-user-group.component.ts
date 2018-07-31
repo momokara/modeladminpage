@@ -11,8 +11,11 @@ export class EditUserGroupComponent implements OnInit {
   pagedata = new ListData(false, 1, 10);
   // 排序信息
   SortInfo = new SortInfo();
-  // 搜索 nickname/phone/email
-  searchinfo = new SearchInfo('group_name');
+  // 搜索
+  searchinfo: SearchInfo = {
+    key: 'group_name',
+    value: ''
+  };
   // 页码
   pageIndex = 1;
   // 每页大小

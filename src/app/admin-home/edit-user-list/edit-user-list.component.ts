@@ -13,7 +13,10 @@ export class EditUserListComponent implements OnInit {
   // 排序信息
   SortInfo = new SortInfo();
   // 搜索 nickname/phone/email
-  searchinfo = new SearchInfo('nickname');
+  searchinfo: SearchInfo = {
+    key: 'nickname',
+    value: ''
+  };
   // 页码
   pageIndex = 1;
   // 每页大小
@@ -33,6 +36,7 @@ export class EditUserListComponent implements OnInit {
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer,
     @Inject('filterArray') private filterArray, ) {
+
   }
 
   ngOnInit(): void {

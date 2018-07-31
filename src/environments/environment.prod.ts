@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   istest: false,
-  baseurl: { baseherf: '/' }
+  baseurl: { baseherf: '/index/index/' }
 };

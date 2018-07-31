@@ -2,63 +2,63 @@ export class Api {
   // 基础路径
   private readonly basicUrl: string;
   // 注册
-  private readonly userReg: string = 'index/index/register';
+  private readonly userReg: string = 'register';
   // 登录
-  private readonly loginUp: string = 'index/index/login';
+  private readonly loginUp: string = 'login';
   // 用户列表
-  private readonly userList: string = 'index/index/userlist';
+  private readonly userList: string = 'userlist';
   // 发送验证码
-  private readonly sendCode: string = 'index/index/send_sms';
+  private readonly sendCode: string = 'send_sms';
 
   // 获取权限组列表 isgetact=true 时反回当前激活的权限组
-  private readonly getPermGroup: string = 'index/index/userpermlist';
+  private readonly getPermGroup: string = 'userpermlist';
   // 添加权限组
-  private readonly addPermGroup: string = 'index/index/editpermlist';
+  private readonly addPermGroup: string = 'editpermlist';
   // 编辑权限组
-  private readonly editPermGroup: string = 'index/index/editpermlist';
+  private readonly editPermGroup: string = 'editpermlist';
   // 获取权限组信息（单个）
-  private readonly getdPermGroup: string = 'index/index/getperminfo';
+  private readonly getdPermGroup: string = 'getperminfo';
   // 停用权限组 post 方式传送PID (权限组id)
-  private readonly forbiddenPermG: string = 'index/index/forbiddenpermg';
+  private readonly forbiddenPermG: string = 'forbiddenpermg';
   // 启用权限组
-  private readonly openPermG: string = 'index/index/openpermg';
+  private readonly openPermG: string = 'openpermg';
 
   // 添加用户 usertype = model(模特)/worker(工作人员)
-  private readonly addUser: string = 'index/index/edituserinfo';
+  private readonly addUser: string = 'edituserinfo';
   // 编辑用户信息 usertype = model(模特)/worker(工作人员)
-  private readonly editUserInfo: string = 'index/index/edituserinfo';
+  private readonly editUserInfo: string = 'edituserinfo';
   // 获取用户信息
-  private readonly getUserInfo: string = 'index/index/getuserinfo';
+  private readonly getUserInfo: string = 'getuserinfo';
   // 获取模特作品
-  private readonly getModelFiles: string = 'index/index/getmodelfile';
+  private readonly getModelFiles: string = 'getmodelfile';
 
   // 停用用户 usertype = model(模特)/worker(工作人员)
-  private readonly forbiddenUser: string = 'index/index/forbiddenuser';
+  private readonly forbiddenUser: string = 'forbiddenuser';
   // 启用用户 usertype = model(模特)/worker(工作人员)
-  private readonly openUser: string = 'index/index/openuser';
+  private readonly openUser: string = 'openuser';
   // 验证用户重复
-  private readonly checkUsername: string = 'index/index/checkuser';
+  private readonly checkUsername: string = 'checkuser';
   // 验证昵称重复
-  private readonly checkNickname: string = 'index/index/checkuser';
+  private readonly checkNickname: string = 'checkuser';
   // 获取用户分组
-  private readonly getUserGroup: string = 'index/index/getusergroup';
+  private readonly getUserGroup: string = 'getusergroup';
   // 上传图片
-  private readonly upLoadImg: string = 'index/index/uploadimg';
+  private readonly upLoadImg: string = 'uploadimg';
   // 添加照片集/编辑
-  private readonly editImgGroup: string = 'index/index/editimggroup';
+  private readonly editImgGroup: string = 'editimggroup';
 
   // 添加分类/分组
-  private readonly addGroup: string = 'index/index/addgroup';
+  private readonly addGroup: string = 'addgroup';
   // 编辑分类/分组
-  private readonly editGroup: string = 'index/index/addgroup';
+  private readonly editGroup: string = 'addgroup';
   // 获取模特分组
-  private readonly getModelGroup: string = 'index/index/getmodelgroup';
+  private readonly getModelGroup: string = 'getmodelgroup';
   // 获取模特分组
-  private readonly getModelGroupInfo: string = 'index/index/getmodelgroupinfo';
+  private readonly getModelGroupInfo: string = 'getmodelgroupinfo';
   // 停用模特分组
-  private readonly forbiddenGroup: string = 'index/index/forbiddengroup';
+  private readonly forbiddenGroup: string = 'forbiddengroup';
   // 启用模特分组
-  private readonly openGroup: string = 'index/index/opengroup';
+  private readonly openGroup: string = 'opengroup';
 
   constructor(webroot: BasicUrl) {
     // 必须初始化

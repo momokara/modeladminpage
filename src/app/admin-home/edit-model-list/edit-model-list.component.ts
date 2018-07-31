@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
@@ -13,7 +14,10 @@ export class EditModelListComponent implements OnInit {
   // 排序信息
   SortInfo = new SortInfo();
   // 搜索 nickname/phone/email
-  searchinfo = new SearchInfo('nickname');
+  searchinfo: SearchInfo = {
+    key: 'nickname',
+    value: ''
+  };
   // 页码
   pageIndex = 1;
   // 每页大小
@@ -34,6 +38,7 @@ export class EditModelListComponent implements OnInit {
     @Inject('AjaxServer') private AjaxServer,
     @Inject('filterArray') private filterArray, ) {
   }
+
 
   ngOnInit(): void {
     this.getListData();

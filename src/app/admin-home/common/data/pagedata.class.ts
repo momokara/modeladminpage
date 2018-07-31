@@ -1,9 +1,6 @@
-export class SearchInfo {
+export interface SearchInfo {
     key: string;
     value: string;
-    constructor(defaultkey: string) {
-        this.key = defaultkey;
-    }
 }
 export class SortInfo {
     key: string;

@@ -12,7 +12,10 @@ export class EditModelGroupComponent implements OnInit {
   // 排序信息
   SortInfo = new SortInfo();
   // 搜索 nickname/phone/email
-  searchinfo = new SearchInfo('group_name');
+  searchinfo: SearchInfo = {
+    key: 'group_name',
+    value: ''
+  };
   // 页码
   pageIndex = 1;
   // 每页大小
