@@ -39,7 +39,6 @@ export class AdminHomeComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.MsgSer.getMessage('uid');
-    this.saveViewHis(event);
     // 路由切换事件
     this.router.events
       .pipe(
@@ -53,7 +52,6 @@ export class AdminHomeComponent implements OnInit {
       this.saveViewHis(event);
       this.uid = this.MsgSer.getMessage('uid');
     });
-
   }
   /**
   * 获取面包屑导航
