@@ -48,7 +48,6 @@ export class AdminHomeComponent implements OnInit {
       if (urlinfo) {
         this.actBcNav = this.getBcNav(urlinfo);
       }
-      // console.log(this.actBcNav);
       this.uid = this.MsgSer.getMessage('uid');
     });
 
@@ -60,11 +59,7 @@ export class AdminHomeComponent implements OnInit {
   getBcNav(url: string): BcNav[] {
     let res: BcNav[] = [];
     const urlArray = this.geturl(url);
-    if (urlArray.length >= 2) {
-      res = this.Bcnav.getnavArray(urlArray[1]);
-    } else {
-      res = this.Bcnav.getnavArray(urlArray[0]);
-    }
+    res = this.Bcnav.getnavArray(urlArray[0]);
     if (res.length > 0) {
       this.titleService.setTitle(`星网模特卡-${res[res.length - 1].name}`);
     }
@@ -78,7 +73,8 @@ export class AdminHomeComponent implements OnInit {
    */
   geturl(url: string): string[] {
     let res;
-    res = url.split('/');
+    const arrurl = url.split('/home/');
+    res = arrurl[1].split('/');
     // 过滤掉空值
     res = res.filter((e, i, s) => {
       if (e && e !== '#') {

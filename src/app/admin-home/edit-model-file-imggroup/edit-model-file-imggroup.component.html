@@ -40,8 +40,15 @@
       <input nz-input id="imglist" type="hidden" formControlName="imglist">
       <div class="uploadbox">
         <div class="clearfix">
-          <nz-upload nzAction="{{imgUploadUrl}}" nzListType="picture-card" [(nzFileList)]="fileList" [nzShowButton]="fileList.length < 999"
-            [nzPreview]="handlePreview" [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)">
+          <nz-upload 
+          nzAction="{{imgUploadUrl}}" 
+          nzName="avatar" 
+          nzListType="picture-card" 
+          [(nzFileList)]="imglist" 
+          [nzShowButton]="fileList.length < 999"
+          [nzBeforeUpload]="beforeUpload" 
+          (nzChange)="handleChange($event)"
+          [nzPreview]="handlePreview">
             <i class="anticon anticon-plus"></i>
             <div class="ant-upload-text">Upload</div>
           </nz-upload>

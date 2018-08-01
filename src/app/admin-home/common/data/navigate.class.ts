@@ -81,7 +81,7 @@ export class Navigate {
   };
   // 模特管理-模特列表-添加模特
   public readonly addmodel: BcNav = {
-    'name': '编辑模特信息',
+    'name': '添加模特',
     'url': '/home/addmodel',
     'parent': 'modellist',
     'children': []

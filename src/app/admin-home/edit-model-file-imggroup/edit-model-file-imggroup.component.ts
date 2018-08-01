@@ -21,8 +21,9 @@ export class EditModelFileImggroupComponent implements OnInit {
       uid: 0,
       name: 'xxx.png',
       status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
     }
+  ];
+  imglist = [
   ];
   previewImage = '';
   previewVisible = false;
@@ -64,7 +65,7 @@ export class EditModelFileImggroupComponent implements OnInit {
     this.imgUploadUrl = this.AjaxServer.getapirul('upLoadImg', 2);
     this.getModelGroup();
   }
-  // 获取权限分组
+  // 获取分组
   getModelGroup() {
     const urlParmas = {
       isgetact: true,
@@ -80,6 +81,7 @@ export class EditModelFileImggroupComponent implements OnInit {
   }
   // 提交表单
   submitForm(): void {
+    console.log(this.imglist);
     // tslint:disable-next-line:forin
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -90,6 +92,7 @@ export class EditModelFileImggroupComponent implements OnInit {
       usertypename: 'model',
       isedit: this.cid ? true : false
     };
+    this.validateForm.setControl('imglist', this.fb.control(this.imglist));
     console.log(this.validateForm.value, this.validateForm.valid);
     if (this.validateForm.valid) {
       this.AjaxServer.ajax('editImgGroup', urlparmas, this.validateForm.value)
@@ -103,18 +106,11 @@ export class EditModelFileImggroupComponent implements OnInit {
         });
     }
   }
-  // 预览控制
-  handlePreview = (file: UploadFile) => {
-    console.log('handlePreview-file', file);
-    this.previewVisible = true;
-    this.previewImage = file.url || file.thumbUrl;
-  }
 
   // 上传之前的处理
   beforeUpload = (file: File) => {
+    console.log(file.type);
     let isJPG = false;
-    console.log(file);
-
     if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
       isJPG = true;
     }
@@ -127,11 +123,9 @@ export class EditModelFileImggroupComponent implements OnInit {
     }
     return isJPG && isLt2M;
   }
-
   // 上传文件改变时的状态
   handleChange(info: { file: UploadFile }): void {
     console.log(info);
-
     if (info.file.status === 'uploading') {
       this.loading = true;
       return;
@@ -140,9 +134,20 @@ export class EditModelFileImggroupComponent implements OnInit {
       console.log(info.file.response);
       if (info.file.response.code === 200) {
         console.log(info.file.response);
-        // this.validateForm.setControl('headimg', this.fb.control(info.file.response.data.imgurl));
+        console.log('imglist', this.imglist);
+
+        this.imglist[this.imglist.length - 1] = {
+          id: this.imglist.length,
+          name: info.file.response.data.name,
+          url: info.file.response.data.url
+        };
       }
     }
+  }
+  // 控制预览
+  handlePreview = (file: UploadFile) => {
+    this.previewImage = file.url || file.thumbUrl;
+    this.previewVisible = true;
   }
 
 }
