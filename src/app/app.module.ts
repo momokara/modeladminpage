@@ -12,6 +12,7 @@ import { MsgService } from './common/msg.service';
 import { AjaxService } from './common/ajax.service';
 import { IsloginService } from './common/islogin.service';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { IndexxedDBService } from './common/indexxed-db.service';
 
 registerLocaleData(zh);
 
@@ -30,6 +31,7 @@ registerLocaleData(zh);
   providers: [
     { provide: 'AjaxServer', useClass: AjaxService },
     { provide: 'MsgSer', useClass: MsgService },
+    { provide: 'IndexxedDB', useClass: IndexxedDBService },
     IsloginService
   ],
   bootstrap: [AppComponent]

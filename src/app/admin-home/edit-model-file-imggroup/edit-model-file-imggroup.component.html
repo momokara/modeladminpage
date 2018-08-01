@@ -44,7 +44,7 @@
           nzAction="{{imgUploadUrl}}" 
           nzName="avatar" 
           nzListType="picture-card" 
-          [(nzFileList)]="imglist" 
+          [(nzFileList)]="fileList"
           [nzShowButton]="fileList.length < 999"
           [nzBeforeUpload]="beforeUpload" 
           (nzChange)="handleChange($event)"

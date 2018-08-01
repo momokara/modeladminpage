@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Api } from './../../environments/api.class';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -26,7 +26,8 @@ export class AjaxService {
 
   constructor(
     private http: HttpClient,
-    private message: NzMessageService
+    private message: NzMessageService,
+    @Inject('IndexxedDB') private IndexxedDB,
   ) { }
   /**
    * 获取api 接口的地址
@@ -112,8 +113,24 @@ export class AjaxService {
   // 输出错误
   // @param *message:string 错误信息
   private log(message: string): void {
-    const data = new Date();
-    console.error('error:', data, message);
+    const date = new Date();
+    // 写入错误记录
+    const timestamp = (new Date()).valueOf();
+    const data = {
+      errID: timestamp,
+      roter: window.location.href,
+      message: message
+    };
+    this.IndexxedDB.open().then((res) => {
+      this.IndexxedDB.insert('ErrorLog', data)
+        .then((resolve, reject) => {
+          this.IndexxedDB.close();
+        }).catch((e) => {
+          console.error('写入错误', e);
+          this.IndexxedDB.close();
+        });
+    });
+    console.error('error:', date, message);
   }
   // 处理错误
   private handleError<T>(operation = 'operation', result?: T): any {

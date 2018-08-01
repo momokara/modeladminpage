@@ -32,6 +32,7 @@ export class Api {
   // 获取模特作品
   private readonly getModelFiles: string = 'getmodelfile';
 
+
   // 停用用户 usertype = model(模特)/worker(工作人员)
   private readonly forbiddenUser: string = 'forbiddenuser';
   // 启用用户 usertype = model(模特)/worker(工作人员)
@@ -46,6 +47,10 @@ export class Api {
   private readonly upLoadImg: string = 'uploadimg';
   // 添加照片集/编辑
   private readonly editImgGroup: string = 'editimggroup';
+  // 获取模特作品信息
+  private readonly getImgGroup: string = 'getimggroup';
+  // 获取模特作品信息
+  private readonly getVideoGroup: string = 'getvideogroup';
 
   // 添加分类/分组
   private readonly addGroup: string = 'addgroup';

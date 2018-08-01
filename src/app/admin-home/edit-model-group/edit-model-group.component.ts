@@ -128,11 +128,11 @@ export class EditModelGroupComponent implements OnInit {
   }
   //  页面变更方法
   pageChange() {
-    console.log('pageChange');
+    // console.log('pageChange');
   }
   // 单页条数变更方法
   PageSizeChange(isreset: boolean) {
-    console.log('PageSizeChange-isreset:', isreset);
+    // console.log('PageSizeChange-isreset:', isreset);
   }
 
 

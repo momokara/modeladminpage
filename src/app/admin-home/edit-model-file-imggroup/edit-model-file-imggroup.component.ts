@@ -19,8 +19,9 @@ export class EditModelFileImggroupComponent implements OnInit {
   fileList = [
     {
       uid: 0,
-      name: 'xxx.png',
-      status: 'done',
+      name: '',
+      status: '',
+      url: ''
     }
   ];
   imglist = [
@@ -58,7 +59,6 @@ export class EditModelFileImggroupComponent implements OnInit {
     }
     this.uid = this.actrouter.snapshot.paramMap.get('uid');
     this.MsgSer.sendMessage('uid', this.uid);
-
   }
 
   ngOnInit() {
@@ -79,9 +79,27 @@ export class EditModelFileImggroupComponent implements OnInit {
         }
       });
   }
+
+  // 获取基本信息
+  getimggroupinfo(id: string) {
+    const urlParmas = {
+      usertype: '2',
+      usertypename: 'model',
+      isedit: true,
+      cid: this.cid
+    };
+    this.AjaxServer.ajax('getModelGroup', urlParmas)
+      .subscribe(res => {
+        if (res.code === 200) {
+          this.userStyle = res.data.userStyle;
+          this.userTag = res.data.userTag;
+        }
+      });
+  }
+
   // 提交表单
   submitForm(): void {
-    console.log(this.imglist);
+    console.log(this.fileList);
     // tslint:disable-next-line:forin
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -92,7 +110,7 @@ export class EditModelFileImggroupComponent implements OnInit {
       usertypename: 'model',
       isedit: this.cid ? true : false
     };
-    this.validateForm.setControl('imglist', this.fb.control(this.imglist));
+    this.validateForm.setControl('imglist', this.fb.control(this.fileList));
     console.log(this.validateForm.value, this.validateForm.valid);
     if (this.validateForm.valid) {
       this.AjaxServer.ajax('editImgGroup', urlparmas, this.validateForm.value)
@@ -134,14 +152,19 @@ export class EditModelFileImggroupComponent implements OnInit {
       console.log(info.file.response);
       if (info.file.response.code === 200) {
         console.log(info.file.response);
-        console.log('imglist', this.imglist);
-
-        this.imglist[this.imglist.length - 1] = {
-          id: this.imglist.length,
+        console.log('fileList', this.fileList);
+        this.fileList[this.fileList.length - 1] = {
+          uid: this.fileList.length,
           name: info.file.response.data.name,
+          status: 'done',
           url: info.file.response.data.url
         };
       }
+    }
+    if (info.file.status === 'error') {
+      this.msg.error(`上传错误: code:${info.file.error.message}`);
+      const index = this.fileList.length - 1;
+      this.fileList.splice(index, 1);
     }
   }
   // 控制预览

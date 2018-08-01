@@ -15,8 +15,7 @@ export class IsloginService implements CanActivate {
     private router: Router
   ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(route, state);
-
+    // console.log(route, state);
     return true;
 
   }

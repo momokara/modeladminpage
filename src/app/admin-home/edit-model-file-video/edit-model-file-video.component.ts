@@ -1,3 +1,4 @@
+import { catchError } from 'rxjs/operators';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,10 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class EditModelFileVideoComponent implements OnInit {
   uid: string;
   cid: string;
+  number = 5;
   constructor(
     private actrouter: ActivatedRoute,
     @Inject('AjaxServer') private AjaxServer,
     @Inject('MsgSer') private MsgSer,
+    @Inject('IndexxedDB') private IndexxedDB,
   ) {
     this.uid = this.actrouter.snapshot.paramMap.get('uid');
     this.cid = this.actrouter.snapshot.paramMap.get('cid');

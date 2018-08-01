@@ -119,11 +119,11 @@ export class EditModelListComponent implements OnInit {
   }
   //  页面变更方法
   pageChange() {
-    console.log('pageChange');
+    // console.log('pageChange');
   }
   // 单页条数变更方法
   PageSizeChange(isreset: boolean) {
-    console.log('PageSizeChange-isrest', isreset);
+    // console.log('PageSizeChange-isrest', isreset);
   }
 
 }

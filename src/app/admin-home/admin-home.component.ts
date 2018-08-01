@@ -30,6 +30,7 @@ export class AdminHomeComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     @Inject('MsgSer') private MsgSer,
+    @Inject('IndexxedDB') private IndexxedDB,
   ) {
     // 初始化的时候加载面包屑导航数据
     this.actBcNav = this.getBcNav(location.pathname.length > 2 ? location.pathname : location.hash);
@@ -38,7 +39,7 @@ export class AdminHomeComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.MsgSer.getMessage('uid');
-
+    this.saveViewHis(event);
     // 路由切换事件
     this.router.events
       .pipe(
@@ -46,8 +47,10 @@ export class AdminHomeComponent implements OnInit {
     ).subscribe((event) => {
       const urlinfo = location.pathname.length > 2 ? location.pathname : location.hash;
       if (urlinfo) {
-        this.actBcNav = this.getBcNav(urlinfo);
+        this.actBcNav = this.getBcNav(urlinfo) ? this.getBcNav(urlinfo) : [];
       }
+      // 写入访问记录
+      this.saveViewHis(event);
       this.uid = this.MsgSer.getMessage('uid');
     });
 
@@ -58,12 +61,40 @@ export class AdminHomeComponent implements OnInit {
   */
   getBcNav(url: string): BcNav[] {
     let res: BcNav[] = [];
-    const urlArray = this.geturl(url);
-    res = this.Bcnav.getnavArray(urlArray[0]);
+    const urlArray = this.geturl(url) ? this.geturl(url) : [];
+    if (urlArray.length > 0) {
+      res = this.Bcnav.getnavArray(urlArray[0]);
+    }
     if (res.length > 0) {
       this.titleService.setTitle(`星网模特卡-${res[res.length - 1].name}`);
+    } else {
+      this.titleService.setTitle(`星网模特卡`);
     }
     return res;
+  }
+
+  // 记录访问记录
+  saveViewHis(router: any) {
+    const uid = sessionStorage.getItem('user-id');
+    // 写入记录
+    if (uid) {
+      const timestamp = (new Date()).valueOf();
+      const data = {
+        logID: timestamp,
+        roter: router,
+        uid: uid
+      };
+      this.IndexxedDB.open().then((res) => {
+        this.IndexxedDB.insert('ViewHistory', data)
+          .then(() => {
+            this.IndexxedDB.close();
+          }).catch((e) => {
+            console.error('写入错误', e);
+            this.IndexxedDB.close();
+          });
+        this.IndexxedDB.cleanViewDB();
+      });
+    }
   }
 
   /**
@@ -74,15 +105,19 @@ export class AdminHomeComponent implements OnInit {
   geturl(url: string): string[] {
     let res;
     const arrurl = url.split('/home/');
-    res = arrurl[1].split('/');
-    // 过滤掉空值
-    res = res.filter((e, i, s) => {
-      if (e && e !== '#') {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    if (arrurl[1]) {
+      res = arrurl[1].split('/');
+      // 过滤掉空值
+      res = res.filter((e, i, s) => {
+        if (e && e !== '#') {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    } else {
+      res = null;
+    }
     return res;
   }
 
