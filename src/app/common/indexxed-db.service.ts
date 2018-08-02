@@ -250,8 +250,11 @@ export class IndexxedDBService {
   private createStoreUserInfo(): void {
     const store = this.db.createObjectStore(
       'UserInfo',
-      { keyPath: 'userId' }
+      { keyPath: 'uid' }
     );
+    store.createIndex('username', 'username', { unique: false });
+    store.createIndex('password', 'password', { unique: false });
+
   }
   // 创建浏览记录表
   private createStoreViewHistory(): void {

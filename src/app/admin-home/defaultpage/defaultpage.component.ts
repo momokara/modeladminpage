@@ -202,7 +202,7 @@ export class DefaultpageComponent implements OnInit {
     this.actrouter.params
       .pipe(map(data => data as any))
       .subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
   }
 

@@ -75,58 +75,46 @@ export class AdminHomeComponent implements OnInit {
     const uid = sessionStorage.getItem('user-id');
     // 存储访问错误记录
     if (uid) {
-      // 写入的信息
-      const timestamp = (new Date()).valueOf();
-      const data = {
-        'logID': timestamp,
-        'uid': uid,
-        'router': router.url,
-      };
-      console.log('saveddata', data);
-      // 先查看访问路径是否存在
-      const isvieweddata = {
-        isviewd: false,
-        datarow: {}
-      };
       // 查询记录
       this.IndexxedDB.open().then((res) => {
         this.IndexxedDB.selectByIndex('ViewHistory', 'router', router.url)
           .then(result => {
-            console.log('result', result);
-            // 过滤用户
-            result = result.filter((ele, index, array) => {
-              console.log(ele.uid);
-              if (ele.uid === uid) {
-                return true;
-              } else {
-                return false;
-              }
-            });
             // 删除旧记录
             if (result) {
-              result.forEach(element => {
-                this.IndexxedDB.delete('ViewHistory', element.logID)
-                  .then(() => {
-                    this.IndexxedDB.close();
-                  }).catch((e) => {
-                    console.error('删除出错', e);
-                    this.IndexxedDB.close();
-                  });
-              });
+              if (result.length > 0) {
+                // 过滤用户
+                result = result.filter((ele, index, array) => {
+                  if (ele.uid === uid) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                });
+                result.forEach(element => {
+                  this.IndexxedDB.delete('ViewHistory', element.logID)
+                    .then(() => {
+                    }).catch((e) => {
+                      console.error('删除出错', e);
+                    });
+                });
+              }
             }
+            // 写入的信息
+            const timestamp = (new Date()).valueOf();
+            const data = {
+              'logID': timestamp,
+              'uid': uid,
+              'router': router.url,
+            };
             // 写入新记录
             this.IndexxedDB.insert('ViewHistory', data)
               .then(() => {
                 this.IndexxedDB.close();
               }).catch((e) => {
                 console.error('写入错误', e);
-                this.IndexxedDB.close();
               });
-
-            this.IndexxedDB.close();
           }).catch((e) => {
             console.error('写入错误', e);
-            this.IndexxedDB.close();
           });
         // this.IndexxedDB.cleanHisDB();
       });

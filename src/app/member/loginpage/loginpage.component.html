@@ -1,18 +1,34 @@
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
   <h1>新网模特管理系统登录</h1>
   <nz-form-item>
-    <nz-form-control>
-      <nz-input-group nzPrefixIcon="anticon anticon-user">
-        <input type="text" nz-input formControlName="userName" placeholder="Username">
+    <nz-form-control class="Username_box">
+      <nz-input-group [nzSuffix]="cleanbuttonUsername" nzPrefixIcon="anticon anticon-user">
+        <input type="text" nz-input nzAllowClear formControlName="userName" placeholder="Username" (ngModelChange)="changeusername($event)">
       </nz-input-group>
+      <ng-template #cleanbuttonUsername>
+        <i class="anticon anticon-close-circle" (click)="clean('userName')" *ngIf="validateForm.get('userName').value"></i>
+      </ng-template>
+      <nz-list class="list_tag_box" [nzDataSource]="userList.data?userList.data:userList.socure" nzBordered nzSize="small" [nzRenderItem]="item"
+        *ngIf="isShowUserList">
+        <ng-template #item let-item>
+          <!-- 设置用户名 -->
+          <nz-list-item class="row" [nzContent]="item.username" (click)="setUserName(item.username,item.password)">
+            <!-- 删除按钮 -->
+            <i class="delete_icon anticon anticon-close-circle" (click)="deleteUserHis(item.uid)"></i>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
       <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入用户名!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control>
-      <nz-input-group nzPrefixIcon="anticon anticon-lock">
+      <nz-input-group [nzSuffix]="cleanbuttonPwd" nzPrefixIcon="anticon anticon-lock">
         <input type="password" nz-input formControlName="password" placeholder="请输入密码">
       </nz-input-group>
+      <ng-template #cleanbuttonPwd>
+        <i class="anticon anticon-close-circle" (click)="clean('password')" *ngIf="validateForm.get('password').value"></i>
+      </ng-template>
       <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>

@@ -15,3 +15,28 @@
  h1 {
    text-align: center;
  }
+
+ .Username_box {
+   position: relative;
+   .list_tag_box {
+     position: absolute;
+     z-index: 3;
+     background: #FFF;
+     width: 100%;
+     .row {
+       cursor: pointer;
+       position: relative;
+       .delete_icon {
+         position: absolute;
+         right: 11px;
+         display: none;
+       }
+     }
+     .row:hover {
+       background-color: #DDD;
+       .delete_icon {
+         display: inline-block;
+       }
+     }
+   }
+ }
