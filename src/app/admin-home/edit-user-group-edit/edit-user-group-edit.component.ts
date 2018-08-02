@@ -80,10 +80,12 @@ export class EditUserGroupEditComponent implements OnInit {
     };
     this.AjaxServer.ajax('getdPermGroup', urlParamas)
       .subscribe(res => {
-        this.validateForm.setControl('pid', this.fb.control(res.data.pid));
-        this.validateForm.setControl('group_name', this.fb.control(res.data.group_name));
-        this.validateForm.setControl('group_perm', this.fb.control(res.data.group_perm));
-        this.selectchecked(res.data.group_perm);
+        if (res.code === 200) {
+          this.validateForm.setControl('pid', this.fb.control(res.data.pid));
+          this.validateForm.setControl('group_name', this.fb.control(res.data.group_name));
+          this.validateForm.setControl('group_perm', this.fb.control(res.data.group_perm));
+          this.selectchecked(res.data.group_perm);
+        }
       });
   }
   /**

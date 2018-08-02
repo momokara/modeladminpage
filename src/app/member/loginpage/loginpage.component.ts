@@ -68,13 +68,13 @@ export class LoginpageComponent implements OnInit {
       .subscribe((res, error) => {
         console.log(res, error);
         if (res && res.code === 200) {
-          if (res.uid) {
+          if (res.data.uid) {
             this.router.navigate(['/home']);
-            sessionStorage.setItem('user-id', res.uid);
-            sessionStorage.setItem('user-token', res.token);
+            sessionStorage.setItem('user-id', res.data.uid);
+            sessionStorage.setItem('user-token', res.data.token);
             if (this.validateForm.value.remember) {
               this.saveUserInfoinlcdb({
-                uid: res.uid,
+                uid: res.data.uid,
                 username: this.validateForm.value.userName,
                 password: this.validateForm.value.password
               });
