@@ -74,14 +74,16 @@ export class AdminHomeComponent implements OnInit {
   // 记录访问记录
   saveViewHis(router: any) {
     const uid = sessionStorage.getItem('user-id');
-    // 写入记录
+    // 存储访问错误记录
     if (uid) {
+      // 写入的信息
       const timestamp = (new Date()).valueOf();
       const data = {
         logID: timestamp,
         roter: router,
         uid: uid
       };
+      // 写入记录
       this.IndexxedDB.open().then((res) => {
         this.IndexxedDB.insert('ViewHistory', data)
           .then(() => {
