@@ -6,7 +6,7 @@
         <input type="text" nz-input nzAllowClear formControlName="userName" placeholder="Username" (ngModelChange)="changeusername($event)">
       </nz-input-group>
       <ng-template #cleanbuttonUsername>
-        <i class="anticon anticon-close-circle" (click)="clean('userName')" *ngIf="validateForm.get('userName').value"></i>
+        <i class="anticon anticon-close-circle" (click)="clean(['userName','password'])" *ngIf="validateForm.get('userName').value"></i>
       </ng-template>
       <nz-list class="list_tag_box" [nzDataSource]="userList.data?userList.data:userList.socure" nzBordered nzSize="small" [nzRenderItem]="item"
         *ngIf="isShowUserList">
@@ -27,7 +27,7 @@
         <input type="password" nz-input formControlName="password" placeholder="请输入密码">
       </nz-input-group>
       <ng-template #cleanbuttonPwd>
-        <i class="anticon anticon-close-circle" (click)="clean('password')" *ngIf="validateForm.get('password').value"></i>
+        <i class="anticon anticon-close-circle" (click)="clean(['password'])" *ngIf="validateForm.get('password').value"></i>
       </ng-template>
       <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码!</nz-form-explain>
     </nz-form-control>

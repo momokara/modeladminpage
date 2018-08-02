@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { ListData } from './../../admin-home/common/data/pagedata.class';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Md5 } from 'ts-md5/dist/md5';
@@ -67,15 +68,17 @@ export class LoginpageComponent implements OnInit {
       .subscribe((res, error) => {
         console.log(res, error);
         if (res && res.code === 200) {
-          this.router.navigate(['/home']);
-          sessionStorage.setItem('user-id', res.data.uid);
-          sessionStorage.setItem('user-token', res.data.token);
-          if (this.validateForm.value.remember) {
-            this.saveUserInfoinlcdb({
-              uid: res.data.uid,
-              username: this.validateForm.value.userName,
-              password: this.validateForm.value.password
-            });
+          if (res.uid) {
+            this.router.navigate(['/home']);
+            sessionStorage.setItem('user-id', res.uid);
+            sessionStorage.setItem('user-token', res.token);
+            if (this.validateForm.value.remember) {
+              this.saveUserInfoinlcdb({
+                uid: res.uid,
+                username: this.validateForm.value.userName,
+                password: this.validateForm.value.password
+              });
+            }
           }
         }
       });
@@ -136,11 +139,17 @@ export class LoginpageComponent implements OnInit {
     });
   }
   /**
-   * 清除对于字段内容
+   * 清除表单对应字段内容
    * @param inputname 需要清空的 表单字段
    */
-  clean(inputname: string): void {
-    this.validateForm.setControl(inputname, this.fb.control(null));
+  clean(inputname: string[]): void {
+    const cleanNames: string[] = [];
+    if (inputname.length > 0) {
+      // tslint:disable-next-line:no-shadowed-variable
+      inputname.forEach(element => {
+        this.validateForm.setControl(element, this.fb.control(null));
+      });
+    }
   }
   /**
    * 响应输入事件
@@ -155,7 +164,6 @@ export class LoginpageComponent implements OnInit {
     } else {
       this.isShowUserList = false;
     }
-
   }
   /**
    * 根据选中写入用户名
