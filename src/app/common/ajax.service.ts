@@ -114,12 +114,13 @@ export class AjaxService {
   // @param *message:string 错误信息
   private log(message: string): void {
     const date = new Date();
+
     // 写入错误记录
     const timestamp = (new Date()).valueOf();
     const data = {
-      errID: timestamp,
-      roter: window.location.href,
-      message: message
+      'errID': timestamp,
+      'msg': message,
+      'router': window.location.href
     };
     this.IndexxedDB.open().then((res) => {
       this.IndexxedDB.insert('ErrorLog', data)
@@ -131,6 +132,8 @@ export class AjaxService {
         });
     });
     console.error('error:', date, message);
+    // ng-zorro 抛出错误通知
+    this.message.error(`${message}`);
   }
   // 处理错误
   private handleError<T>(operation = 'operation', result?: T): any {

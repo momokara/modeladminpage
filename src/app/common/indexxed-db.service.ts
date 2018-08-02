@@ -216,8 +216,6 @@ export class IndexxedDBService {
       const store = transaction.objectStore(storeName);
       const index = store.index(indexName);
       const req = index.openCursor(indexValue);
-      console.log(req);
-
       const result: any[] = new Array<any>();
       req.onsuccess = function (event) {
         const cursor = event.target.result;
@@ -261,8 +259,8 @@ export class IndexxedDBService {
       'ViewHistory',
       { keyPath: 'logID' }
     );
-    store.createIndex('roter', 'roter', { unique: false });
     store.createIndex('uid', 'uid', { unique: false });
+    store.createIndex('router', 'router', { unique: false });
   }
   // 创建错误记录表
   private createErrorLog(): void {
@@ -271,11 +269,11 @@ export class IndexxedDBService {
       { keyPath: 'errID', autoIncrement: true }
     );
     store.createIndex('msg', 'msg', { unique: false });
-    store.createIndex('roter', 'roter', { unique: false });
+    store.createIndex('router', 'router', { unique: false });
   }
 
   // 清除30天前的数据
-  cleanViewDB() {
+  cleanHisDB() {
     this.open().then(() => {
       // 通过IDBDatabase得到IDBTransaction
       const transaction = this.db.transaction('ViewHistory', 'readonly');
@@ -287,6 +285,7 @@ export class IndexxedDBService {
         if (cursor) {
           const key = cursor.key;
           const rowData = cursor.value;
+          console.log(key);
           const time1 = new Date(rowData.lastViewTime);
           const time2 = new Date();
           // 清除三十天前的数据

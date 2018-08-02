@@ -37,7 +37,8 @@ export class LoginpageComponent implements OnInit {
       localStorage.setItem('userinfo', JSON.stringify(this.logininfo));
     }
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
-      .subscribe(res => {
+      .subscribe((res, error) => {
+        console.log(res, error);
         if (res && res.code === 200) {
           this.router.navigate(['/home']);
           sessionStorage.setItem('user-id', res.data.uid);

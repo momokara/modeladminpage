@@ -34,7 +34,6 @@ export class AdminHomeComponent implements OnInit {
   ) {
     // 初始化的时候加载面包屑导航数据
     this.actBcNav = this.getBcNav(location.pathname.length > 2 ? location.pathname : location.hash);
-
   }
 
   ngOnInit() {
@@ -79,21 +78,59 @@ export class AdminHomeComponent implements OnInit {
       // 写入的信息
       const timestamp = (new Date()).valueOf();
       const data = {
-        logID: timestamp,
-        roter: router,
-        uid: uid
+        'logID': timestamp,
+        'uid': uid,
+        'router': router.url,
       };
-      // 写入记录
+      console.log('saveddata', data);
+      // 先查看访问路径是否存在
+      const isvieweddata = {
+        isviewd: false,
+        datarow: {}
+      };
+      // 查询记录
       this.IndexxedDB.open().then((res) => {
-        this.IndexxedDB.insert('ViewHistory', data)
-          .then(() => {
+        this.IndexxedDB.selectByIndex('ViewHistory', 'router', router.url)
+          .then(result => {
+            console.log('result', result);
+            // 过滤用户
+            result = result.filter((ele, index, array) => {
+              console.log(ele.uid);
+              if (ele.uid === uid) {
+                return true;
+              } else {
+                return false;
+              }
+            });
+            // 删除旧记录
+            if (result) {
+              result.forEach(element => {
+                this.IndexxedDB.delete('ViewHistory', element.logID)
+                  .then(() => {
+                    this.IndexxedDB.close();
+                  }).catch((e) => {
+                    console.error('删除出错', e);
+                    this.IndexxedDB.close();
+                  });
+              });
+            }
+            // 写入新记录
+            this.IndexxedDB.insert('ViewHistory', data)
+              .then(() => {
+                this.IndexxedDB.close();
+              }).catch((e) => {
+                console.error('写入错误', e);
+                this.IndexxedDB.close();
+              });
+
             this.IndexxedDB.close();
           }).catch((e) => {
             console.error('写入错误', e);
             this.IndexxedDB.close();
           });
-        this.IndexxedDB.cleanViewDB();
+        // this.IndexxedDB.cleanHisDB();
       });
+
     }
   }
 
