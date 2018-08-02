@@ -22,7 +22,7 @@
     <nz-card *ngFor="let item of pagedata.imggroup " class="cellbox ">
       <img class="coverimg " alt="example " [src]="item.cover " />
       <nz-card-meta class="infobox " [nzTitle]="item.title " [nzDescription]="item.desc "></nz-card-meta>
-      <a routerLink="../../modelimggroup/{{uid}}/{{item.cid}}" class="control-box ">
+      <a routerLink="../../modelvideo/{{uid}}/{{item.cid}}" class="control-box ">
         <i class="anticon anticon-edit "></i>
       </a>
     </nz-card>

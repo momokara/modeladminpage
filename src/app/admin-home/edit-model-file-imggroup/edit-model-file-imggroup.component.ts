@@ -43,8 +43,6 @@ export class EditModelFileImggroupComponent implements OnInit {
     @Inject('MsgSer') private MsgSer,
     private msg: NzMessageService
   ) {
-
-
     // 创建表单
     this.validateForm = this.fb.group({
       c_name: [null, [Validators.required]],
@@ -64,6 +62,9 @@ export class EditModelFileImggroupComponent implements OnInit {
   ngOnInit() {
     this.imgUploadUrl = this.AjaxServer.getapirul('upLoadImg', 2);
     this.getModelGroup();
+    if (this.cid) {
+      this.getimggroupinfo(this.cid);
+    }
   }
   // 获取分组
   getModelGroup() {
@@ -86,13 +87,20 @@ export class EditModelFileImggroupComponent implements OnInit {
       usertype: '2',
       usertypename: 'model',
       isedit: true,
-      cid: this.cid
+      cid: this.cid,
+      workstyle: 'images'
     };
-    this.AjaxServer.ajax('getModelGroup', urlParmas)
+    this.AjaxServer.ajax('getImgGroup', urlParmas)
       .subscribe(res => {
-        if (res.code === 200) {
-          this.userStyle = res.data.userStyle;
-          this.userTag = res.data.userTag;
+        if (res.code === 200 && res.data) {
+          console.log(res.data);
+          this.fileList = res.data.imglist;
+          this.validateForm.setControl('cid', this.fb.control(res.data.cid));
+          this.validateForm.setControl('c_name', this.fb.control(res.data.c_name));
+          this.validateForm.setControl('desc', this.fb.control(res.data.desc));
+          this.validateForm.setControl('imglist', this.fb.control(res.data.imglist));
+          this.validateForm.setControl('style', this.fb.control(res.data.style));
+          this.validateForm.setControl('tags', this.fb.control(res.data.tags));
         }
       });
   }
@@ -108,7 +116,8 @@ export class EditModelFileImggroupComponent implements OnInit {
     const urlparmas = {
       usertype: '2',
       usertypename: 'model',
-      isedit: this.cid ? true : false
+      isedit: this.cid ? true : false,
+      workstyle: 'images'
     };
     this.validateForm.setControl('imglist', this.fb.control(this.fileList));
     console.log(this.validateForm.value, this.validateForm.valid);

@@ -40,15 +40,8 @@
       <input nz-input id="imglist" type="hidden" formControlName="imglist">
       <div class="uploadbox">
         <div class="clearfix">
-          <nz-upload 
-          nzAction="{{imgUploadUrl}}" 
-          nzName="avatar" 
-          nzListType="picture-card" 
-          [(nzFileList)]="fileList"
-          [nzShowButton]="fileList.length < 999"
-          [nzBeforeUpload]="beforeUpload" 
-          (nzChange)="handleChange($event)"
-          [nzPreview]="handlePreview">
+          <nz-upload nzAction="{{imgUploadUrl}}" nzName="avatar" nzListType="picture-card" [(nzFileList)]="fileList" [nzShowButton]="fileList.length < 999"
+            [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)" [nzPreview]="handlePreview">
             <i class="anticon anticon-plus"></i>
             <div class="ant-upload-text">Upload</div>
           </nz-upload>
@@ -97,7 +90,7 @@
       <button nz-button nzType="primary" class="btn-sub">确定保存</button>
     </nz-form-control>
     <nz-form-control [nzSpan]="5">
-      <a nz-button nzType="default" class="btn-sub fr" routerLink="../modelfile/{{uid}}">取消</a>
+      <a nz-button nzType="default" class="btn-sub fr" routerLink="/home/modelfile/{{uid}}">取消</a>
     </nz-form-control>
 
   </nz-form-item>

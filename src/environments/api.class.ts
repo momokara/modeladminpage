@@ -45,12 +45,14 @@ export class Api {
   private readonly getUserGroup: string = 'getusergroup';
   // 上传图片
   private readonly upLoadImg: string = 'uploadimg';
-  // 添加照片集/编辑
+  // 添加/编辑 照片集
   private readonly editImgGroup: string = 'editimggroup';
-  // 获取模特作品信息
-  private readonly getImgGroup: string = 'getimggroup';
-  // 获取模特作品信息
-  private readonly getVideoGroup: string = 'getvideogroup';
+  // 获取 模特照片集信息
+  private readonly getImgGroup: string = 'getworkgroupinfo';
+  // 获取 模特视频信息
+  private readonly getVideoInfo: string = 'getworkgroupinfo';
+  // 添加/编辑 模特视频信息
+  private readonly edigVideoInfo: string = 'editimggroup';
 
   // 添加分类/分组
   private readonly addGroup: string = 'addgroup';
@@ -58,7 +60,7 @@ export class Api {
   private readonly editGroup: string = 'addgroup';
   // 获取模特分组
   private readonly getModelGroup: string = 'getmodelgroup';
-  // 获取模特分组
+  // 获取模特分组详情
   private readonly getModelGroupInfo: string = 'getmodelgroupinfo';
   // 停用模特分组
   private readonly forbiddenGroup: string = 'forbiddengroup';

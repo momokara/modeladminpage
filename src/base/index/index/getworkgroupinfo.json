@@ -1,0 +1,30 @@
+{
+  "code": 200,
+  "msg": "OK!",
+  "data": {
+    "c_name": "测试作品",
+    "cid": 1,
+    "desc": "这里是介绍",
+    "imglist": [{
+        "uid": 1,
+        "name": "uploads/20180802/201808021620505253.jpg_240x240",
+        "status": "done",
+        "url": "https://xwmodel.oss-cn-shenzhen.aliyuncs.com/uploads/20180802/201808021620505253.jpg_240x240"
+      },
+      {
+        "uid": 2,
+        "name": "uploads/20180802/201808021620522302.jpg_240x240",
+        "status": "done",
+        "url": "https://xwmodel.oss-cn-shenzhen.aliyuncs.com/uploads/20180802/201808021620522302.jpg_240x240"
+      }
+    ],
+    "video": [{
+      "uid": 1,
+      "name": "uploads/20180802/201808021620505253.jpg_240x240",
+      "status": "done",
+      "url": "https://xwmodel.oss-cn-shenzhen.aliyuncs.com/uploads/20180802/201808021620505253.jpg_240x240"
+    }],
+    "style": [2, 4],
+    "tags": [3, 5]
+  }
+}
