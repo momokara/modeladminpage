@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { RegpageComponent } from './regpage/regpage.component';
 import { FindpswComponent } from './findpsw/findpsw.component';
+import { DefalutpageComponent } from './defalutpage/defalutpage.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FindpswComponent } from './findpsw/findpsw.component';
     MemberbaseComponent,
     LoginpageComponent,
     RegpageComponent,
-    FindpswComponent
+    FindpswComponent,
+    DefalutpageComponent
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }

@@ -83,9 +83,9 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">用户权限组</nz-form-label>
     <nz-form-control [nzSm]="10" [nzXs]="24">
-      <nz-select formControlName="permgroup">
+      <nz-select formControlName="permgroup" >
         <ng-container *ngFor="let item of userPermGroup">
-          <nz-option nzValue="{{item.pid}}" nzLabel="{{item.group_name}}"></nz-option>
+          <nz-option nzValue="{{item.gid}}" nzLabel="{{item.group_name}}"></nz-option>
         </ng-container>
       </nz-select>
     </nz-form-control>

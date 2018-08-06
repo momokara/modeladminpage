@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgxEchartsService } from 'ngx-echarts';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 declare const echarts: any;
+declare const AMap: any;
 @Component({
   selector: 'app-defaultpage',
   templateUrl: './defaultpage.component.html',
   styleUrls: ['./defaultpage.component.scss']
 })
-export class DefaultpageComponent implements OnInit {
+export class DefaultpageComponent implements OnInit, AfterViewInit {
 
   // show loading spinner:
   mapLoaded = false;
-
+  map: any;
   options = {};
   constructor(
     private es: NgxEchartsService,
@@ -110,7 +111,15 @@ export class DefaultpageComponent implements OnInit {
       ]
     };
   }
+  ngAfterViewInit() {
+    this.showmap();
+  }
 
+
+  showmap() {
+    this.map = new AMap.Map('container');
+    console.log(this.map);
+  }
   onChartEvent(event: any, type: string) {
     console.log('chart event:', type, event);
   }

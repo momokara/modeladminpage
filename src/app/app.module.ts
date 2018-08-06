@@ -14,6 +14,7 @@ import { IsloginService } from './common/islogin.service';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { IndexxedDBService } from './common/indexxed-db.service';
 import { SearchlistService } from './common/searchlist.service';
+import { CanLoadService } from './common/can-load.service';
 
 registerLocaleData(zh);
 
@@ -34,7 +35,8 @@ registerLocaleData(zh);
     { provide: 'MsgSer', useClass: MsgService },
     { provide: 'IndexxedDB', useClass: IndexxedDBService },
     { provide: 'filterArray', useClass: SearchlistService },
-    IsloginService
+    IsloginService,
+    CanLoadService
   ],
   bootstrap: [AppComponent]
 })
