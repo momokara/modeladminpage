@@ -1,6 +1,6 @@
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Injectable, Inject } from '@angular/core';
-import { Api } from './../../environments/api.class';
+import { Api } from '../../environments/api.class';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';

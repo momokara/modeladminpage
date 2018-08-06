@@ -1,7 +1,7 @@
 import { element } from 'protractor';
-import { ListData } from './../../admin-home/common/data/pagedata.class';
+import { ListData } from '../../admin-home/common/data/pagedata.class';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Md5 } from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
