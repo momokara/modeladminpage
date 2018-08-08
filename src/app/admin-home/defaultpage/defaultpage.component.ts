@@ -13,6 +13,7 @@ export class DefaultpageComponent implements OnInit, AfterViewInit {
 
   // show loading spinner:
   mapLoaded = false;
+  classname: string;
   map: any;
   options = {};
   constructor(
@@ -21,7 +22,6 @@ export class DefaultpageComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-
     this.geturlparams();
 
     const dataAxis = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
@@ -115,9 +115,8 @@ export class DefaultpageComponent implements OnInit, AfterViewInit {
     this.showmap();
   }
 
-
   showmap() {
-    this.map = new AMap.Map('container');
+    this.map = new AMap.Map('mapcontainer');
     console.log(this.map);
   }
   onChartEvent(event: any, type: string) {
