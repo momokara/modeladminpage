@@ -18,9 +18,9 @@ export class SearchlistService {
     const res = new ResArray();
     // 原始数组
     res.sourceArray = array;
+    // 创建正则匹配
+    const reg = value ? new RegExp(value) : '';
     const resArray = res.sourceArray.filter((element, index, self) => {
-      // 创建正则匹配
-      const reg = value ? new RegExp(value) : '';
       const e = element;
       // 数组中需要对比的内容
       let filterbase;
@@ -37,21 +37,23 @@ export class SearchlistService {
         default:
           break;
       }
-
-      //  处理数字的对比 和 string 的比对
-      if (typeof (filterbase) === 'number') {
-        if (filterbase.toString() === value.toString()) {
-          return true;
+      if (filterbase) {
+        //  处理数字的对比 和 string 的比对
+        if (typeof (filterbase) === 'number') {
+          if (filterbase.toString() === value.toString()) {
+            return true;
+          } else {
+            return false;
+          }
         } else {
-          return false;
-        }
-      } else {
-        if (filterbase.match(reg)) {
-          return true;
-        } else {
-          return false;
+          if (filterbase.match(reg)) {
+            return true;
+          } else {
+            return false;
+          }
         }
       }
+
 
     });
     // 结果写入result

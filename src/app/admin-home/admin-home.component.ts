@@ -40,19 +40,23 @@ export class AdminHomeComponent implements OnInit {
     this.uid = this.MsgSer.getMessage('uid');
     // tslint:disable-next-line:max-line-length
     console.log('%c\n', 'padding:50px 300px;line-height:120px;background:url(\'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/timg.gif\') no-repeat;');
-      // 路由切换事件
-      this.router.events
-        .pipe(
-          filter(event => event instanceof NavigationEnd),
-      ).subscribe((event) => {
-        const urlinfo = location.pathname.length > 2 ? location.pathname : location.hash;
-        if (urlinfo) {
-          this.actBcNav = this.getBcNav(urlinfo) ? this.getBcNav(urlinfo) : [];
-        }
-        // 写入访问记录
-        this.saveViewHis(event);
-        this.uid = this.MsgSer.getMessage('uid');
-      });
+
+    // 路由切换事件
+    this.router.events
+      .pipe(
+        filter(event => {
+          return event instanceof NavigationEnd;
+        }),
+    ).subscribe((event) => {
+      console.log(window.history);
+      const urlinfo = location.pathname.length > 2 ? location.pathname : location.hash;
+      if (urlinfo) {
+        this.actBcNav = this.getBcNav(urlinfo) ? this.getBcNav(urlinfo) : [];
+      }
+      // 写入访问记录
+      this.saveViewHis(event);
+      this.uid = this.MsgSer.getMessage('uid');
+    });
   }
   /**
   * 获取面包屑导航
