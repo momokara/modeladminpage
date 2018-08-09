@@ -117,7 +117,7 @@ export class DefaultpageComponent implements OnInit, AfterViewInit {
 
   showmap() {
     this.map = new AMap.Map('mapcontainer');
-    console.log(this.map);
+    // console.log(this.map);
   }
   onChartEvent(event: any, type: string) {
     console.log('chart event:', type, event);

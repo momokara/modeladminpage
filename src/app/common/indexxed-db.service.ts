@@ -151,7 +151,7 @@ export class IndexxedDBService {
       const store = transaction.objectStore(storeName);
       const req = store.delete(keyValue);
       req.onsuccess = (event) => {
-        console.log(`delete ${storeName}-${keyValue} Ok!`);
+        // console.log(`delete ${storeName}-${keyValue} Ok!`);
         resolve(req.result);
       };
       req.onerror = reject;

@@ -6,7 +6,7 @@
       </div>
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item routerLink="./default">
+      <li nz-menu-item routerLink="./default" appHasPower>
         <span>
           <i class="anticon anticon-home"></i>
           <span class="nav-text">概览</span>
@@ -18,11 +18,11 @@
           <span class="nav-text">管理员管理</span>
         </span>
         <ul>
-          <li nz-menu-item routerLink="./userlist">
+          <li nz-menu-item routerLink="./userlist" appHasPower>
             <i class="anticon anticon-user"></i>
             <span class="nav-text">所有管理员</span>
           </li>
-          <li nz-menu-item routerLink="./userpermgroup">
+          <li nz-menu-item routerLink="./userpermgroup" appHasPower>
             <i class="anticon anticon-team"></i>
             <span class="nav-text">权限组管理</span>
           </li>
@@ -34,11 +34,11 @@
           <span class="nav-text">模特管理</span>
         </span>
         <ul>
-          <li nz-menu-item routerLink="./modellist">
+          <li nz-menu-item routerLink="./modellist" appHasPower>
             <i class="anticon anticon-solution"></i>
             <span class="nav-text">模特列表</span>
           </li>
-          <li nz-menu-item routerLink="./modelgroup">
+          <li nz-menu-item routerLink="./modelgroup" appHasPower>
             <i class="anticon anticon-team"></i>
             <span class="nav-text">模特分类管理</span>
           </li>

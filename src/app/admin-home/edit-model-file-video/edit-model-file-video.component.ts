@@ -114,7 +114,9 @@ export class EditModelFileVideoComponent implements OnInit {
       usertype: '2',
       usertypename: 'model',
       isedit: this.cid ? true : false,
-      workstyle: 'video'
+      workstyle: 'video',
+      uid: this.uid,
+      cid: this.cid ? this.cid : null,
     };
     this.validateForm.setControl('videodata', this.fb.control(this.fileList));
     console.log(this.validateForm.value, this.validateForm.valid);

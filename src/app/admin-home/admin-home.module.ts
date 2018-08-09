@@ -29,6 +29,7 @@ import { GetpermnamePipe } from './common/getpermname.pipe';
 import { EditModelFilehomeComponent } from './edit-model-filehome/edit-model-filehome.component';
 import { EditModelFileImggroupComponent } from './edit-model-file-imggroup/edit-model-file-imggroup.component';
 import { EditModelFileVideoComponent } from './edit-model-file-video/edit-model-file-video.component';
+import { HasPowerDirective } from './common/directive/has-power.directive';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { EditModelFileVideoComponent } from './edit-model-file-video/edit-model-
     GetpermnamePipe,
     EditModelFilehomeComponent,
     EditModelFileImggroupComponent,
-    EditModelFileVideoComponent
+    EditModelFileVideoComponent,
+    HasPowerDirective
   ],
   providers: [
   ]

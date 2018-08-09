@@ -102,7 +102,7 @@ export class Navigate {
   };
   // 模特管理-模特列表-模特作品-视频
   public readonly modelvideo: BcNav = {
-    'name': '视频',
+    'name': '编辑视频',
     'url': '/home/modelvideo',
     'parent': 'modelfile',
     'children': []
@@ -116,14 +116,14 @@ export class Navigate {
   };
   // 模特管理-模特列表-模特作品-作品集
   public readonly modelimggroup: BcNav = {
-    'name': '作品集',
+    'name': '编辑作品集',
     'url': '/home/modelimggroup',
     'parent': 'modelfile',
     'children': []
   };
   // 模特管理-模特列表-模特作品-添加作品集
   public readonly modelimggroupadd: BcNav = {
-    'name': '作品集',
+    'name': '添加作品集',
     'url': '/home/modelimggroupadd',
     'parent': 'modelfile',
     'children': []

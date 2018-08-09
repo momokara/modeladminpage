@@ -17,12 +17,12 @@ export class EditModelFileImggroupComponent implements OnInit {
   imgUploadUrl = 'https://jsonplaceholder.typicode.com/posts/';
 
   fileList = [
-    {
-      uid: 0,
-      name: '',
-      status: '',
-      url: ''
-    }
+    // {
+    //   uid: 0,
+    //   name: '',
+    //   status: '',
+    //   url: ''
+    // }
   ];
   imglist = [
   ];
@@ -51,6 +51,7 @@ export class EditModelFileImggroupComponent implements OnInit {
       style: [null],
       tags: [null]
     });
+    // 作品集的ID
     if (this.actrouter.snapshot.paramMap.get('cid')) {
       this.cid = this.actrouter.snapshot.paramMap.get('cid');
       this.validateForm.addControl('cid', new FormControl(this.cid, Validators.required));
@@ -117,12 +118,16 @@ export class EditModelFileImggroupComponent implements OnInit {
       usertype: '2',
       usertypename: 'model',
       isedit: this.cid ? true : false,
-      workstyle: 'images'
+      workstyle: 'images',
+      uid: this.uid,
+      cid: this.cid ? this.cid : null,
     };
     this.validateForm.setControl('imglist', this.fb.control(this.fileList));
     console.log(this.validateForm.value, this.validateForm.valid);
+    const postdata = this.validateForm.value;
+    postdata.imglist = JSON.stringify(postdata.imglist);
     if (this.validateForm.valid) {
-      this.AjaxServer.ajax('editImgGroup', urlparmas, this.validateForm.value)
+      this.AjaxServer.ajax('editImgGroup', urlparmas, postdata)
         .subscribe(res => {
           if (res.code === 200) {
             this.msg.info('用户创建成功');

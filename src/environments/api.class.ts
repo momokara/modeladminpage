@@ -11,7 +11,7 @@ export class Api {
   private readonly sendCode: string = 'send_sms';
 
   // 获取权限组列表 isgetact=true 时反回当前激活的权限组
-  private readonly getPermGroup: string = 'userpermlist';
+  private readonly getPermGroup: string = 'hasPr';
   // 添加权限组
   private readonly addPermGroup: string = 'editpermlist';
   // 编辑权限组
