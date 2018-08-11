@@ -1,4 +1,4 @@
-import { Navigate, BcNav } from './common/data/navigate.class';
+import { Navigate, BcNav } from '../common/data/navigate.class';
 import { Component, OnInit, ViewChild, TemplateRef, Inject } from '@angular/core';
 import { ActivatedRoute, Params, UrlSegment, Router, NavigationEnd } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';

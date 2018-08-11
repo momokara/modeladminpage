@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHomeRoutingModule } from './admin-home-routing.module';
-import { AdminHomeComponent } from './admin-home.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DefaultpageComponent } from './defaultpage/defaultpage.component';
 import { EditPhotographerComponent } from './edit-photographer/edit-photographer.component';
 import { EditfieldComponent } from './editfield/editfield.component';

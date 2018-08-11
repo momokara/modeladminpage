@@ -1,4 +1,3 @@
-import { DefaultpageComponent } from './../admin-home/defaultpage/defaultpage.component';
 import { FindpswComponent } from './findpsw/findpsw.component';
 import { RegpageComponent } from './regpage/regpage.component';
 import { MemberbaseComponent } from './memberbase/memberbase.component';

@@ -17,7 +17,7 @@ import { EditImgListComponent } from './edit-img-list/edit-img-list.component';
 import { EditModelGroupComponent } from './edit-model-group/edit-model-group.component';
 import { EditPhotographerComponent } from './edit-photographer/edit-photographer.component';
 import { DefaultpageComponent } from './defaultpage/defaultpage.component';
-import { AdminHomeComponent } from './admin-home.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
@@ -73,7 +73,7 @@ const routes: Routes = [
       // 编辑模特分组
       { path: 'editmodelgroup/:id', component: EditModelGroupEditComponent },
 
-      // ====摄影师====
+      // ====摄影师 一期需求没有 暂时不做====
       // 摄影师
       { path: 'photographer', component: EditPhotographerComponent },
       { path: 'uploaddefault', component: EditfieldComponent },
