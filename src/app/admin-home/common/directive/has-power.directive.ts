@@ -24,7 +24,7 @@ export class HasPowerDirective implements OnInit {
     if (sessionStorage.getItem('prlist')) {
       this.haspr(prid);
     } else {
-      this.AjaxServer.ajax('getPermGroup')
+      this.AjaxServer.ajax('hasPerm')
         .subscribe(res => {
           if (res.code === 200) {
             sessionStorage.setItem('prlist', res.data.prList);

@@ -1,28 +1,28 @@
-import { EditModelFileImggroupComponent } from './edit-model-file-imggroup/edit-model-file-imggroup.component';
-import { EditModelFilehomeComponent } from './edit-model-filehome/edit-model-filehome.component';
-import { EditModelGroupEditComponent } from './edit-model-group-edit/edit-model-group-edit.component';
-import { EditModelGroupAddComponent } from './edit-model-group-add/edit-model-group-add.component';
-import { EditModelEditsinglemodelComponent } from './edit-model-editsinglemodel/edit-model-editsinglemodel.component';
-import { EditModelAddmodelComponent } from './edit-model-addmodel/edit-model-addmodel.component';
-import { EditUserGroupAddComponent } from './edit-user-group-add/edit-user-group-add.component';
-import { EditUserGroupEditComponent } from './edit-user-group-edit/edit-user-group-edit.component';
-import { EditUserAdduserComponent } from './edit-user-adduser/edit-user-adduser.component';
-import { EditUserSingleInfoComponent } from './edit-user-single-info/edit-user-single-info.component';
-import { EditModelDefaultComponent } from './edit-model-default/edit-model-default.component';
-import { EditUserDefaultComponent } from './edit-user-default/edit-user-default.component';
+import { EditModelFileImggroupComponent } from './model/edit-model-file-imggroup/edit-model-file-imggroup.component';
+import { EditModelFilehomeComponent } from './model/edit-model-filehome/edit-model-filehome.component';
+import { EditModelGroupEditComponent } from './model/edit-model-group-edit/edit-model-group-edit.component';
+import { EditModelGroupAddComponent } from './model/edit-model-group-add/edit-model-group-add.component';
+import { EditModelEditsinglemodelComponent } from './model/edit-model-editsinglemodel/edit-model-editsinglemodel.component';
+import { EditModelAddmodelComponent } from './model/edit-model-addmodel/edit-model-addmodel.component';
+import { EditUserGroupAddComponent } from './user/edit-user-group-add/edit-user-group-add.component';
+import { EditUserGroupEditComponent } from './user/edit-user-group-edit/edit-user-group-edit.component';
+import { EditUserAdduserComponent } from './user/edit-user-adduser/edit-user-adduser.component';
+import { EditUserSingleInfoComponent } from './user/edit-user-single-info/edit-user-single-info.component';
+import { EditModelDefaultComponent } from './model/edit-model-default/edit-model-default.component';
+import { EditUserDefaultComponent } from './user/edit-user-default/edit-user-default.component';
 import { EditfieldComponent } from './editfield/editfield.component';
-import { EditUserGroupComponent } from './edit-user-group/edit-user-group.component';
+import { EditUserGroupComponent } from './user/edit-user-group/edit-user-group.component';
 import { EditVideoListComponent } from './edit-video-list/edit-video-list.component';
 import { EditImgListComponent } from './edit-img-list/edit-img-list.component';
-import { EditModelGroupComponent } from './edit-model-group/edit-model-group.component';
+import { EditModelGroupComponent } from './model/edit-model-group/edit-model-group.component';
 import { EditPhotographerComponent } from './edit-photographer/edit-photographer.component';
 import { DefaultpageComponent } from './defaultpage/defaultpage.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditUserListComponent } from './edit-user-list/edit-user-list.component';
-import { EditModelListComponent } from './edit-model-list/edit-model-list.component';
-import { EditModelFileVideoComponent } from './edit-model-file-video/edit-model-file-video.component';
+import { EditUserListComponent } from './user/edit-user-list/edit-user-list.component';
+import { EditModelListComponent } from './model/edit-model-list/edit-model-list.component';
+import { EditModelFileVideoComponent } from './model/edit-model-file-video/edit-model-file-video.component';
 
 const routes: Routes = [
   {
@@ -72,6 +72,8 @@ const routes: Routes = [
       { path: 'addmodelgroup', component: EditModelGroupAddComponent },
       // 编辑模特分组
       { path: 'editmodelgroup/:id', component: EditModelGroupEditComponent },
+      // 帮助中心
+      { path: 'help', loadChildren: '../help/help.module#HelpModule' },
 
       // ====摄影师 一期需求没有 暂时不做====
       // 摄影师

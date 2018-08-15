@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CookieService {
-
   constructor() { }
-
   /**
    * 写入cookie
    * @param cname 字段名

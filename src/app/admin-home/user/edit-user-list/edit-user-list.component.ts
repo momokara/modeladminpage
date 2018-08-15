@@ -1,19 +1,20 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
+import { SearchInfo, ListData, SortInfo } from '../../common/data/pagedata.class';
+
 @Component({
-  selector: 'app-edit-user-group',
-  templateUrl: './edit-user-group.component.html',
-  styleUrls: ['./edit-user-group.component.scss']
+  selector: 'app-edit-user-list',
+  templateUrl: './edit-user-list.component.html',
+  styleUrls: ['./edit-user-list.component.scss']
 })
-export class EditUserGroupComponent implements OnInit {
+export class EditUserListComponent implements OnInit {
   // 页面信息
   pagedata = new ListData(false, 1, 10);
   // 排序信息
   SortInfo = new SortInfo();
-  // 搜索
+  // 搜索 nickname/phone/email
   searchinfo: SearchInfo = {
-    key: 'group_name',
+    key: 'nickname',
     value: ''
   };
   // 页码
@@ -22,14 +23,8 @@ export class EditUserGroupComponent implements OnInit {
   pageSize = 10;
   // 总数
   total = 1;
-  // 显示的列表数据
-  dataSet = [];
   // 加载过度
   loading = true;
-  // 排序值
-  sortValue = null;
-  // 排序key
-  sortKey = null;
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
@@ -40,14 +35,16 @@ export class EditUserGroupComponent implements OnInit {
   constructor(
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer,
-    @Inject('filterArray') private filterArray) {
+    @Inject('filterArray') private filterArray, ) {
+
   }
+
   ngOnInit(): void {
     this.getListData();
   }
 
   /**
-   * 搜索信息
+   * 获取列表信息
    * @param reset 是否重置
    */
   getListData(reset: boolean = false): void {
@@ -62,9 +59,9 @@ export class EditUserGroupComponent implements OnInit {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
       'sortKey': this.SortInfo.key,
-      'sortValue': this.SortInfo.value
+      'sortValue': this.SortInfo.value,
     };
-    this.AjaxServer.ajax('getPermGroup', urlParmas, postdata)
+    this.AjaxServer.ajax('userList', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
@@ -94,17 +91,20 @@ export class EditUserGroupComponent implements OnInit {
   }
 
   /**
-   * 停用用户分组
-   * @param id 分组id
+   * 停用用户
+   * @param id 用户id
    * @param i  在数组中的序号
    * @param isforbid 是否停用
    */
-  forbiddengroup(id: string, i, isforbid: boolean) {
+  forbiddenuser(id: string, i, isforbid: boolean): void {
     const postdata = {
-      pid: id
+      uid: id
     };
-    const APIurl = isforbid ? 'forbiddenPermG' : 'openPermG';
-    this.AjaxServer.ajax(APIurl, null, postdata)
+    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
+    const urlparmas = {
+      usertype: '1'
+    };
+    this.AjaxServer.ajax(APIurl, urlparmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;
@@ -123,6 +123,5 @@ export class EditUserGroupComponent implements OnInit {
   PageSizeChange(isreset: boolean) {
     // console.log('PageSizeChange-isreset:', isreset);
   }
-
 
 }

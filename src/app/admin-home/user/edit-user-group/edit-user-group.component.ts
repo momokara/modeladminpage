@@ -1,21 +1,19 @@
-
 import { Component, OnInit, Inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
-
+import { SearchInfo, ListData, SortInfo } from '../../common/data/pagedata.class';
 @Component({
-  selector: 'app-edit-model-list',
-  templateUrl: './edit-model-list.component.html',
-  styleUrls: ['./edit-model-list.component.scss']
+  selector: 'app-edit-user-group',
+  templateUrl: './edit-user-group.component.html',
+  styleUrls: ['./edit-user-group.component.scss']
 })
-export class EditModelListComponent implements OnInit {
+export class EditUserGroupComponent implements OnInit {
   // 页面信息
   pagedata = new ListData(false, 1, 10);
   // 排序信息
   SortInfo = new SortInfo();
-  // 搜索 nickname/phone/email
+  // 搜索
   searchinfo: SearchInfo = {
-    key: 'nickname',
+    key: 'group_name',
     value: ''
   };
   // 页码
@@ -24,8 +22,14 @@ export class EditModelListComponent implements OnInit {
   pageSize = 10;
   // 总数
   total = 1;
+  // 显示的列表数据
+  dataSet = [];
   // 加载过度
   loading = true;
+  // 排序值
+  sortValue = null;
+  // 排序key
+  sortKey = null;
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
@@ -36,16 +40,14 @@ export class EditModelListComponent implements OnInit {
   constructor(
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer,
-    @Inject('filterArray') private filterArray, ) {
+    @Inject('filterArray') private filterArray) {
   }
-
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.getListData();
   }
 
   /**
-   * 获取列表信息
+   * 搜索信息
    * @param reset 是否重置
    */
   getListData(reset: boolean = false): void {
@@ -54,16 +56,16 @@ export class EditModelListComponent implements OnInit {
     }
     this.loading = true;
     const urlParmas = {
-      usertype: '2'
+      usertype: '1',
+      isgetact: false
     };
     const postdata = {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
       'sortKey': this.SortInfo.key,
-      'sortValue': this.SortInfo.value,
-
+      'sortValue': this.SortInfo.value
     };
-    this.AjaxServer.ajax('userList', urlParmas, postdata)
+    this.AjaxServer.ajax('getPermGroup', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
@@ -93,20 +95,17 @@ export class EditModelListComponent implements OnInit {
   }
 
   /**
-   * 停用用户
-   * @param id 用户id
+   * 停用用户分组
+   * @param id 分组id
    * @param i  在数组中的序号
    * @param isforbid 是否停用
    */
-  forbiddenuser(id: string, i, isforbid: boolean): void {
+  forbiddengroup(id: string, i, isforbid: boolean) {
     const postdata = {
-      uid: id
+      pid: id
     };
-    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
-    const urlparmas = {
-      usertype: '2'
-    };
-    this.AjaxServer.ajax(APIurl, urlparmas, postdata)
+    const APIurl = isforbid ? 'forbiddenPermG' : 'openPermG';
+    this.AjaxServer.ajax(APIurl, null, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;
@@ -123,7 +122,8 @@ export class EditModelListComponent implements OnInit {
   }
   // 单页条数变更方法
   PageSizeChange(isreset: boolean) {
-    // console.log('PageSizeChange-isrest', isreset);
+    // console.log('PageSizeChange-isreset:', isreset);
   }
+
 
 }

@@ -1,19 +1,21 @@
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SearchInfo, ListData, SortInfo } from '../common/data/pagedata.class';
+import { SearchInfo, ListData, SortInfo } from '../../common/data/pagedata.class';
+
 @Component({
-  selector: 'app-edit-model-group',
-  templateUrl: './edit-model-group.component.html',
-  styleUrls: ['./edit-model-group.component.scss']
+  selector: 'app-edit-model-list',
+  templateUrl: './edit-model-list.component.html',
+  styleUrls: ['./edit-model-list.component.scss']
 })
-export class EditModelGroupComponent implements OnInit {
+export class EditModelListComponent implements OnInit {
   // 页面信息
   pagedata = new ListData(false, 1, 10);
   // 排序信息
   SortInfo = new SortInfo();
   // 搜索 nickname/phone/email
   searchinfo: SearchInfo = {
-    key: 'group_name',
+    key: 'nickname',
     value: ''
   };
   // 页码
@@ -22,20 +24,8 @@ export class EditModelGroupComponent implements OnInit {
   pageSize = 10;
   // 总数
   total = 1;
-  // 显示的列表数据
-  dataSet = [];
   // 加载过度
   loading = true;
-  // 排序值
-  sortValue = null;
-  // 排序key
-  sortKey = null;
-
-  stylelist = [
-    { text: '风格', value: 'style' },
-    { text: '标签', value: 'tag' },
-    { text: '分组', value: 'group' }
-  ];
 
   sort(sort: { key: string, value: string }): void {
     console.log(sort);
@@ -46,13 +36,16 @@ export class EditModelGroupComponent implements OnInit {
   constructor(
     private message: NzMessageService,
     @Inject('AjaxServer') private AjaxServer,
-    @Inject('filterArray') private filterArray) {
+    @Inject('filterArray') private filterArray, ) {
   }
+
+
   ngOnInit(): void {
     this.getListData();
   }
+
   /**
-   * 搜索信息
+   * 获取列表信息
    * @param reset 是否重置
    */
   getListData(reset: boolean = false): void {
@@ -67,14 +60,15 @@ export class EditModelGroupComponent implements OnInit {
       'page': this.pageIndex,
       'pagesize': this.pageSize,
       'sortKey': this.SortInfo.key,
-      'sortValue': this.SortInfo.value
+      'sortValue': this.SortInfo.value,
+
     };
-    this.AjaxServer.ajax('getModelGroup', urlParmas, postdata)
+    this.AjaxServer.ajax('userList', urlParmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.loading = false;
           this.total = res.total;
-          this.pagedata.dataset = res.data.alldata;
+          this.pagedata.dataset = res.data;
         } else {
           alert(res.msg);
         }
@@ -97,25 +91,22 @@ export class EditModelGroupComponent implements OnInit {
       this.message.info('搜索重置完成');
     }
   }
-  // 筛选类型
-  filter(listOfSearchName: string[], searchAddress: string): void {
-    const res =
-      this.filterArray.searchKeywordsInArray(searchAddress, [listOfSearchName], this.pagedata.dataset);
-    this.pagedata.datares = res.result;
-  }
 
   /**
-   * 停用用户分组
-   * @param id 分组id
+   * 停用用户
+   * @param id 用户id
    * @param i  在数组中的序号
    * @param isforbid 是否停用
    */
-  forbiddengroup(id: string, i, isforbid: boolean) {
+  forbiddenuser(id: string, i, isforbid: boolean): void {
     const postdata = {
-      gid: id
+      uid: id
     };
-    const APIurl = isforbid ? 'forbiddenGroup' : 'openGroup';
-    this.AjaxServer.ajax(APIurl, null, postdata)
+    const APIurl = isforbid ? 'forbiddenUser' : 'openUser';
+    const urlparmas = {
+      usertype: '2'
+    };
+    this.AjaxServer.ajax(APIurl, urlparmas, postdata)
       .subscribe(res => {
         if (res.code === 200) {
           this.pagedata.dataset[i].station = this.pagedata.dataset[i].station === 1 ? 0 : 1;
@@ -132,9 +123,7 @@ export class EditModelGroupComponent implements OnInit {
   }
   // 单页条数变更方法
   PageSizeChange(isreset: boolean) {
-    // console.log('PageSizeChange-isreset:', isreset);
+    // console.log('PageSizeChange-isrest', isreset);
   }
-
-
 
 }
