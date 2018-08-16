@@ -71,7 +71,7 @@ export class LoginpageComponent implements OnInit {
           if (res.data.uid) {
             sessionStorage.setItem('user-id', res.data.uid);
             sessionStorage.setItem('user-token', res.data.token);
-            this.AjaxServer.ajax('getPermGroup')
+            this.AjaxServer.ajax('hasPerm')
               .subscribe(res2 => {
                 if (res2.code === 200) {
                   sessionStorage.setItem('prlist', res2.data.prList);

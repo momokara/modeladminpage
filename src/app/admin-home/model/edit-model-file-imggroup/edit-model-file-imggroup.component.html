@@ -64,8 +64,8 @@
         风格
       </span>
     </nz-form-label>
-    <nz-form-control [nzSm]="10" [nzXs]="24">
-      <nz-select formControlName="style" [nzMaxMultipleCount]="3" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+    <nz-form-control [nzSm]="10" [nzXs]="24">{{validateForm.get('style').value}}
+      <nz-select formControlName="style" [nzMaxMultipleCount]="99999" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
         <nz-option *ngFor="let item of userStyle" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
       </nz-select>
     </nz-form-control>
@@ -77,8 +77,8 @@
         标签
       </span>
     </nz-form-label>
-    <nz-form-control [nzSm]="10" [nzXs]="24">
-      <nz-select formControlName="tags" [nzMaxMultipleCount]="5" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
+    <nz-form-control [nzSm]="10" [nzXs]="24">{{validateForm.get('tags').value}}
+      <nz-select formControlName="tags" [nzMaxMultipleCount]="9999" style="width: 100%" nzMode="multiple" nzPlaceHolder="请选择模特所属风格">
         <nz-option *ngFor="let item of userTag" [nzLabel]="item.group_name" [nzValue]="item.gid"></nz-option>
       </nz-select>
     </nz-form-control>
@@ -92,7 +92,6 @@
     <nz-form-control [nzSpan]="5">
       <a nz-button nzType="default" class="btn-sub fr" routerLink="/home/modelfile/{{uid}}">取消</a>
     </nz-form-control>
-
   </nz-form-item>
 
 </form>

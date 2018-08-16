@@ -94,14 +94,13 @@ export class EditModelFileImggroupComponent implements OnInit {
     this.AjaxServer.ajax('getImgGroup', urlParmas)
       .subscribe(res => {
         if (res.code === 200 && res.data) {
-          console.log(res.data);
           this.fileList = res.data.imglist;
           this.validateForm.setControl('cid', this.fb.control(res.data.cid));
           this.validateForm.setControl('c_name', this.fb.control(res.data.c_name));
           this.validateForm.setControl('desc', this.fb.control(res.data.desc));
           this.validateForm.setControl('imglist', this.fb.control(res.data.imglist));
-          this.validateForm.setControl('style', this.fb.control(res.data.style));
-          this.validateForm.setControl('tags', this.fb.control(res.data.tags));
+          this.validateForm.setControl('style', this.fb.control(Array.from(new Set(res.data.style))));
+          this.validateForm.setControl('tags', this.fb.control(Array.from(new Set(res.data.tags))));
         }
       });
   }
@@ -123,7 +122,7 @@ export class EditModelFileImggroupComponent implements OnInit {
       cid: this.cid ? this.cid : null,
     };
     this.validateForm.setControl('imglist', this.fb.control(this.fileList));
-    console.log(this.validateForm.value, this.validateForm.valid);
+    // console.log(this.validateForm.value, this.validateForm.valid);
     const postdata = this.validateForm.value;
     postdata.imglist = JSON.stringify(postdata.imglist);
     if (this.validateForm.valid) {
