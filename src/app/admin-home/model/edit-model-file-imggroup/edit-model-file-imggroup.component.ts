@@ -107,7 +107,7 @@ export class EditModelFileImggroupComponent implements OnInit {
 
   // 提交表单
   submitForm(): void {
-    console.log(this.fileList);
+    // console.log(this.fileList);
     // tslint:disable-next-line:forin
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();

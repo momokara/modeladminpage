@@ -39,8 +39,7 @@ export class AdminHomeComponent implements OnInit {
   ngOnInit() {
     this.uid = this.MsgSer.getMessage('uid');
     // tslint:disable-next-line:max-line-length
-    console.log('%c\n', 'padding:50px 300px;line-height:120px;background:url(\'https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/timg.gif\') no-repeat;');
-
+    console.log(`%c ${new Date()}`, `padding:100px;background:url(\"https://momokarapage.oss-cn-shenzhen.aliyuncs.com/static/timg.gif\") center no-repeat;`);
     // 路由切换事件
     this.router.events
       .pipe(

@@ -63,10 +63,10 @@ export class LoginpageComponent implements OnInit {
     if (this.validateForm.value.remember) {
       localStorage.setItem('userinfo', JSON.stringify(this.logininfo));
     }
-    console.log(this.validateForm.get('userName'));
+    // console.log(this.validateForm.get('userName'));
     this.AjaxServer.ajax('loginUp', null, this.logininfo)
       .subscribe((res, error) => {
-        console.log(res, error);
+        // console.log(res, error);
         if (res && res.code === 200) {
           if (res.data.uid) {
             sessionStorage.setItem('user-id', res.data.uid);
