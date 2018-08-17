@@ -28,8 +28,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## File 
 
-base 文件夹放的是测试用的数据,同时是后台输出数据的格式参考, 在 environment 里面api.class 统一存放接口请求地址,可以根据情况 打包生产环境和开发环境;
-修改 environment.ts 文件中的istest 可以控制是通过get 拿静态文件还是线上数据
+base 文件夹放的是测试用的数据,同时是后台输出数据的格式参考, 
+在 src/environment/api.class 统一存放接口请求地址,可以根据情况 打包生产环境和开发环境;
+需要添加 src/environment/environment.ts 内容复制 environment.prod.ts 
+修改： baseurl: { baseherf: 'base/index/index/' }
 
 
 ##插件 
