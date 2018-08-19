@@ -34,7 +34,8 @@ base 文件夹放的是测试用的数据,同时是后台输出数据的格式�
 修改： baseurl: { baseherf: 'base/index/index/' }
 
 ## About HMR 
-1. 在src/tsconfig.app.json  中添加 "types": ["node"]
+###1. 在src/tsconfig.app.json  中添加 "types": ["node"]
+```
 {
   ...
   "compilerOptions": {
@@ -43,10 +44,12 @@ base 文件夹放的是测试用的数据,同时是后台输出数据的格式�
   },
   ...
 }
-2. 修改angular.json 
+```
+###2. 修改angular.json 
 serve-> configurations 加 "hmr" 服务启动项，
 然后 
 build-> configurations 下加入 "hmr" 默认就能用了如果需要可以加个独立配置文件
+```
 "hmr": {
     "fileReplacements": [
         {
@@ -55,8 +58,9 @@ build-> configurations 下加入 "hmr" 默认就能用了如果需要可以加�
         }
     ],
 }
+```
 然后 新建一个src/environments/environment.hmr.ts 去写入配置
-
+```
 {
 ...
   "projects": {
@@ -84,8 +88,9 @@ build-> configurations 下加入 "hmr" 默认就能用了如果需要可以加�
     },
     ...
 }
-
-3. 在src下添加 src/hmr.ts 
+```
+###3. 在src下添加 src/hmr.ts 
+```
 // src/hmr.ts 
 import { NgModuleRef, ApplicationRef } from '@angular/core';
 import { createNewHosts } from '@angularclass/hmr';
@@ -102,7 +107,10 @@ export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<a
         makeVisible();
     });
 };
-4. 修改启动项 src/main.ts
+```
+###4. 修改启动项 
+```
+// src/main.ts
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -128,16 +136,18 @@ if (environment.hmr) {
   // 不使用HMR 时候的启动
   bootstrap().catch(err => console.log(err));
 }
-5. 定义一个环境变量控制 hmr启动
-  // src/environments/environment.ts
+```
+###5. 定义一个环境变量控制 hmr启动
+```
+// src/environments/environment.ts
 export const environment = {
   production: false,
   istest: false,
   hmr: true,
   baseurl: { baseherf: 'base/index/index/' }
 };
-
-6. 启动 用 ng serve --configuration hmr 启动项目
+```
+###6. 启动 用 ng serve --configuration hmr 启动项目
 当然也可以写到 package.json 中方便启动
 看到  NOTICE: Hot Module Replacement (HMR) is enabled for the dev server. 
 就是启动成功了
