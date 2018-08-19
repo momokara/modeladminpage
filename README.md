@@ -147,9 +147,12 @@ export const environment = {
   baseurl: { baseherf: 'base/index/index/' }
 };
 ```
-###6. 启动 用 ng serve --configuration hmr 启动项目
+###6. 启动 
+用以下命令启动项目
+`ng serve --configuration hmr`
 当然也可以写到 package.json 中方便启动
-看到  NOTICE: Hot Module Replacement (HMR) is enabled for the dev server. 
+看到  
+`NOTICE: Hot Module Replacement (HMR) is enabled for the dev server. `
 就是启动成功了
 
 
