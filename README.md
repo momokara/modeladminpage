@@ -34,7 +34,7 @@ base 文件夹放的是测试用的数据,同时是后台输出数据的格式�
 修改： baseurl: { baseherf: 'base/index/index/' }
 
 ## About HMR 
-###1. 在src/tsconfig.app.json  中添加 "types": ["node"]
+### 1. 在src/tsconfig.app.json  中添加 "types": ["node"]
 ```
 {
   ...
@@ -45,7 +45,7 @@ base 文件夹放的是测试用的数据,同时是后台输出数据的格式�
   ...
 }
 ```
-###2. 修改angular.json 
+### 2. 修改angular.json 
 serve-> configurations 加 "hmr" 服务启动项，
 然后 
 build-> configurations 下加入 "hmr" 默认就能用了如果需要可以加个独立配置文件
@@ -89,7 +89,7 @@ build-> configurations 下加入 "hmr" 默认就能用了如果需要可以加�
     ...
 }
 ```
-###3. 在src下添加 src/hmr.ts 
+### 3. 在src下添加 src/hmr.ts 
 ```
 // src/hmr.ts 
 import { NgModuleRef, ApplicationRef } from '@angular/core';
@@ -108,7 +108,7 @@ export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<a
     });
 };
 ```
-###4. 修改启动项 
+### 4. 修改启动项 
 ```
 // src/main.ts
 import { enableProdMode } from '@angular/core';
@@ -137,7 +137,7 @@ if (environment.hmr) {
   bootstrap().catch(err => console.log(err));
 }
 ```
-###5. 定义一个环境变量控制 hmr启动
+### 5. 定义一个环境变量控制 hmr启动
 ```
 // src/environments/environment.ts
 export const environment = {
@@ -147,7 +147,7 @@ export const environment = {
   baseurl: { baseherf: 'base/index/index/' }
 };
 ```
-###6. 启动 
+### 6. 启动 
 用以下命令启动项目
 `ng serve --configuration hmr`
 当然也可以写到 package.json 中方便启动
